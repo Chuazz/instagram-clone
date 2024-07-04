@@ -35,3 +35,11 @@ yarn-error.log*
 
 # turbo
 .turbo
+
+
+# expo
+expo-env.d.ts
+%ProgramData%
+
+# tamagui
+.tamagui

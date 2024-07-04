@@ -1,0 +1,15 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"display": "Native",
+	"extends": "./base.json",
+	"compilerOptions": {
+		"strict": true,
+		"allowJs": true,
+		"jsx": "react",
+		"lib": ["DOM", "ESNext"],
+		"noEmit": true,
+		"resolveJsonModule": true,
+		"target": "ESNext"
+	},
+	"include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
+}

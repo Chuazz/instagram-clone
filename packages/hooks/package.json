@@ -1,0 +1,14 @@
+{
+	"name": "@super-app/hooks",
+	"type": "module",
+	"version": "0.0.0",
+	"scripts": {
+		"dev": "tsc --watch",
+		"build": "tsc"
+	},
+	"devDependencies": {
+		"@super-app/typescript-config": "*",
+		"typescript": "latest",
+		"@super-app/types": "*"
+	}
+}
