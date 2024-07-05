@@ -3,7 +3,7 @@ import { Image as EPImage, ImageProps as EPImageProps } from 'expo-image';
 import { DimensionValue } from 'react-native';
 
 type ImageProps = Omit<EPImageProps, 'source'> & {
-	source: keyof typeof image | (string & {});
+	source: keyof typeof image | (string & object);
 	width: DimensionValue;
 	height: DimensionValue;
 };
