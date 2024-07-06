@@ -1,6 +1,6 @@
 import { ScrollView } from 'tamagui';
 import { HomeStoryItem } from './home-story-item';
-import { Post } from '@super-app/types/data';
+import { Post } from '@super-app/types/src/data/post';
 import { HORIZONTAL_PADDING } from '@super-app/configs/src/style-config';
 
 const data: Post[] = [

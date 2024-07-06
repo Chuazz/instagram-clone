@@ -1,4 +1,4 @@
-import { Post } from '@super-app/types/data';
+import { Post } from '@super-app/types/src/data/post';
 import { Text, View } from 'tamagui';
 
 const HomeStoryItem = ({ data }: { data: Post }) => {
