@@ -13,7 +13,7 @@ const SocialHomeHeader = () => {
 			justifyContent='space-between'
 		>
 			<Image
-				source='img_social_text_logo'
+				source='SocialTextLogoImage'
 				width={140}
 				height={40}
 			/>

@@ -1,5 +1,5 @@
 import { Screen } from '@/components/layout';
-import { i18n } from '@super-app/configs/src/i18n/i18n-config';
+import { i18n } from '@super-app/configs/src/i18n-config';
 import { Text } from 'react-native';
 
 const HomeScreen = () => {

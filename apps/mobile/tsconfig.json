@@ -1,5 +1,5 @@
 {
-	"extends": ["expo/tsconfig.base", "@super-app/typescript-config/base"],
+	"extends": "@super-app/typescript-config/base.json",
 	"compilerOptions": {
 		"baseUrl": ".",
 		"paths": {

@@ -1,9 +1,9 @@
 {
 	"extends": "@super-app/typescript-config/base.json",
 	"compilerOptions": {
-		"outDir": "./dist",
-		"rootDir": "."
+		"outDir": "dist",
+		"rootDir": "src"
 	},
-	"include": ["index.ts"],
+	"include": ["src"],
 	"exclude": ["node_modules", "dist"]
 }

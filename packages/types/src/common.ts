@@ -5,7 +5,10 @@ type OptionType<TCode = string> = {
 	label: string;
 };
 
-type KeyValueType<TKey = string, TValue = string | number | boolean> = {
+type KeyValueType<
+	TKey extends string | number | symbol = string,
+	TValue = string | number | boolean,
+> = {
 	[key in TKey]: TValue;
 };
 
