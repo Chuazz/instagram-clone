@@ -1,5 +1,3 @@
-import { GetThemeValueForKey } from '@tamagui/core';
+const SPACING = 12;
 
-const HORIZONTAL_PADDING: GetThemeValueForKey<'paddingHorizontal'> = '$3';
-
-export { HORIZONTAL_PADDING };
+export { SPACING };

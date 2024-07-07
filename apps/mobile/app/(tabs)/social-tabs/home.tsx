@@ -1,3 +1,4 @@
+import { HomePostList } from '@/components/feature/social/home/home-post-list';
 import { HomeStory } from '@/components/feature/social/home/home-story';
 import { SocialHomeHeader } from '@/components/feature/social/home/social-home-header';
 import { Screen } from '@/components/layout';
@@ -5,9 +6,15 @@ import { Screen } from '@/components/layout';
 const HomeScreen = () => {
 	return (
 		<Screen>
-			<SocialHomeHeader />
+			<HomePostList
+				listHeader={
+					<>
+						<SocialHomeHeader />
 
-			<HomeStory />
+						<HomeStory />
+					</>
+				}
+			/>
 		</Screen>
 	);
 };
