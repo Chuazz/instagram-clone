@@ -1,10 +1,20 @@
+import { File } from './file';
 import { User } from './user';
 
 type Post = {
 	id: number;
-	images: string[];
-	thumbnail: string;
-	user: User;
+	status: string;
+	user_created: User;
+	date_created: string;
+	date_updated: any;
+	type: 'reel' | 'post' | 'story';
+	images: PostImage[];
 };
 
-export type { Post };
+type PostImage = {
+	id: number;
+	post_id: number;
+	directus_files_id: File;
+};
+
+export type { Post, PostImage };
