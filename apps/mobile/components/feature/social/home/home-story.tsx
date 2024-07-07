@@ -1,36 +1,43 @@
-import { ScrollView } from 'tamagui';
+import { SPACING } from '@super-app/configs/src';
+import { useGet } from '@super-app/hooks/src/useGet';
+import { FlatList } from 'react-native';
 import { HomeStoryItem } from './home-story-item';
-import { Post } from '@super-app/types/src/data/post';
-import { HORIZONTAL_PADDING } from '@super-app/configs/src/style-config';
-
-const data: Post[] = [
-	{
-		id: 1,
-		images: [],
-		thumbnail: '',
-		user: {
-			id: 2,
-			avatar: '',
-			name: 'ricky_r_simpson',
-		},
-	},
-];
+import { View } from 'tamagui';
 
 const HomeStory = () => {
+	const storyQuery = useGet({
+		collection: 'post',
+		query: {
+			filter: {
+				type: {
+					_eq: 'story',
+				},
+			},
+			fields: [
+				'id',
+				{
+					user_created: ['*'],
+				},
+			],
+		},
+	});
+
 	return (
-		<ScrollView
-			horizontal={true}
-			showsHorizontalScrollIndicator={false}
-			showsVerticalScrollIndicator={false}
-			px={HORIZONTAL_PADDING}
-		>
-			{data.map((item) => (
-				<HomeStoryItem
-					key={item.id}
-					data={item}
-				/>
-			))}
-		</ScrollView>
+		<View>
+			<FlatList
+				horizontal={true}
+				showsHorizontalScrollIndicator={false}
+				showsVerticalScrollIndicator={false}
+				data={storyQuery.data}
+				contentContainerStyle={{
+					paddingHorizontal: SPACING,
+					marginTop: 20,
+					gap: SPACING,
+				}}
+				keyExtractor={(item) => item.id.toString()}
+				renderItem={({ item }) => <HomeStoryItem data={item} />}
+			/>
+		</View>
 	);
 };
 

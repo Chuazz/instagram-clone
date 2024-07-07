@@ -1,13 +1,13 @@
 import { Image } from '@/components/ui';
-import { HORIZONTAL_PADDING } from '@super-app/configs/src/style-config';
+import { SPACING } from '@super-app/configs/src/style-config';
 import { Ionicons, FontAwesome6 } from '@expo/vector-icons';
 import { View } from 'tamagui';
 
 const SocialHomeHeader = () => {
 	return (
 		<View
-			mt='$4'
-			px={HORIZONTAL_PADDING}
+			mt={SPACING}
+			px={SPACING}
 			alignItems='center'
 			flexDirection='row'
 			justifyContent='space-between'
@@ -20,7 +20,7 @@ const SocialHomeHeader = () => {
 
 			<View
 				flexDirection='row'
-				gap='$4'
+				gap={16}
 				alignItems='center'
 			>
 				<Ionicons
