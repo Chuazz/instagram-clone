@@ -7,7 +7,7 @@ type OptionType<TCode = string> = {
 
 type KeyValueType<
 	TKey extends string | number | symbol = string,
-	TValue = string | number | boolean,
+	TValue = string | number | boolean | object,
 > = {
 	[key in TKey]: TValue;
 };

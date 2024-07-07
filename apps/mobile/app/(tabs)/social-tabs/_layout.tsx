@@ -13,7 +13,7 @@ const TabLayout = () => {
 			<Tabs.Screen
 				name='home'
 				options={{
-					tabBarIcon: ({ color, focused }) => (
+					tabBarIcon: ({ color }) => (
 						<TabBarIcon
 							name='logo-instagram'
 							color={color}
