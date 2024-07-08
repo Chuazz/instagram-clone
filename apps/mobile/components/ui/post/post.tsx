@@ -6,6 +6,7 @@ import { createContext, ReactNode, useContext } from 'react';
 type PostContextType = {
 	data: PostType;
 	currentPage: number;
+	showPage: boolean;
 };
 
 const PostContext = createContext<Observable<PostContextType> | null>(null);
@@ -15,6 +16,7 @@ const Post = observer(
 		const value$ = useObservable<PostContextType>({
 			data,
 			currentPage: 0,
+			showPage: false,
 		});
 
 		return (

@@ -2,6 +2,7 @@ import { Post } from '@/components/ui/post/post';
 import { PostFooter } from '@/components/ui/post/post-footer';
 import { PostHeader } from '@/components/ui/post/post-header';
 import { PostMedia } from '@/components/ui/post/post-media';
+import { PostMediaCount } from '@/components/ui/post/post-media-count';
 import { queryKey } from '@super-app/configs/src';
 import { useGet } from '@super-app/hooks/src';
 import { queryClient } from '@super-app/providers/src';
@@ -12,8 +13,13 @@ const HomePostList = ({ listHeader }: { listHeader: ReactNode }) => {
 	const storyQuery = useGet({
 		collection: 'post',
 		query: {
+			filter: {
+				type: {
+					_eq: 'post',
+				},
+			},
 			fields: [
-				'*',
+				'id',
 				{
 					user_created: ['avatar', 'first_name', 'last_name'],
 					images: [
@@ -50,7 +56,9 @@ const HomePostList = ({ listHeader }: { listHeader: ReactNode }) => {
 				<Post data={item}>
 					<PostHeader />
 
-					<PostMedia />
+					<PostMedia>
+						<PostMediaCount />
+					</PostMedia>
 
 					<PostFooter />
 				</Post>

@@ -8,7 +8,7 @@ const PostMediaPaginate = observer(() => {
 
 	return (
 		<PaginationDot
-			activeDotColor='#32affe'
+			activeDotColor='#0795f0'
 			inactiveDotColor='#adadad'
 			curPage={post?.currentPage.get() || 0}
 			maxPage={data?.images.length || 0}
