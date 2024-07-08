@@ -9,6 +9,9 @@ type Post = {
 	date_updated: any;
 	type: 'reel' | 'post' | 'story';
 	images: PostImage[];
+	total_likes: number;
+	total_comments: number;
+	content: string | null;
 };
 
 type PostImage = {

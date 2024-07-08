@@ -20,6 +20,10 @@ const HomePostList = ({ listHeader }: { listHeader: ReactNode }) => {
 			},
 			fields: [
 				'id',
+				'total_comments',
+				'total_likes',
+				'content',
+				'date_created',
 				{
 					user_created: ['avatar', 'first_name', 'last_name'],
 					images: [
