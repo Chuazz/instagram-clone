@@ -1,26 +1,29 @@
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@gorhom/bottom-sheet';
-import { useRef } from 'react';
-import Carousel, { ICarouselInstance } from 'react-native-reanimated-carousel';
+import { SCREEN_WIDTH } from '@gorhom/bottom-sheet';
+import { ReactNode, useRef } from 'react';
+import { observer } from '@legendapp/state/react';
+import { SPACING } from '@super-app/configs/src';
+import { PostImage } from '@super-app/types/src';
+import Carousel from 'react-native-snap-carousel';
 import { View } from 'tamagui';
 import { Image } from '../image';
 import { usePost } from './post';
-import { SPACING } from '@super-app/configs/src';
-import { observer } from '@legendapp/state/react';
 
-const PostMedia = observer(() => {
+const PostMedia = observer(({ children }: { children: ReactNode }) => {
 	const post = usePost();
 	const data = post?.data?.get();
-	const ref = useRef<ICarouselInstance>(null);
+	const ref = useRef<Carousel<PostImage>>(null);
 
 	return (
 		<View mt={SPACING}>
 			<Carousel
 				ref={ref}
-				width={SCREEN_WIDTH}
-				height={SCREEN_HEIGHT - 400}
 				data={data?.images || []}
+				sliderWidth={SCREEN_WIDTH}
+				itemWidth={SCREEN_WIDTH}
+				lockScrollWhileSnapping={true}
 				onSnapToItem={(i) => {
 					post?.currentPage.set(i);
+					post?.showPage.set(true);
 				}}
 				renderItem={({ item }) => (
 					<Image
@@ -33,6 +36,8 @@ const PostMedia = observer(() => {
 					/>
 				)}
 			/>
+
+			{children}
 		</View>
 	);
 });
