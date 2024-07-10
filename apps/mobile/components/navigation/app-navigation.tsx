@@ -7,7 +7,7 @@ const AppNavigation = () => {
 				headerShown: false,
 			}}
 		>
-			<Stack.Screen name='(tabs)/index' />
+			<Stack.Screen name='(tabs)' />
 		</Stack>
 	);
 };

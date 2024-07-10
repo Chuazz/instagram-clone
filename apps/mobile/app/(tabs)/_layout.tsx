@@ -11,11 +11,11 @@ const TabLayout = () => {
 			}}
 		>
 			<Tabs.Screen
-				name='home'
+				name='index'
 				options={{
 					tabBarIcon: ({ color, focused }) => (
 						<TabBarIcon
-							name={focused ? 'film' : 'film-outline'}
+							name={focused ? 'home' : 'home-outline'}
 							color={color}
 						/>
 					),

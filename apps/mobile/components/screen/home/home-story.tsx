@@ -1,5 +1,5 @@
 import { SPACING } from '@super-app/configs/src';
-import { useGet } from '@super-app/hooks/src/useGet';
+import { useGet } from '@super-app/hooks/src/use-get';
 import { FlatList } from 'react-native';
 import { HomeStoryItem } from './home-story-item';
 import { View } from 'tamagui';

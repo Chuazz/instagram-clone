@@ -3,6 +3,7 @@ const dark = {
 	white: 'white',
 	background: 'black',
 	text: 'white',
+	primary: '#0066e2',
 };
 
 const light: typeof dark = {
@@ -10,6 +11,7 @@ const light: typeof dark = {
 	white: 'white',
 	background: 'black',
 	text: 'white',
+	primary: '#0066e2',
 };
 
 const color = { dark, light };
