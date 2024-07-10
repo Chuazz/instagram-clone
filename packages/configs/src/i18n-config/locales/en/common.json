@@ -2,5 +2,10 @@
 	"suggested_for_you": "Suggested for you",
 	"follow": "Follow",
 	"likes": "Likes",
-	"view_all_comments": "View all {{total_comments}} comments"
+	"view_all_comments": "View all {{total_comments}} comments",
+	"name_email_number": "Username, email or mobile number",
+	"password": "Password",
+	"log_in": "Log in",
+	"forgot_password": "Forgot password ?",
+	"create_new_account": "Create new account"
 }

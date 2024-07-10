@@ -3,6 +3,7 @@ type LanguageType = 'vi' | 'en';
 type OptionType<TCode = string> = {
 	code: TCode;
 	label: string;
+	subLabel?: string;
 };
 
 type KeyValueType<

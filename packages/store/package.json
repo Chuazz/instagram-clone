@@ -1,0 +1,10 @@
+{
+	"name": "@super-app/store",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"dev": "tsc --watch",
+		"build": "tsc"
+	},
+	"devDependencies": {}
+}
