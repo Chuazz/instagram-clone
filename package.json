@@ -13,6 +13,7 @@
 	"scripts": {
 		"dev": "turbo run dev",
 		"postinstall": "patch-package",
+		"fake-http": "ngrok http http://localhost:8055",
 		"build": "turbo run build",
 		"clean": "turbo run clean && rm -rf node_modules",
 		"format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\" --ignore-path .gitignore"

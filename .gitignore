@@ -47,5 +47,7 @@ expo-env.d.ts
 
 # direstus
 apps/admin/database/**
-apps/admin/extensions/**
 apps/admin/uploads/**
+
+# android
+apps/mobile/android/**
