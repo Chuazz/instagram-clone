@@ -1,0 +1,32 @@
+{
+    "extends": "expo/tsconfig.base",
+    "$schema": "https://json.schemastore.org/tsconfig",
+    "display": "Native",
+    "compilerOptions": {
+        "strict": true,
+        "allowJs": true,
+        // "jsx": "react-jsx",
+        "lib": ["DOM", "ESNext"],
+        "noEmit": true,
+        "resolveJsonModule": true,
+        "target": "ESNext",
+        "composite": false,
+        "declaration": true,
+        "declarationMap": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "inlineSources": false,
+        "isolatedModules": true,
+        "moduleResolution": "node",
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "preserveWatchOutput": true,
+        "skipLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@/*": ["./*"]
+        }
+    },
+    "exclude": ["node_modules"],
+    "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
+}

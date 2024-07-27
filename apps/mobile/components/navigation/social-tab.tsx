@@ -1,3 +1,0 @@
-const SocialTab = () => {};
-
-export { SocialTab };
