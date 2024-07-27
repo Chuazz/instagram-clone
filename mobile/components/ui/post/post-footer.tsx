@@ -1,4 +1,4 @@
-import { View } from 'tamagui';
+import { View } from 'dripsy';
 import { PostMediaPaginate } from './post-media-paginate';
 import { PostBottomLeftAction } from './post-bottom-left-action';
 import { PostSave } from './post-save';
@@ -18,8 +18,8 @@ const PostFooter = () => {
             gap={8}
         >
             <View
-                flexDirection="row"
-                alignItems="center"
+                flexDirection='row'
+                alignItems='center'
             >
                 <View flexBasis={FLEX_BASIS}>
                     <PostBottomLeftAction />
@@ -27,15 +27,15 @@ const PostFooter = () => {
 
                 <View
                     flexBasis={FLEX_BASIS}
-                    justifyContent="center"
-                    alignItems="center"
+                    justifyContent='center'
+                    alignItems='center'
                 >
                     <PostMediaPaginate />
                 </View>
 
                 <View
                     flexBasis={FLEX_BASIS}
-                    alignItems="flex-end"
+                    alignItems='flex-end'
                 >
                     <PostSave />
                 </View>

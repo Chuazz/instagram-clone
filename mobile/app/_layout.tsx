@@ -1,8 +1,8 @@
 import { SplashScreen } from '@/components/layout';
-import { AppNavigation } from '@/components/navigation';
+import { theme } from '@/configs';
 import { ReactQueryProvider } from '@/providers/react-query-provider';
-import { TamaguiProvider } from '@/providers/tamagui-provider';
-import { StatusBar } from 'react-native';
+import { DripsyProvider } from 'dripsy';
+import { Stack } from 'expo-router';
 import 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import Reactotron from 'reactotron-react-native';
@@ -19,15 +19,19 @@ const RootLayout = () => {
     return (
         <ReactQueryProvider>
             <SafeAreaProvider>
-                <StatusBar
-                    backgroundColor="black"
-                    barStyle="light-content"
-                />
+                {/* <StatusBar
+                    backgroundColor='black'
+                    style='light'
+                /> */}
 
                 <SplashScreen>
-                    <TamaguiProvider>
-                        <AppNavigation />
-                    </TamaguiProvider>
+                    <DripsyProvider theme={theme}>
+                        <Stack
+                            screenOptions={{
+                                headerShown: false,
+                            }}
+                        />
+                    </DripsyProvider>
                 </SplashScreen>
             </SafeAreaProvider>
         </ReactQueryProvider>

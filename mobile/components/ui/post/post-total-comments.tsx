@@ -1,4 +1,4 @@
-import { Button } from 'tamagui';
+import { Button } from 'dripsy';
 import { usePost } from './post';
 import { i18n } from '@/configs';
 

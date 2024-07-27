@@ -1,4 +1,4 @@
-import { Text } from 'tamagui';
+import { Text } from 'dripsy';
 import { usePost } from './post';
 import { i18n } from '@/configs';
 

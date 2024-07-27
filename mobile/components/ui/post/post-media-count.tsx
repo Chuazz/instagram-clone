@@ -1,4 +1,4 @@
-import { Text, View } from 'tamagui';
+import { Text, View } from 'dripsy';
 import { usePost } from './post';
 import { observer, useObserve } from '@legendapp/state/react';
 import { SPACING } from '@/configs';
@@ -24,17 +24,17 @@ const PostMediaCount = observer(() => {
 
     return (
         <View
-            backgroundColor="$black"
+            backgroundColor='$black'
             borderRadius={9999}
             width={44}
             py={6}
-            position="absolute"
+            position='absolute'
             top={SPACING}
             right={SPACING}
         >
             <Text
-                color="white"
-                textAlign="center"
+                color='white'
+                textAlign='center'
                 fontSize={12}
             >
                 {post?.currentPage.get() + 1}/{post?.data.images.length}

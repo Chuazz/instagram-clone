@@ -2,19 +2,16 @@ import { router } from 'expo-router';
 import { useEffect } from 'react';
 
 const Auth = () => {
-	useEffect(() => {
-		const checkLogin = async () => {
-			// const isLogin = await AsyncStorage.getItem('auth');
+    useEffect(() => {
+        const checkLogin = async () => {
+            // const isLogin = await AsyncStorage.getItem('auth');
+            // router.navigate('/login');
+        };
 
-			console.log(2);
+        checkLogin();
+    }, []);
 
-			router.navigate('/login');
-		};
-
-		checkLogin();
-	}, []);
-
-	return null;
+    return null;
 };
 
 export { Auth };

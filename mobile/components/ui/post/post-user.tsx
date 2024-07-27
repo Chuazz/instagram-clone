@@ -1,4 +1,4 @@
-import { Text, View } from 'tamagui';
+import { Text, View } from 'dripsy';
 import { usePost } from './post';
 import { Avatar } from '../avatar';
 import { i18n } from '@/configs';

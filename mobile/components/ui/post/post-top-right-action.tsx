@@ -1,11 +1,11 @@
 import { i18n } from '@/configs';
 import { Entypo } from '@expo/vector-icons';
-import { Button, View } from 'tamagui';
+import { Button, View } from 'dripsy';
 
 const PostTopRightAction = () => {
     return (
         <View
-            flexDirection="row"
+            flexDirection='row'
             gap={8}
         >
             <Button
@@ -16,13 +16,13 @@ const PostTopRightAction = () => {
             </Button>
 
             <Button
-                variant="outlined"
+                variant='outlined'
                 borderWidth={0}
                 height={36}
                 px={8}
             >
                 <Entypo
-                    name="dots-three-vertical"
+                    name='dots-three-vertical'
                     size={16}
                 />
             </Button>

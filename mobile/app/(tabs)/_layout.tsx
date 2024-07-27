@@ -11,7 +11,7 @@ const TabLayout = () => {
             }}
         >
             <Tabs.Screen
-                name="index"
+                name='index'
                 options={{
                     tabBarIcon: ({ color, focused }) => (
                         <TabBarIcon
@@ -23,7 +23,7 @@ const TabLayout = () => {
             />
 
             <Tabs.Screen
-                name="search"
+                name='search'
                 options={{
                     title: 'Search',
                     tabBarIcon: ({ color, focused }) => (

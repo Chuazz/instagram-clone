@@ -1,6 +1,6 @@
 import { FlatList } from 'react-native';
 import { HomeStoryItem } from './home-story-item';
-import { View } from 'tamagui';
+import { View } from 'dripsy';
 import { useGet } from '@/hooks/use-get';
 import { SPACING } from '@/configs';
 

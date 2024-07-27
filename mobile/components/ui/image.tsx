@@ -1,10 +1,12 @@
 import { BASE_API_URL, image } from '@/configs';
 import { useState } from 'react';
-import { Image as EPImage, ImageProps as EPImageProps } from 'tamagui';
+import { Image as EPImage, SxProp } from 'dripsy';
+import { ImageProps as RNImageProps } from 'react-native';
 
-type ImageProps = Omit<EPImageProps, 'source'> & {
+type ImageProps = RNImageProps & {
     source: keyof typeof image | (string & NonNullable<unknown>);
     fromServer?: boolean;
+    sx?: SxProp;
 };
 
 const Image = ({ source, fromServer, ...props }: ImageProps) => {

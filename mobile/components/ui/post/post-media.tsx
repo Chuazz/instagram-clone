@@ -2,7 +2,7 @@ import { SCREEN_WIDTH } from '@gorhom/bottom-sheet';
 import { ReactNode, useRef } from 'react';
 import { observer } from '@legendapp/state/react';
 import Carousel from 'react-native-snap-carousel';
-import { View } from 'tamagui';
+import { View } from 'dripsy';
 import { Image } from '../image';
 import { usePost } from './post';
 import { SPACING } from '@/configs';
