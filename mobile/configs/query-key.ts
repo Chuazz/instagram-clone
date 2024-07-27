@@ -1,14 +1,14 @@
 import { KeyValueType, CollectionArrayType } from '@/types';
 
 type QueryOption = {
-    lists?: (filter?: any) => any[];
-    list?: (filter?: any) => any[];
-    detail?: (filter?: any) => any[];
+    lists?: (_filter?: object) => unknown[];
+    list?: (_filter?: object) => unknown[];
+    detail?: (_filter?: object) => unknown[];
 };
 
 const queryKey: KeyValueType<CollectionArrayType, QueryOption> = {
     post: {
-        lists: (filter) => ['list', 'posts'],
+        lists: (filter) => ['list', 'posts', filter],
         list: (filter) => ['list', 'posts', filter],
         detail: (filter) => ['detail', 'post', filter],
     },

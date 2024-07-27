@@ -6,11 +6,13 @@ import { View } from 'dripsy';
 const SocialHomeHeader = () => {
     return (
         <View
-            mt={SPACING}
-            px={SPACING}
-            alignItems='center'
-            flexDirection='row'
-            justifyContent='space-between'
+            sx={{
+                mt: SPACING,
+                px: SPACING,
+                alignItems: 'center',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+            }}
         >
             <Image
                 source='SocialTextLogoImage'
@@ -19,9 +21,11 @@ const SocialHomeHeader = () => {
             />
 
             <View
-                flexDirection='row'
-                gap={16}
-                alignItems='center'
+                sx={{
+                    flexDirection: 'row',
+                    gap: 16,
+                    alignItems: 'center',
+                }}
             >
                 <Ionicons
                     name='heart-outline'

@@ -1,12 +1,14 @@
 import { Avatar } from '@/components/ui/avatar';
-import { Post } from '@/types';
+import { Post } from '@/types/data';
 import { Text, View } from 'dripsy';
 
 const HomeStoryItem = ({ data }: { data: Post }) => {
     return (
         <View
-            alignItems='center'
-            gap={4}
+            sx={{
+                alignItems: 'center',
+                gap: 4,
+            }}
         >
             <Avatar
                 size={80}

@@ -1,11 +1,13 @@
-import { Post } from '@/components/ui/post/post';
-import { PostFooter } from '@/components/ui/post/post-footer';
-import { PostHeader } from '@/components/ui/post/post-header';
-import { PostMedia } from '@/components/ui/post/post-media';
-import { PostMediaCount } from '@/components/ui/post/post-media-count';
-import { queryKey } from 'configs';
-import { useGet } from 'hooks/use-get';
-import { queryClient } from 'providers/react-query-provider';
+import {
+    Post,
+    PostFooter,
+    PostHeader,
+    PostMedia,
+    PostMediaCount,
+} from '@/components/ui/post';
+import { queryKey } from '@/configs';
+import { useGet } from '@/hooks';
+import { queryClient } from '@/providers';
 import { ReactNode } from 'react';
 import { FlatList, RefreshControl } from 'react-native';
 

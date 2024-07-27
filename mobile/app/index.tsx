@@ -1,4 +1,4 @@
-import { app$ } from '@/store/app';
+import { app$ } from '@/store';
 import { Show } from '@legendapp/state/react';
 import { Redirect } from 'expo-router';
 

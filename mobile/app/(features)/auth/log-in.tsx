@@ -1,13 +1,15 @@
 import { Screen } from '@/components/layout';
 import { Button, Image, Input } from '@/components/ui';
-import { SCREEN_WIDTH, SCREEN_HEIGHT } from '@gorhom/bottom-sheet';
-import { LANGUAGES, i18n } from 'configs';
+import { i18n, LANGUAGES } from '@/configs';
+import { useBottomSheet } from '@/hooks';
+import { app$ } from '@/store';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@gorhom/bottom-sheet';
+import { observer } from '@legendapp/state/react';
 import { ScrollView, Text, useDripsyTheme, View } from 'dripsy';
-import React from 'react';
-import { app$ } from 'store/app';
 
-const LoginPage = () => {
+const LoginPage = observer(() => {
     const { theme } = useDripsyTheme();
+    const sheet = useBottomSheet();
 
     return (
         <Screen>
@@ -35,8 +37,19 @@ const LoginPage = () => {
                 />
 
                 <Button
-                    textSx={{ color: 'gray400', fontSize: 'sm', fontWeight: 'medium' }}
-                    content={`${LANGUAGES[app$.locale.get()].label} (${LANGUAGES[app$.locale.get()].subLabel})`}
+                    textSx={{
+                        color: 'gray400',
+                        fontSize: 'sm',
+                        fontWeight: 'medium',
+                    }}
+                    content={`${LANGUAGES[app$.locale.get()].label} (${
+                        LANGUAGES[app$.locale.get()].subLabel
+                    })`}
+                    onPress={() => {
+                        sheet.open({
+                            name: 'SelectLanguage',
+                        });
+                    }}
                 />
 
                 <Image
@@ -112,6 +125,6 @@ const LoginPage = () => {
             </ScrollView>
         </Screen>
     );
-};
+});
 
 export default LoginPage;

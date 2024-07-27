@@ -1,11 +1,12 @@
-import { app$ } from '@/store/app';
+import { app$ } from '@/store';
 import { when } from '@legendapp/state';
+import { ObservablePersistAsyncStorage } from '@legendapp/state/persist-plugins/async-storage';
 import { configureObservableSync, syncObservable } from '@legendapp/state/sync';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
 import * as EPSplashScreen from 'expo-splash-screen';
 import { ReactNode, useEffect } from 'react';
-import { ObservablePersistAsyncStorage } from '@legendapp/state/persist-plugins/async-storage';
+import { enableReactTracking } from '@legendapp/state/config/enableReactTracking';
 
 EPSplashScreen.preventAutoHideAsync();
 
@@ -14,6 +15,10 @@ configureObservableSync({
         plugin: ObservablePersistAsyncStorage,
         asyncStorage: { AsyncStorage },
     },
+});
+
+enableReactTracking({
+    warnUnobserved: true,
 });
 
 const SplashScreen = ({ children }: { children: ReactNode }) => {

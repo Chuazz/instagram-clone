@@ -20,7 +20,7 @@ const FALLBACK_LANGUAGE = LANGUAGES.en.code;
 
 const FALLBACK_NAMESPACE = 'common';
 
-const translations: KeyValueType<LanguageType, any> = {
+const translations: KeyValueType<LanguageType, unknown> = {
     en: {
         common: require('./locales/en/common.json'),
         info: require('./locales/en/info.json'),
