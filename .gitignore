@@ -134,6 +134,7 @@ dist
 
 # expo-cli
 expo-env.d.ts
+.expo
 
 # android
 android
