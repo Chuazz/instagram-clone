@@ -36,6 +36,18 @@ const light = {
     gray800: '#464646',
     gray900: '#3d3d3d',
     gray950: '#292929',
+
+    red50: '#fff1f1',
+    red100: '#ffe4e4',
+    red200: '#fdced1',
+    red300: '#fba6aa',
+    red400: '#f8747e',
+    red500: '#f14254',
+    red600: '#dd213d',
+    red700: '#bb1532',
+    red800: '#a71634',
+    red900: '#861530',
+    red950: '#4b0615',
 };
 
 const dark = {
@@ -58,6 +70,7 @@ const theme = makeTheme({
         xl: 20,
     },
     space: {
+        xs: 4,
         sm: 8,
         md: SPACING,
         lg: 16,

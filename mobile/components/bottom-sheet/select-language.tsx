@@ -1,11 +1,12 @@
 import { i18n, SUPPORT_LANGUAGES } from '@/configs';
-import { app$ } from '@/store';
+import { app$, bottomSheet$ } from '@/store';
 import { AntDesign, FontAwesome6 } from '@expo/vector-icons';
 import { BottomSheetFlatList, SCREEN_WIDTH } from '@gorhom/bottom-sheet';
 import { observer } from '@legendapp/state/react';
 import { Text, useDripsyTheme, View } from 'dripsy';
 import { reloadAsync } from 'expo-updates';
 import { Button, Image } from '../ui';
+import { useBottomSheet } from '@/hooks';
 
 const SelectLanguage = observer(() => {
     const { theme } = useDripsyTheme();
@@ -65,11 +66,19 @@ const SelectLanguage = observer(() => {
                             p: 'md',
                         }}
                     >
-                        <AntDesign
-                            name='close'
-                            size={24}
-                            color='black'
-                        />
+                        <Button
+                            center={false}
+                            variant='transparent'
+                            onPress={() => {
+                                bottomSheet$.sheet.set(undefined);
+                            }}
+                        >
+                            <AntDesign
+                                name='close'
+                                size={24}
+                                color='black'
+                            />
+                        </Button>
 
                         <Text
                             sx={{

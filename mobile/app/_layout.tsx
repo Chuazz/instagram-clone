@@ -3,6 +3,7 @@ import { SplashScreen } from '@/components/layout';
 import { theme } from '@/configs';
 import { ReactQueryProvider } from '@/providers';
 import { trans } from '@/utils';
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { observer } from '@legendapp/state/react';
 import { DripsyProvider, Text } from 'dripsy';
 import { Stack } from 'expo-router';
@@ -26,21 +27,23 @@ const RootLayout = observer(() => {
                 <SafeAreaProvider>
                     <SplashScreen>
                         <DripsyProvider theme={theme}>
-                            <Text
-                                sx={{
-                                    display: 'none',
-                                }}
-                            >
-                                {trans('')}
-                            </Text>
+                            <BottomSheetModalProvider>
+                                <Text
+                                    sx={{
+                                        display: 'none',
+                                    }}
+                                >
+                                    {trans('')}
+                                </Text>
 
-                            <Stack
-                                screenOptions={{
-                                    headerShown: false,
-                                }}
-                            />
+                                <Stack
+                                    screenOptions={{
+                                        headerShown: false,
+                                    }}
+                                />
 
-                            <AppBottomSheet />
+                                <AppBottomSheet />
+                            </BottomSheetModalProvider>
                         </DripsyProvider>
                     </SplashScreen>
                 </SafeAreaProvider>

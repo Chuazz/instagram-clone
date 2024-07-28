@@ -36,7 +36,7 @@ Screen.Footer = ({ children, sx }: { children: ReactNode; sx?: SxProp }) => {
                 position: 'absolute',
                 bottom: 0,
                 width: 'screenWidth',
-                padding: 12,
+                padding: 'md',
                 paddingBottom: insets.bottom + 12,
                 ...sx,
             }}
