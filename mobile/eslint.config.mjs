@@ -10,6 +10,7 @@ export default [
     ...fixupConfigRules(pluginReactConfig),
     {
         files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
+        extends: 'expo',
         languageOptions: {
             globals: globals.browser,
             parserOptions: {

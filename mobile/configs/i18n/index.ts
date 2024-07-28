@@ -5,17 +5,15 @@ const LANGUAGES: KeyValueType<LanguageType, OptionType<LanguageType>> = {
     vi: {
         code: 'vi',
         label: 'Việt Nam',
-        subLabel: 'VN',
     },
     en: {
         code: 'en',
-        label: 'English',
-        subLabel: 'US',
+        label: 'English (US)',
     },
 };
 
 const SUPPORT_LANGUAGES = Object.keys(LANGUAGES).map(
-    (key) => LANGUAGES[key as LanguageType].code,
+    (key) => LANGUAGES[key as LanguageType],
 );
 
 const FALLBACK_LANGUAGE = LANGUAGES.en.code;
@@ -26,22 +24,18 @@ const translations: KeyValueType<LanguageType, unknown> = {
     en: {
         common: require('./locales/en/common.json'),
         info: require('./locales/en/info.json'),
-        // post: require('./locales/en/post.json'),
-        // auth: require('./locales/en/auth.json'),
+        post: require('./locales/en/post.json'),
+        auth: require('./locales/en/auth.json'),
     },
     vi: {
         common: require('./locales/vi/common.json'),
         info: require('./locales/vi/info.json'),
-        // post: require('./locales/vi/post.json'),
-        // auth: require('./locales/vi/auth.json'),
+        post: require('./locales/vi/post.json'),
+        auth: require('./locales/vi/auth.json'),
     },
 };
 
 const i18n = new I18n(translations);
-
-i18n.locale = FALLBACK_LANGUAGE;
-
-i18n.enableFallback = true;
 
 export {
     FALLBACK_LANGUAGE,

@@ -5,6 +5,8 @@ import AppLogoIcon from '@/assets/icons/ic_app_logo.png';
 import AppIcon from '@/assets/icons/ic_app.png';
 import LoginBackgroundImage from '@/assets/images/img_login_background.png';
 import ContributorImage from '@/assets/images/img_contributor.png';
+import CheckBoxIcon from '@/assets/icons/ic_checkbox.png';
+import UnCheckBoxIcon from '@/assets/icons/ic_un_checkbox.png';
 
 const image = {
     SocialTextLogoImage,
@@ -14,6 +16,8 @@ const image = {
     AppIcon,
     LoginBackgroundImage,
     ContributorImage,
+    CheckBoxIcon,
+    UnCheckBoxIcon,
 };
 
 export { image };

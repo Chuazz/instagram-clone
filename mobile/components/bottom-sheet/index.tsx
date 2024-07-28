@@ -1,5 +1,9 @@
 import { bottomSheet$ } from '@/store';
-import { BottomSheetModal, BottomSheetView } from '@gorhom/bottom-sheet';
+import {
+    BottomSheetModal,
+    BottomSheetModalProvider,
+    BottomSheetView,
+} from '@gorhom/bottom-sheet';
 import { BottomSheetModalMethods } from '@gorhom/bottom-sheet/lib/typescript/types';
 import { observer, Show, useObserve } from '@legendapp/state/react';
 import { useRef } from 'react';
@@ -27,25 +31,34 @@ const AppBottomSheet = observer(() => {
                     ...StyleSheet.absoluteFillObject,
                 }}
                 onPress={() => {
-                    ref.current?.dismiss();
+                    bottomSheet$.sheet.set(undefined);
                 }}
             />
         );
     };
 
     return (
-        <BottomSheetModal
-            ref={ref}
-            enableDynamicSizing={true}
-            enablePanDownToClose={true}
-            backdropComponent={renderBackdrop}
-            animateOnMount={true}
-            {...options}
-        >
-            <Show if={bottomSheet$.sheet}>
-                <BottomSheetView>{bottomSheet$.sheet.get()}</BottomSheetView>
-            </Show>
-        </BottomSheetModal>
+        <BottomSheetModalProvider>
+            <BottomSheetModal
+                ref={ref}
+                enableDynamicSizing={true}
+                enablePanDownToClose={true}
+                backdropComponent={renderBackdrop}
+                animateOnMount={true}
+                {...options}
+            >
+                <Show
+                    if={bottomSheet$.sheet && bottomSheet$.listing}
+                    else={
+                        <BottomSheetView>
+                            {bottomSheet$.sheet.get()}
+                        </BottomSheetView>
+                    }
+                >
+                    {bottomSheet$.sheet.get()}
+                </Show>
+            </BottomSheetModal>
+        </BottomSheetModalProvider>
     );
 });
 

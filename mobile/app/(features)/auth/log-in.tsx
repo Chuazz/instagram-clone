@@ -1,13 +1,14 @@
 import { Screen } from '@/components/layout';
 import { Button, Image, Input } from '@/components/ui';
 import { i18n, LANGUAGES } from '@/configs';
-import { useBottomSheet } from '@/hooks';
+import { useBottomSheet, useNavigation } from '@/hooks';
 import { app$ } from '@/store';
 import { observer } from '@legendapp/state/react';
 import { ScrollView, Text, useDripsyTheme, View } from 'dripsy';
 
 const LogInPage = observer(() => {
     const { theme } = useDripsyTheme();
+    const navigation = useNavigation();
     const sheet = useBottomSheet();
 
     return (
@@ -36,17 +37,19 @@ const LogInPage = observer(() => {
                 />
 
                 <Button
-                    textSx={{
-                        color: 'gray400',
-                        fontSize: 'sm',
-                        fontWeight: 'medium',
-                    }}
-                    content={`${LANGUAGES[app$.locale.get()].label} (${
-                        LANGUAGES[app$.locale.get()].subLabel
-                    })`}
+                    size='sm'
+                    schema='gray'
+                    variant='transparent'
+                    content={LANGUAGES[app$.locale.get()].label}
                     onPress={() => {
                         sheet.open({
                             name: 'SelectLanguage',
+                            listing: true,
+                            options: {
+                                handleComponent: null,
+                                enableDynamicSizing: false,
+                                snapPoints: ['30%', '70%'],
+                            },
                         });
                     }}
                 />
@@ -69,16 +72,7 @@ const LogInPage = observer(() => {
 
                     <Input placeholder={i18n.t('auth.password')} />
 
-                    <Button
-                        content={i18n.t('auth.log_in')}
-                        textSx={{
-                            color: 'white',
-                        }}
-                        sx={{
-                            borderRadius: 9999,
-                            backgroundColor: 'primary700',
-                        }}
-                    />
+                    <Button content={i18n.t('auth.log_in')} />
 
                     <Text
                         sx={{
@@ -100,14 +94,12 @@ const LogInPage = observer(() => {
                 >
                     <Button
                         content={i18n.t('auth.create_new_account')}
-                        textSx={{
-                            color: 'primary700',
-                        }}
+                        variant='outline'
                         sx={{
-                            borderColor: 'primary700',
-                            borderWidth: 1,
-                            borderRadius: 'full',
                             width: 'full',
+                        }}
+                        onPress={() => {
+                            navigation.navigate('(features)/auth/account');
                         }}
                     />
 

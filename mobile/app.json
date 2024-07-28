@@ -1,42 +1,39 @@
 {
-  "expo": {
-    "name": "instagram-clone",
-    "slug": "instagram-clone",
-    "version": "0.0.0",
-    "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
-    "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
-    "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
-    },
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "package": "com.chuazz.instagramclone"
-    },
-    "plugins": [
-      "expo-router",
-      "expo-localization"
-    ],
-    "experiments": {
-      "typedRoutes": true
-    },
-    "extra": {
-      "router": {
-        "origin": false
-      },
-      "eas": {
-        "projectId": "1fca2c8d-b525-4d7c-bf63-22f3a16c66d7"
-      }
-    },
-    "owner": "chuazz"
-  }
+    "expo": {
+        "name": "instagram-clone",
+        "slug": "instagram-clone",
+        "version": "0.0.0",
+        "orientation": "portrait",
+        "icon": "./assets/images/icon.png",
+        "scheme": "myapp",
+        "userInterfaceStyle": "automatic",
+        "splash": {
+            "image": "./assets/images/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "ios": {
+            "supportsTablet": true
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/images/adaptive-icon.png",
+                "backgroundColor": "#ffffff"
+            },
+            "package": "com.chuazz.instagramclone"
+        },
+        "plugins": ["expo-router", "expo-localization"],
+        "experiments": {
+            "typedRoutes": true
+        },
+        "extra": {
+            "router": {
+                "origin": false
+            },
+            "eas": {
+                "projectId": "1fca2c8d-b525-4d7c-bf63-22f3a16c66d7"
+            }
+        },
+        "owner": "chuazz"
+    }
 }

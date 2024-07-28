@@ -2,8 +2,9 @@ import { AppBottomSheet } from '@/components/bottom-sheet';
 import { SplashScreen } from '@/components/layout';
 import { theme } from '@/configs';
 import { ReactQueryProvider } from '@/providers';
-import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
-import { DripsyProvider } from 'dripsy';
+import { trans } from '@/utils';
+import { observer } from '@legendapp/state/react';
+import { DripsyProvider, Text } from 'dripsy';
 import { Stack } from 'expo-router';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import 'react-native-reanimated';
@@ -18,28 +19,34 @@ if (__DEV__) {
         .connect();
 }
 
-const RootLayout = () => {
+const RootLayout = observer(() => {
     return (
         <GestureHandlerRootView>
-            {/* <ReactQueryProvider>
+            <ReactQueryProvider>
                 <SafeAreaProvider>
                     <SplashScreen>
                         <DripsyProvider theme={theme}>
+                            <Text
+                                sx={{
+                                    display: 'none',
+                                }}
+                            >
+                                {trans('')}
+                            </Text>
+
                             <Stack
                                 screenOptions={{
                                     headerShown: false,
                                 }}
                             />
 
-                            <BottomSheetModalProvider>
-                                <AppBottomSheet />
-                            </BottomSheetModalProvider>
+                            <AppBottomSheet />
                         </DripsyProvider>
                     </SplashScreen>
                 </SafeAreaProvider>
-            </ReactQueryProvider> */}
+            </ReactQueryProvider>
         </GestureHandlerRootView>
     );
-};
+});
 
 export default RootLayout;

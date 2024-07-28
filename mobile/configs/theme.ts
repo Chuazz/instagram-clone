@@ -55,9 +55,12 @@ const theme = makeTheme({
         sm: 8,
         md: 12,
         lg: 16,
+        xl: 20,
     },
     space: {
+        sm: 8,
         md: SPACING,
+        lg: 16,
     },
     sizes: {
         full: '100%',
@@ -66,7 +69,10 @@ const theme = makeTheme({
     },
     fontSizes: {
         sm: 12,
-        lg: 16,
+        md: 14,
+        lg: 18,
+        xl: 24,
+        '2xl': 32,
     },
     customFonts: {
         PublicSans: {

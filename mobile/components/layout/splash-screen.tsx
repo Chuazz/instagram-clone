@@ -7,6 +7,7 @@ import { useFonts } from 'expo-font';
 import * as EPSplashScreen from 'expo-splash-screen';
 import { ReactNode, useEffect } from 'react';
 import { enableReactTracking } from '@legendapp/state/config/enableReactTracking';
+import { i18n } from '@/configs';
 
 EPSplashScreen.preventAutoHideAsync();
 
@@ -33,15 +34,15 @@ const SplashScreen = ({ children }: { children: ReactNode }) => {
 
     useEffect(() => {
         const handleLoad = async () => {
-            await when(
-                syncObservable(app$, {
-                    persist: {
-                        name: 'app',
-                    },
-                }).isLoaded,
-            );
-
             if (loaded) {
+                await when(
+                    syncObservable(app$, {
+                        persist: {
+                            name: 'app',
+                        },
+                    }).isLoaded,
+                );
+
                 EPSplashScreen.hideAsync();
             }
         };

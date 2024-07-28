@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Image as EPImage, SxProp } from 'dripsy';
 import { ImageProps as RNImageProps } from 'react-native';
 
-type ImageProps = RNImageProps & {
+type ImageProps = Omit<RNImageProps, 'source'> & {
     source: keyof typeof image | (string & NonNullable<unknown>);
     fromServer?: boolean;
     sx?: SxProp;

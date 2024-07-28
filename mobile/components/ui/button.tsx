@@ -1,5 +1,4 @@
-import { BUTTON_MD_SIZE } from '@/configs';
-import { SxProp, Text, useSx } from 'dripsy';
+import { SxProp, Text, useDripsyTheme, useSx } from 'dripsy';
 import { ReactNode } from 'react';
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
@@ -9,35 +8,97 @@ type ButtonProps = Omit<TouchableOpacityProps, 'style'> & {
     sx?: SxProp;
     textSx?: SxProp;
     size?: 'sm' | 'md' | 'lg';
+    schema?: 'primary' | 'gray';
+    rounded?: boolean;
+    variant?: 'fill' | 'outline' | 'transparent';
 };
 
 const Button = ({
     children,
     content,
     sx,
-    size = 'md',
     textSx,
+    size = 'md',
+    rounded = true,
+    schema = 'primary',
+    variant = 'fill',
     ...props
 }: ButtonProps) => {
     const sxProps = useSx();
+    const { theme } = useDripsyTheme();
 
-    const height = (() => {
-        if (size === 'sm') {
-            return 40;
+    const primary = theme.colors.primary700;
+    const gray = theme.colors.gray300;
+
+    const styles = (() => {
+        const button: SxProp = {
+            borderRadius: 'md',
+            padding: size,
+            borderWidth: 1,
+            borderColor: 'transparent',
+        };
+
+        const text: SxProp = {
+            fontWeight: 'semibold',
+            textAlign: 'center',
+            fontSize: size,
+        };
+
+        if (schema === 'primary') {
+            button.backgroundColor = primary;
+
+            text.color = 'white';
+
+            if (variant === 'outline') {
+                button.borderColor = primary;
+
+                text.color = primary;
+            }
+
+            if (variant === 'transparent') {
+                text.color = primary;
+            }
         }
 
-        return BUTTON_MD_SIZE;
+        if (schema === 'gray') {
+            button.backgroundColor = gray;
+            text.color = 'white';
+
+            if (variant === 'outline') {
+                button.borderColor = gray;
+
+                text.color = 'gray700';
+            }
+
+            if (variant === 'transparent') {
+                text.color = 'gray700';
+            }
+        }
+
+        if (rounded) {
+            button.borderRadius = 'full';
+        }
+
+        if (variant === 'outline') {
+            button.backgroundColor = 'transparent';
+        }
+
+        if (variant === 'transparent') {
+            button.backgroundColor = 'transparent';
+            button.padding = 0;
+        }
+
+        return {
+            button,
+            text,
+        };
     })();
 
     return (
         <TouchableOpacity
             activeOpacity={0.5}
             style={sxProps({
-                height,
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'center',
-                paddingHorizontal: 12,
+                ...styles.button,
                 ...sx,
             })}
             {...props}
@@ -47,8 +108,7 @@ const Button = ({
             ) : (
                 <Text
                     sx={{
-                        fontWeight: 'semibold',
-                        textAlign: 'center',
+                        ...styles.text,
                         ...textSx,
                     }}
                 >

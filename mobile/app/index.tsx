@@ -6,9 +6,9 @@ const RootPage = () => {
     return (
         <Show
             if={app$.isLogin}
-            else={<Redirect href='(features)/auth/log-in' />}
+            else={<Redirect href='/auth/log-in' />}
         >
-            <Redirect href='(tabs)' />
+            <Redirect href='/' />
         </Show>
     );
 };

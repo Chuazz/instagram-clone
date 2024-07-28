@@ -1,11 +1,12 @@
 import { INPUT_HEIGHT } from '@/configs';
 import { observer, Show, useObservable } from '@legendapp/state/react';
-import { Text, TextInput, View } from 'dripsy';
+import { Text, TextInput, useDripsyTheme, View } from 'dripsy';
 import { DripsyTextInputProps } from 'dripsy/build/core/components/TextInput';
 import { NativeSyntheticEvent, TextInputFocusEventData } from 'react-native';
 
 const Input = observer((props: DripsyTextInputProps) => {
     const focus$ = useObservable(props.autoFocus);
+    const { theme } = useDripsyTheme();
 
     const onFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
         focus$.set(true);
@@ -45,6 +46,7 @@ const Input = observer((props: DripsyTextInputProps) => {
             <TextInput
                 {...props}
                 placeholder={focus$.get() ? '' : props.placeholder}
+                placeholderTextColor={theme.colors.gray300}
                 cursorColor='black'
                 onFocus={onFocus}
                 onBlur={onBlur}
