@@ -14,7 +14,9 @@ const LANGUAGES: KeyValueType<LanguageType, OptionType<LanguageType>> = {
     },
 };
 
-const SUPPORT_LANGUAGES = Object.keys(LANGUAGES).map((key) => LANGUAGES[key as LanguageType].code);
+const SUPPORT_LANGUAGES = Object.keys(LANGUAGES).map(
+    (key) => LANGUAGES[key as LanguageType].code,
+);
 
 const FALLBACK_LANGUAGE = LANGUAGES.en.code;
 
@@ -24,10 +26,14 @@ const translations: KeyValueType<LanguageType, unknown> = {
     en: {
         common: require('./locales/en/common.json'),
         info: require('./locales/en/info.json'),
+        // post: require('./locales/en/post.json'),
+        // auth: require('./locales/en/auth.json'),
     },
     vi: {
         common: require('./locales/vi/common.json'),
         info: require('./locales/vi/info.json'),
+        // post: require('./locales/vi/post.json'),
+        // auth: require('./locales/vi/auth.json'),
     },
 };
 
@@ -37,4 +43,10 @@ i18n.locale = FALLBACK_LANGUAGE;
 
 i18n.enableFallback = true;
 
-export { FALLBACK_LANGUAGE, FALLBACK_NAMESPACE, i18n, LANGUAGES, SUPPORT_LANGUAGES };
+export {
+    FALLBACK_LANGUAGE,
+    FALLBACK_NAMESPACE,
+    i18n,
+    LANGUAGES,
+    SUPPORT_LANGUAGES,
+};

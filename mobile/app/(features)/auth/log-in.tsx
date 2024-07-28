@@ -3,11 +3,10 @@ import { Button, Image, Input } from '@/components/ui';
 import { i18n, LANGUAGES } from '@/configs';
 import { useBottomSheet } from '@/hooks';
 import { app$ } from '@/store';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@gorhom/bottom-sheet';
 import { observer } from '@legendapp/state/react';
 import { ScrollView, Text, useDripsyTheme, View } from 'dripsy';
 
-const LoginPage = observer(() => {
+const LogInPage = observer(() => {
     const { theme } = useDripsyTheme();
     const sheet = useBottomSheet();
 
@@ -26,8 +25,8 @@ const LoginPage = observer(() => {
                 <Image
                     source='LoginBackgroundImage'
                     sx={{
-                        width: SCREEN_WIDTH,
-                        height: SCREEN_HEIGHT,
+                        width: 'screenWidth',
+                        height: 'screenHeight',
                         position: 'absolute',
                         top: 0,
                         left: 0,
@@ -66,12 +65,12 @@ const LoginPage = observer(() => {
                         gap: 'md',
                     }}
                 >
-                    <Input placeholder={i18n.t('common.name_email_number')} />
+                    <Input placeholder={i18n.t('auth.name_email_number')} />
 
-                    <Input placeholder={i18n.t('common.password')} />
+                    <Input placeholder={i18n.t('auth.password')} />
 
                     <Button
-                        content={i18n.t('common.log_in')}
+                        content={i18n.t('auth.log_in')}
                         textSx={{
                             color: 'white',
                         }}
@@ -88,7 +87,7 @@ const LoginPage = observer(() => {
                             color: 'gray800',
                         }}
                     >
-                        {i18n.t('common.forgot_password')}
+                        {i18n.t('auth.forgot_password')}
                     </Text>
                 </View>
 
@@ -100,7 +99,7 @@ const LoginPage = observer(() => {
                     }}
                 >
                     <Button
-                        content={i18n.t('common.create_new_account')}
+                        content={i18n.t('auth.create_new_account')}
                         textSx={{
                             color: 'primary700',
                         }}
@@ -127,4 +126,4 @@ const LoginPage = observer(() => {
     );
 });
 
-export default LoginPage;
+export default LogInPage;

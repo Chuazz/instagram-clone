@@ -11,7 +11,14 @@ type ButtonProps = Omit<TouchableOpacityProps, 'style'> & {
     size?: 'sm' | 'md' | 'lg';
 };
 
-const Button = ({ children, content, sx, size = 'md', textSx, ...props }: ButtonProps) => {
+const Button = ({
+    children,
+    content,
+    sx,
+    size = 'md',
+    textSx,
+    ...props
+}: ButtonProps) => {
     const sxProps = useSx();
 
     const height = (() => {
@@ -41,6 +48,7 @@ const Button = ({ children, content, sx, size = 'md', textSx, ...props }: Button
                 <Text
                     sx={{
                         fontWeight: 'semibold',
+                        textAlign: 'center',
                         ...textSx,
                     }}
                 >

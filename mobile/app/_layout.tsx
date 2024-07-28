@@ -21,13 +21,8 @@ if (__DEV__) {
 const RootLayout = () => {
     return (
         <GestureHandlerRootView>
-            <ReactQueryProvider>
+            {/* <ReactQueryProvider>
                 <SafeAreaProvider>
-                    {/* <StatusBar
-                    backgroundColor='black'
-                    style='light'
-                /> */}
-
                     <SplashScreen>
                         <DripsyProvider theme={theme}>
                             <Stack
@@ -42,7 +37,7 @@ const RootLayout = () => {
                         </DripsyProvider>
                     </SplashScreen>
                 </SafeAreaProvider>
-            </ReactQueryProvider>
+            </ReactQueryProvider> */}
         </GestureHandlerRootView>
     );
 };

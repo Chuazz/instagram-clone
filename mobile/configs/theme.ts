@@ -1,3 +1,4 @@
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@gorhom/bottom-sheet';
 import { makeTheme } from 'dripsy';
 
 const SPACING = 12;
@@ -60,6 +61,8 @@ const theme = makeTheme({
     },
     sizes: {
         full: '100%',
+        screenHeight: SCREEN_HEIGHT,
+        screenWidth: SCREEN_WIDTH,
     },
     fontSizes: {
         sm: 12,
