@@ -26,12 +26,14 @@ const translations: KeyValueType<LanguageType, unknown> = {
         info: require('./locales/en/info.json'),
         post: require('./locales/en/post.json'),
         auth: require('./locales/en/auth.json'),
+        validate: require('./locales/en/validate.json'),
     },
     vi: {
         common: require('./locales/vi/common.json'),
         info: require('./locales/vi/info.json'),
         post: require('./locales/vi/post.json'),
         auth: require('./locales/vi/auth.json'),
+        validate: require('./locales/vi/validate.json'),
     },
 };
 

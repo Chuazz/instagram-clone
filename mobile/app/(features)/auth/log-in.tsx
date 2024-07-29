@@ -6,16 +6,15 @@ import { app$ } from '@/store';
 import { observer } from '@legendapp/state/react';
 import { ScrollView, Text, useDripsyTheme, View } from 'dripsy';
 
-const LogInPage = observer(() => {
+const LogInScreen = observer(() => {
     const { theme } = useDripsyTheme();
     const navigation = useNavigation();
     const sheet = useBottomSheet();
 
     return (
-        <Screen>
+        <Screen backgroundImage='BackgroundGradientImage'>
             <ScrollView
                 showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
                 contentContainerSx={{
                     justifyContent: 'space-between',
                     flexGrow: 1,
@@ -23,19 +22,6 @@ const LogInPage = observer(() => {
                     alignItems: 'center',
                 }}
             >
-                <Image
-                    source='LoginBackgroundImage'
-                    sx={{
-                        width: 'screenWidth',
-                        height: 'screenHeight',
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        bottom: 0,
-                        right: 0,
-                    }}
-                />
-
                 <Button
                     size='sm'
                     schema='gray'
@@ -118,4 +104,4 @@ const LogInPage = observer(() => {
     );
 });
 
-export default LogInPage;
+export default LogInScreen;

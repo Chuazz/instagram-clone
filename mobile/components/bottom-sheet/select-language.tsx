@@ -32,7 +32,7 @@ const SelectLanguage = observer(() => {
             ListHeaderComponent={
                 <>
                     <Image
-                        source='LoginBackgroundImage'
+                        source='BackgroundGradientImage'
                         sx={{
                             width: 'full',
                             height: 'full',

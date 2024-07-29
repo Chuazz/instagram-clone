@@ -8,26 +8,27 @@ import { ScrollView, Text } from 'dripsy';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-const AccountScreen = () => {
+const PasswordScreen = () => {
     const navigation = useNavigation();
 
     const { control, handleSubmit } = useForm({
         defaultValues: {
-            account: __DEV__ ? 'sonnv1912@gmail.com' : '',
+            password: '123456',
         },
         resolver: zodResolver(
             z.object({
-                account: z
-                    .string()
-                    .min(1, i18n.t('validate.invalid_email'))
-                    .email(i18n.t('validate.invalid_email')),
+                password: z.string().min(
+                    6,
+                    i18n.t('validate.at_least.letter', {
+                        number: 6,
+                    }),
+                ),
             }),
         ),
     });
 
-    // ? TODO: Check email exists
-    const onSubmit = (data: { account: string }) => {
-        register$.account.set(data.account);
+    const onSubmit = (data: { password: string }) => {
+        register$.password.set(data.password);
 
         navigation.navigate('(features)/auth/password');
     };
@@ -51,7 +52,7 @@ const AccountScreen = () => {
                         fontWeight: 'bold',
                     }}
                 >
-                    {i18n.t('auth.what_your_email')}
+                    {i18n.t('auth.create_password')}
                 </Text>
 
                 <Text
@@ -60,18 +61,19 @@ const AccountScreen = () => {
                         fontWeight: 'medium',
                     }}
                 >
-                    {i18n.t('auth.enter_the_email_to_contact')}
+                    {i18n.t('auth.create_password_with_regex')}
                 </Text>
 
                 <Controller
                     control={control}
-                    name='account'
+                    name='password'
                     render={({ field, fieldState }) => (
                         <Input
-                            placeholder={i18n.t('auth.email')}
+                            placeholder={i18n.t('auth.password')}
                             value={field.value}
                             autoFocus={true}
                             errMessage={fieldState.error?.message}
+                            type='password'
                             onChangeText={field.onChange}
                         />
                     )}
@@ -83,12 +85,6 @@ const AccountScreen = () => {
                         mt: 'sm',
                     }}
                     onPress={handleSubmit(onSubmit)}
-                />
-
-                <Button
-                    content={i18n.t('auth.sign_up_with_mobile')}
-                    schema='gray'
-                    variant='outline'
                 />
             </ScrollView>
 
@@ -106,4 +102,4 @@ const AccountScreen = () => {
     );
 };
 
-export default AccountScreen;
+export default PasswordScreen;

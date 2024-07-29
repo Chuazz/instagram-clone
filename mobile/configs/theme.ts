@@ -9,6 +9,8 @@ const RADIUS_FULL = 9999;
 
 const BUTTON_MD_SIZE = 40;
 
+const HEADER_HEIGHT = 50;
+
 const light = {
     white: '#fff',
     black: '#000',
@@ -50,9 +52,7 @@ const light = {
     red950: '#4b0615',
 };
 
-const dark = {
-    red323: '',
-};
+const dark = {};
 
 const theme = makeTheme({
     colors: {
@@ -79,6 +79,8 @@ const theme = makeTheme({
         full: '100%',
         screenHeight: SCREEN_HEIGHT,
         screenWidth: SCREEN_WIDTH,
+        iconMd: 24,
+        iconLg: 32,
     },
     fontSizes: {
         sm: 12,
@@ -117,4 +119,11 @@ declare module 'dripsy' {
     interface DripsyCustomTheme extends MyTheme {}
 }
 
-export { theme, SPACING, INPUT_HEIGHT, RADIUS_FULL, BUTTON_MD_SIZE };
+export {
+    theme,
+    SPACING,
+    INPUT_HEIGHT,
+    RADIUS_FULL,
+    BUTTON_MD_SIZE,
+    HEADER_HEIGHT,
+};

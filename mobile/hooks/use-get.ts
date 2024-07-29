@@ -16,7 +16,10 @@ const useGet = <TCollection extends CollectionArrayType>({
     type = 'list',
 }: UseGetType<TCollection>) => {
     return useQuery({
-        queryKey: queryKey[collection][type === 'detail' ? 'detail' : 'list']?.(JSON.stringify(query)) || [],
+        queryKey:
+            queryKey[collection][type === 'detail' ? 'detail' : 'list']?.(
+                query,
+            ) || [],
         queryFn: async () => {
             const request = await client.request(readItems(collection, query));
 
