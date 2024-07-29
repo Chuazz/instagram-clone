@@ -1,35 +1,17 @@
 import { Screen } from '@/components/layout';
-import { Button, Input } from '@/components/form';
+import { Button } from '@/components/form';
 import { i18n } from '@/configs';
 import { useNavigation } from '@/hooks';
 import { register$ } from '@/store/register';
-import { zodResolver } from '@hookform/resolvers/zod';
 import { ScrollView, Text } from 'dripsy';
-import { Controller, useForm } from 'react-hook-form';
-import { z } from 'zod';
 
-const AccountScreen = () => {
+const SaveLoginScreen = () => {
     const navigation = useNavigation();
 
-    const { control, handleSubmit } = useForm({
-        defaultValues: {
-            account: __DEV__ ? 'sonnv1912@gmail.com' : '',
-        },
-        resolver: zodResolver(
-            z.object({
-                account: z
-                    .string()
-                    .min(1, i18n.t('validate.invalid_email'))
-                    .email(i18n.t('validate.invalid_email')),
-            }),
-        ),
-    });
+    const onConfirm = (save: boolean) => {
+        register$.saveInfo.set(save);
 
-    // ? TODO: Check email exists
-    const onSubmit = (data: { account: string }) => {
-        register$.account.set(data.account);
-
-        navigation.navigate('(features)/auth/password');
+        navigation.navigate('(features)/auth/birthday');
     };
 
     return (
@@ -51,7 +33,7 @@ const AccountScreen = () => {
                         fontWeight: 'bold',
                     }}
                 >
-                    {i18n.t('auth.what_your_email')}
+                    {i18n.t('auth.save_login_info')}
                 </Text>
 
                 <Text
@@ -60,35 +42,22 @@ const AccountScreen = () => {
                         fontWeight: 'medium',
                     }}
                 >
-                    {i18n.t('auth.enter_the_email_to_contact')}
+                    {i18n.t('auth.wont_need_enter_info')}
                 </Text>
-
-                <Controller
-                    control={control}
-                    name='account'
-                    render={({ field, fieldState }) => (
-                        <Input
-                            placeholder={i18n.t('auth.email')}
-                            value={field.value}
-                            autoFocus={true}
-                            errMessage={fieldState.error?.message}
-                            onChangeText={field.onChange}
-                        />
-                    )}
-                />
 
                 <Button
                     content={i18n.t('common.next')}
                     sx={{
                         mt: 'sm',
                     }}
-                    onPress={handleSubmit(onSubmit)}
+                    onPress={() => onConfirm(true)}
                 />
 
                 <Button
-                    content={i18n.t('auth.sign_up_with_mobile')}
-                    schema='gray'
                     variant='outline'
+                    schema='gray'
+                    content={i18n.t('common.not_now')}
+                    onPress={() => onConfirm(false)}
                 />
             </ScrollView>
 
@@ -106,4 +75,4 @@ const AccountScreen = () => {
     );
 };
 
-export default AccountScreen;
+export default SaveLoginScreen;

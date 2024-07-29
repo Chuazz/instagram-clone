@@ -1,5 +1,6 @@
+import { Button, Input } from '@/components/form';
 import { Screen } from '@/components/layout';
-import { Button, Image, Input } from '@/components/ui';
+import { Image } from '@/components/ui';
 import { i18n, LANGUAGES } from '@/configs';
 import { useBottomSheet, useNavigation } from '@/hooks';
 import { app$ } from '@/store';

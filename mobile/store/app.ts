@@ -1,4 +1,4 @@
-import { FALLBACK_LANGUAGE } from '@/configs';
+import { FALLBACK_LANGUAGE, LANGUAGES } from '@/configs';
 import { LanguageType } from '@/types';
 import { observable } from '@legendapp/state';
 import { getLocales } from 'expo-localization';
@@ -8,7 +8,9 @@ type AppType = {
     isLogin: boolean;
 };
 
-const userLocale = getLocales()[0]?.languageCode as LanguageType;
+const userLocale = __DEV__
+    ? LANGUAGES.en.code
+    : (getLocales()[0]?.languageCode as LanguageType);
 
 const app$ = observable<AppType>({
     locale: userLocale ? userLocale : FALLBACK_LANGUAGE,

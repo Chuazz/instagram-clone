@@ -1,9 +1,9 @@
 import { HEADER_HEIGHT } from '@/configs';
 import { useNavigation } from '@/hooks';
-import { FontAwesome6 } from '@expo/vector-icons';
 import { SxProp, Text, View } from 'dripsy';
 import { ReactNode } from 'react';
-import { Button, Image } from '../ui';
+import { Button } from '../form';
+import { Image } from '../ui';
 
 type ScreenHeaderProps = {
     children?: ReactNode;

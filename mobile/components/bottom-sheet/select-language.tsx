@@ -5,8 +5,8 @@ import { BottomSheetFlatList, SCREEN_WIDTH } from '@gorhom/bottom-sheet';
 import { observer } from '@legendapp/state/react';
 import { Text, useDripsyTheme, View } from 'dripsy';
 import { reloadAsync } from 'expo-updates';
-import { Button, Image } from '../ui';
-import { useBottomSheet } from '@/hooks';
+import { Image } from '../ui';
+import { Button, CheckBox } from '../form';
 
 const SelectLanguage = observer(() => {
     const { theme } = useDripsyTheme();
@@ -113,31 +113,15 @@ const SelectLanguage = observer(() => {
                         {item.label}
                     </Text>
 
-                    <Button
-                        variant='transparent'
-                        onPress={async () => {
+                    <CheckBox
+                        data={item}
+                        value={app$.locale.get()}
+                        onChange={async () => {
                             await reloadAsync();
 
                             app$.locale.set(item.code);
                         }}
-                    >
-                        <Image
-                            source={
-                                item.code === app$.locale.get()
-                                    ? 'CheckBoxIcon'
-                                    : 'UnCheckBoxIcon'
-                            }
-                            sx={{
-                                size: 20,
-                                width: 20,
-                            }}
-                            tintColor={
-                                item.code === app$.locale.get()
-                                    ? theme.colors.primary700
-                                    : theme.colors.gray400
-                            }
-                        />
-                    </Button>
+                    />
                 </View>
             )}
         />

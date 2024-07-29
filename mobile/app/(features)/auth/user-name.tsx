@@ -8,28 +8,26 @@ import { ScrollView, Text } from 'dripsy';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-const AccountScreen = () => {
+const UserNameScreen = () => {
     const navigation = useNavigation();
 
+    //? TODO: Update validate message
     const { control, handleSubmit } = useForm({
         defaultValues: {
-            account: __DEV__ ? 'sonnv1912@gmail.com' : '',
+            account: __DEV__ ? 'chuazz' : '',
         },
         resolver: zodResolver(
             z.object({
-                account: z
-                    .string()
-                    .min(1, i18n.t('validate.invalid_email'))
-                    .email(i18n.t('validate.invalid_email')),
+                account: z.string().min(1, i18n.t('validate.invalid_email')),
             }),
         ),
     });
 
-    // ? TODO: Check email exists
+    //? TODO: Check email exists
     const onSubmit = (data: { account: string }) => {
         register$.account.set(data.account);
 
-        navigation.navigate('(features)/auth/password');
+        navigation.navigate('(features)/auth/user-name');
     };
 
     return (
@@ -51,16 +49,7 @@ const AccountScreen = () => {
                         fontWeight: 'bold',
                     }}
                 >
-                    {i18n.t('auth.what_your_email')}
-                </Text>
-
-                <Text
-                    sx={{
-                        lineHeight: 20,
-                        fontWeight: 'medium',
-                    }}
-                >
-                    {i18n.t('auth.enter_the_email_to_contact')}
+                    {i18n.t('auth.what_your_name')}
                 </Text>
 
                 <Controller
@@ -68,7 +57,7 @@ const AccountScreen = () => {
                     name='account'
                     render={({ field, fieldState }) => (
                         <Input
-                            placeholder={i18n.t('auth.email')}
+                            placeholder={i18n.t('auth.full_name')}
                             value={field.value}
                             autoFocus={true}
                             errMessage={fieldState.error?.message}
@@ -83,12 +72,6 @@ const AccountScreen = () => {
                         mt: 'sm',
                     }}
                     onPress={handleSubmit(onSubmit)}
-                />
-
-                <Button
-                    content={i18n.t('auth.sign_up_with_mobile')}
-                    schema='gray'
-                    variant='outline'
                 />
             </ScrollView>
 
@@ -106,4 +89,4 @@ const AccountScreen = () => {
     );
 };
 
-export default AccountScreen;
+export default UserNameScreen;

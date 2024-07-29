@@ -1,11 +1,4 @@
-import {
-    ActivityIndicator,
-    SxProp,
-    Text,
-    useDripsyTheme,
-    useSx,
-    View,
-} from 'dripsy';
+import { ActivityIndicator, SxProp, Text, useDripsyTheme, useSx } from 'dripsy';
 import { ReactNode } from 'react';
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
@@ -55,7 +48,7 @@ const Button = ({
         };
 
         const text: SxProp = {
-            fontWeight: 'semibold',
+            fontWeight: 'bold',
             textAlign: 'center',
             fontSize: size,
         };

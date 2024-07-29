@@ -8,19 +8,25 @@ import {
     TextInputFocusEventData,
     TextInput as RNTextInput,
 } from 'react-native';
-import { Button } from './button';
+import { Button } from '../form/button';
 import { useRef } from 'react';
-import { Image } from './image';
+import { Image } from '../ui';
 
 type InputProps = DripsyTextInputProps & {
     errMessage?: string;
+    allowClear?: boolean;
     type?: 'string' | 'password';
 };
 
 const Input = observer(
-    ({ errMessage, type = 'string', ...props }: InputProps) => {
-        const focus$ = useObservable(props.autoFocus);
-        const blur$ = useObservable(props.autoFocus);
+    ({
+        errMessage,
+        type = 'string',
+        allowClear = true,
+        ...props
+    }: InputProps) => {
+        const focus$ = useObservable(props.autoFocus || !!props.value);
+        const blur$ = useObservable(true);
         const hideInput$ = useObservable(true);
         const { theme } = useDripsyTheme();
         const ref = useRef<RNTextInput>(null);
@@ -95,14 +101,15 @@ const Input = observer(
                         justifyContent: 'center',
                     }}
                 >
-                    <Show if={() => focus$.get()}>
+                    <Show if={() => focus$.get() && props.placeholder}>
                         <Text
                             sx={{
                                 fontSize: 'sm',
+                                fontWeight: 'semibold',
                                 color:
                                     errMessage && !focus$.get()
                                         ? errColor
-                                        : 'primary950',
+                                        : 'gray900',
                             }}
                         >
                             {props.placeholder}
@@ -129,7 +136,7 @@ const Input = observer(
                             height: focus$.get() ? 'auto' : 'full',
                             paddingVertical: 0,
                             paddingRight: 30,
-                            fontWeight: 'semibold',
+                            fontWeight: 'bold',
                             ...props.sx,
                         }}
                         onFocus={onFocus}
@@ -137,7 +144,7 @@ const Input = observer(
                         onChangeText={onChangeText}
                     />
 
-                    <Show if={() => !blur$.get() && props.value}>
+                    <Show if={() => !blur$.get() && props.value && allowClear}>
                         <Button
                             variant='transparent'
                             center={false}

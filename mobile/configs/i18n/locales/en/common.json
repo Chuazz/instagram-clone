@@ -2,5 +2,8 @@
     "follow": "Follow",
     "likes": "Likes",
     "select_your_language": "Select your language",
-    "next": "Next"
+    "next": "Next",
+    "not_now": "Not now",
+    "set": "Set",
+    "cancel": "Cancel"
 }
