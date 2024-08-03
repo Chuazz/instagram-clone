@@ -1,8 +1,8 @@
-import { FlatList } from 'react-native';
 import { View } from 'dripsy';
-import { useGet } from '@/hooks';
-import { SPACING } from '@/configs';
 import { HomeStoryItem } from './home-story-item';
+import { useGet } from '@/hooks/use-get';
+import { FlatList } from 'react-native';
+import { SPACING } from '@/configs/theme';
 
 const HomeStory = () => {
     const storyQuery = useGet({

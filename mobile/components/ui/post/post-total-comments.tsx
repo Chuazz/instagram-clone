@@ -1,6 +1,6 @@
-import { Button } from 'dripsy';
+import { Button } from '@/components/form/button';
 import { usePost } from './post';
-import { i18n } from '@/configs';
+import { i18n } from '@/configs/i18n';
 
 const PostTotalComments = () => {
     const post = usePost();

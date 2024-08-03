@@ -1,14 +1,15 @@
+import eslint from '@eslint/js';
+import react from 'eslint-plugin-react';
 import globals from 'globals';
-import pluginJs from '@eslint/js';
 import tseslint from 'typescript-eslint';
-import pluginReactConfig from 'eslint-plugin-react/configs/recommended.js';
-import { fixupConfigRules } from '@eslint/compat';
 
-export default [
-    pluginJs.configs.recommended,
+export default tseslint.config(
+    eslint.configs.recommended,
     ...tseslint.configs.recommended,
-    ...fixupConfigRules(pluginReactConfig),
     {
+        plugins: {
+            react,
+        },
         files: ['**/*.{js,mjs,cjs,ts,jsx,tsx}'],
         languageOptions: {
             globals: globals.browser,
@@ -18,10 +19,9 @@ export default [
                 },
             },
         },
-    },
-    {
         rules: {
             'react/react-in-jsx-scope': 'off',
+            '@typescript-eslint/no-empty-object-type': 'off',
             'no-unused-vars': [
                 'warn',
                 {
@@ -36,4 +36,4 @@ export default [
             ],
         },
     },
-];
+);

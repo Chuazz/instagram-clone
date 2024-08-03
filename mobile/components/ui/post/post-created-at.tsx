@@ -9,7 +9,11 @@ const PostCreatedAt = () => {
         return null;
     }
 
-    return <Text color='gray'>{format(post?.data.date_created.get(), 'MMM dd')}</Text>;
+    return (
+        <Text sx={{ color: 'gray500' }}>
+            {format(post?.data.date_created.get(), 'MMM dd')}
+        </Text>
+    );
 };
 
 export { PostCreatedAt };

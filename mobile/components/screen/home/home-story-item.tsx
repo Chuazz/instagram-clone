@@ -1,6 +1,7 @@
 import { Avatar } from '@/components/ui/avatar';
-import { Post } from '@/types/data';
+import { Post } from '@/types/data/post';
 import { Text, View } from 'dripsy';
+import React from 'react';
 
 const HomeStoryItem = ({ data }: { data: Post }) => {
     return (

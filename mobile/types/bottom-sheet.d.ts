@@ -1,5 +1,7 @@
 type BottomSheetsType = {
-    SelectLanguage: {};
+    SelectLanguage: {
+        closeSheet: () => void;
+    };
 };
 
 export { BottomSheetsType };

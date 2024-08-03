@@ -1,5 +1,5 @@
-import { queryKey } from '@/configs';
-import { CollectionArrayType, CollectionType } from '@/types';
+import { queryKey } from '@/configs/query-key';
+import { CollectionArrayType, CollectionType } from '@/types/collection';
 import { client } from '@/utils/db';
 import { Query, readItems } from '@directus/sdk';
 import { useQuery } from '@tanstack/react-query';

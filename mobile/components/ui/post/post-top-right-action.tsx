@@ -1,26 +1,19 @@
-import { i18n } from '@/configs';
+import { Button } from '@/components/form/button';
+import { i18n } from '@/configs/i18n';
 import { Entypo } from '@expo/vector-icons';
-import { Button, View } from 'dripsy';
+import { View } from 'dripsy';
 
 const PostTopRightAction = () => {
     return (
         <View
-            flexDirection='row'
-            gap={8}
+            sx={{
+                flexDirection: 'row',
+                gap: 'sm',
+            }}
         >
-            <Button
-                px={12}
-                height={36}
-            >
-                {i18n.t('common.follow')}
-            </Button>
+            <Button content={i18n.t('common.follow')} />
 
-            <Button
-                variant='outlined'
-                borderWidth={0}
-                height={36}
-                px={8}
-            >
+            <Button variant='outline'>
                 <Entypo
                     name='dots-three-vertical'
                     size={16}

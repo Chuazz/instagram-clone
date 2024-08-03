@@ -1,4 +1,4 @@
-import { bottomSheet } from '@/configs';
+import { bottomSheet } from '@/configs/bottom-sheet';
 import { BottomSheetsType } from '@/types/bottom-sheet';
 import { BottomSheetModalProps } from '@gorhom/bottom-sheet';
 import { observable } from '@legendapp/state';
@@ -7,7 +7,7 @@ import { ReactNode } from 'react';
 export type OpenSheetProps = {
     name: keyof BottomSheetsType;
     listing?: boolean;
-    params?: BottomSheetsType[keyof BottomSheetsType];
+    params?: Omit<BottomSheetsType[keyof BottomSheetsType], 'openSheet'>;
     options?: Omit<BottomSheetModalProps, 'children'>;
 };
 
@@ -17,7 +17,7 @@ export type BottomSheetType = {
 
     options: Omit<BottomSheetModalProps, 'children'> | undefined;
 
-    openSheet: (props: OpenSheetProps) => void;
+    openSheet: (_props: OpenSheetProps) => void;
 };
 
 const bottomSheet$ = observable<BottomSheetType>({
@@ -28,7 +28,12 @@ const bottomSheet$ = observable<BottomSheetType>({
     openSheet({ name, options, params, listing }) {
         const Component = bottomSheet[name];
 
-        bottomSheet$.sheet.set(<Component {...params} />);
+        bottomSheet$.sheet.set(
+            <Component
+                {...params}
+                closeSheet={() => bottomSheet$.sheet.set(undefined)}
+            />,
+        );
         bottomSheet$.options.set(options);
         bottomSheet$.listing.set(!!listing);
     },

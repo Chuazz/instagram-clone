@@ -1,6 +1,6 @@
 import { Text } from 'dripsy';
 import { usePost } from './post';
-import { i18n } from '@/configs';
+import { i18n } from '@/configs/i18n';
 
 const PostTotalLikes = () => {
     const post = usePost();
@@ -10,8 +10,9 @@ const PostTotalLikes = () => {
     }
 
     return (
-        <Text fontWeight={700}>
-            {post?.data.total_likes.get()} {i18n.t('common.likes').toLowerCase()}
+        <Text>
+            {post?.data.total_likes.get()}{' '}
+            {i18n.t('common.likes').toLowerCase()}
         </Text>
     );
 };

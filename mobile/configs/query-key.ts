@@ -1,4 +1,5 @@
-import { KeyValueType, CollectionArrayType } from '@/types';
+import { CollectionArrayType } from '@/types/collection';
+import { KeyValueType } from '@/types/common';
 
 type QueryOption = {
     lists?: (_filter?: object) => unknown[];

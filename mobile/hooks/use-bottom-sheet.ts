@@ -1,4 +1,4 @@
-import { bottomSheet$, OpenSheetProps } from '@/store';
+import { bottomSheet$, OpenSheetProps } from '@/store/bottom-sheet';
 
 const useBottomSheet = () => {
     return {

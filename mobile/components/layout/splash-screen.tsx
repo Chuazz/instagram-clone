@@ -1,13 +1,18 @@
-import { app$ } from '@/store';
+import { app$ } from '@/store/app';
 import { when } from '@legendapp/state';
+import { enableReactTracking } from '@legendapp/state/config/enableReactTracking';
 import { ObservablePersistAsyncStorage } from '@legendapp/state/persist-plugins/async-storage';
 import { configureObservableSync, syncObservable } from '@legendapp/state/sync';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
 import * as EPSplashScreen from 'expo-splash-screen';
 import { ReactNode, useEffect } from 'react';
-import { enableReactTracking } from '@legendapp/state/config/enableReactTracking';
-import { i18n } from '@/configs';
+import PublicSans from '@/assets/fonts/PublicSans-Regular.ttf';
+import PublicSansMedium from '@/assets/fonts/PublicSans-Medium.ttf';
+import PublicSansSemiBold from '@/assets/fonts/PublicSans-SemiBold.ttf';
+import PublicSansBold from '@/assets/fonts/PublicSans-Bold.ttf';
+import PublicSansExtraBold from '@/assets/fonts/PublicSans-ExtraBold.ttf';
+import PublicSansBlack from '@/assets/fonts/PublicSans-Black.ttf';
 
 EPSplashScreen.preventAutoHideAsync();
 
@@ -24,12 +29,12 @@ enableReactTracking({
 
 const SplashScreen = ({ children }: { children: ReactNode }) => {
     const [loaded] = useFonts({
-        PublicSans: require('../../assets/fonts/PublicSans-Regular.ttf'),
-        'PublicSans-Medium': require('../../assets/fonts/PublicSans-Medium.ttf'),
-        'PublicSans-SemiBold': require('../../assets/fonts/PublicSans-SemiBold.ttf'),
-        'PublicSans-Bold': require('../../assets/fonts/PublicSans-Bold.ttf'),
-        'PublicSans-ExtraBold': require('../../assets/fonts/PublicSans-ExtraBold.ttf'),
-        'PublicSans-Black': require('../../assets/fonts/PublicSans-Black.ttf'),
+        PublicSans: PublicSans,
+        'PublicSans-Medium': PublicSansMedium,
+        'PublicSans-SemiBold': PublicSansSemiBold,
+        'PublicSans-Bold': PublicSansBold,
+        'PublicSans-ExtraBold': PublicSansExtraBold,
+        'PublicSans-Black': PublicSansBlack,
     });
 
     useEffect(() => {

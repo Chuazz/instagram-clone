@@ -1,13 +1,14 @@
-import { SPACING } from '@/configs';
 import { Ionicons } from '@expo/vector-icons';
 import { View } from 'dripsy';
 
 const PostBottomLeftAction = () => {
     return (
         <View
-            flexDirection='row'
-            alignItems='center'
-            gap={SPACING}
+            sx={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 'md',
+            }}
         >
             <Ionicons
                 name='heart-outline'

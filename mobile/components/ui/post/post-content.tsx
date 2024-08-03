@@ -9,10 +9,7 @@ const PostContent = () => {
     }
 
     return (
-        <Text
-            fontWeight={700}
-            numberOfLines={1}
-        >
+        <Text numberOfLines={1}>
             {post?.data.user_created.first_name.get()}
             {post?.data.user_created.last_name.get()}
 

@@ -1,5 +1,5 @@
-import { OptionType } from '@/types';
-import { Image } from '../ui';
+import { OptionType } from '@/types/common';
+import { Image } from '../ui/image';
 import { Button } from './button';
 
 type CheckBoxProps = {

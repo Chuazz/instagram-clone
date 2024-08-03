@@ -1,5 +1,4 @@
-import { Image } from '@/components/ui';
-import { SPACING } from '@/configs';
+import { Image } from '@/components/ui/image';
 import { Ionicons, FontAwesome6 } from '@expo/vector-icons';
 import { View } from 'dripsy';
 
@@ -7,8 +6,8 @@ const SocialHomeHeader = () => {
     return (
         <View
             sx={{
-                mt: SPACING,
-                px: SPACING,
+                mt: 'md',
+                px: 'md',
                 alignItems: 'center',
                 flexDirection: 'row',
                 justifyContent: 'space-between',

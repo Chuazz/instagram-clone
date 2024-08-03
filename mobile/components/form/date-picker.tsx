@@ -1,4 +1,3 @@
-import { i18n } from '@/configs';
 import { observer, Show, useObservable } from '@legendapp/state/react';
 import DateTimePicker, {
     AndroidNativeProps,
@@ -9,12 +8,11 @@ import DateTimePicker, {
 import { format } from 'date-fns';
 import { Platform } from 'react-native';
 import { Input } from './input';
+import { i18n } from '@/configs/i18n';
 
-type DatePickerProps = (
-    | IOSNativeProps
-    | AndroidNativeProps
-    | WindowsNativeProps
-) & {
+type DatePickerProps = (IOSNativeProps &
+    AndroidNativeProps &
+    WindowsNativeProps) & {
     placeholder?: string;
     show?: boolean;
 };

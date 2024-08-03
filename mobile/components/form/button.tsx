@@ -1,15 +1,25 @@
 import { ActivityIndicator, SxProp, Text, useDripsyTheme, useSx } from 'dripsy';
-import { ReactNode } from 'react';
-import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { ReactNode, useEffect, useMemo } from 'react';
+import {
+    Gesture,
+    GestureDetector,
+    TouchableOpacityProps,
+} from 'react-native-gesture-handler';
+import Animated, {
+    useAnimatedStyle,
+    useSharedValue,
+    withSpring,
+} from 'react-native-reanimated';
 
 type ButtonProps = Omit<TouchableOpacityProps, 'style'> & {
     content?: string;
     children?: ReactNode;
+    onPress?: () => void;
     sx?: SxProp;
     textSx?: SxProp;
     indicatorColor?: string;
     size?: 'sm' | 'md' | 'lg';
-    schema?: 'primary' | 'gray';
+    schema?: 'primary' | 'gray' | 'white';
     center?: boolean;
     rounded?: boolean;
     loading?: boolean;
@@ -28,13 +38,22 @@ const Button = ({
     schema = 'primary',
     variant = 'fill',
     center = true,
+    onPress,
     ...props
 }: ButtonProps) => {
     const sxProps = useSx();
     const { theme } = useDripsyTheme();
-
     const primary = theme.colors.primary700;
     const gray = theme.colors.gray200;
+    const scale = useSharedValue(1);
+
+    const viewAnimatedStyle = useAnimatedStyle(() => ({
+        transform: [
+            {
+                scale: scale.value,
+            },
+        ],
+    }));
 
     const styles = (() => {
         let indicatorColor = '';
@@ -97,6 +116,10 @@ const Button = ({
             }
         }
 
+        if (schema === 'white') {
+            button.backgroundColor = 'white';
+        }
+
         if (rounded) {
             button.borderRadius = 'full';
         }
@@ -133,17 +156,37 @@ const Button = ({
         return <Text sx={{ ...styles.text, ...textSx }}>{content}</Text>;
     })();
 
+    const tapGesture = useMemo(
+        () =>
+            Gesture.Tap()
+                .onTouchesDown(() => {
+                    scale.value = withSpring(0.9);
+                })
+                .onTouchesUp(() => {
+                    scale.value = withSpring(1);
+
+                    onPress?.();
+                })
+                .runOnJS(true),
+        [],
+    );
+
     return (
-        <TouchableOpacity
-            activeOpacity={0.5}
-            style={sxProps({
-                ...styles.button,
-                ...sx,
-            })}
-            {...props}
-        >
-            {render}
-        </TouchableOpacity>
+        <GestureDetector gesture={tapGesture}>
+            <Animated.View
+                activeOpacity={0.6}
+                style={[
+                    sxProps({
+                        ...styles.button,
+                        ...sx,
+                    }),
+                    viewAnimatedStyle,
+                ]}
+                {...props}
+            >
+                {render}
+            </Animated.View>
+        </GestureDetector>
     );
 };
 

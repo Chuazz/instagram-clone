@@ -6,36 +6,47 @@ import { PostTotalLikes } from './post-total-like';
 import { PostContent } from './post-content';
 import { PostTotalComments } from './post-total-comments';
 import { PostCreatedAt } from './post-created-at';
-import { SPACING } from '@/configs';
 
 const FLEX_BASIS = '33.33333%';
 
 const PostFooter = () => {
     return (
         <View
-            px={SPACING}
-            mt={SPACING}
-            gap={8}
+            sx={{
+                px: 'md',
+                mt: 'md',
+                gap: 8,
+            }}
         >
             <View
-                flexDirection='row'
-                alignItems='center'
+                sx={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                }}
             >
-                <View flexBasis={FLEX_BASIS}>
+                <View
+                    sx={{
+                        flexBasis: FLEX_BASIS,
+                    }}
+                >
                     <PostBottomLeftAction />
                 </View>
 
                 <View
-                    flexBasis={FLEX_BASIS}
-                    justifyContent='center'
-                    alignItems='center'
+                    sx={{
+                        flexBasis: FLEX_BASIS,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}
                 >
                     <PostMediaPaginate />
                 </View>
 
                 <View
-                    flexBasis={FLEX_BASIS}
-                    alignItems='flex-end'
+                    sx={{
+                        flexBasis: FLEX_BASIS,
+                        alignItems: 'flex-end',
+                    }}
                 >
                     <PostSave />
                 </View>

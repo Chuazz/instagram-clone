@@ -1,5 +1,5 @@
-import { BASE_API_URL, image } from '@/configs';
-import { Memo, useObservable } from '@legendapp/state/react';
+import { image } from '@/configs/image';
+import { observer, useObservable } from '@legendapp/state/react';
 import { Image as EPImage, SxProp } from 'dripsy';
 import { useEffect } from 'react';
 import { ImageProps as RNImageProps } from 'react-native';
@@ -10,10 +10,12 @@ type ImageProps = Omit<RNImageProps, 'source' | 'style'> & {
     sx?: SxProp;
 };
 
-const Image = ({ source, fromServer, ...props }: ImageProps) => {
+const Image = observer(({ source, fromServer, ...props }: ImageProps) => {
     const source$ = useObservable(
         image[source as keyof typeof image] || {
-            uri: fromServer ? BASE_API_URL + '/assets/' + source : source,
+            uri: fromServer
+                ? process.env.EXPO_PUBLIC_API_URL + '/assets/' + source
+                : source,
         },
     );
 
@@ -28,14 +30,12 @@ const Image = ({ source, fromServer, ...props }: ImageProps) => {
     }, [source]);
 
     return (
-        <Memo>
-            <EPImage
-                {...props}
-                onError={onError}
-                source={source$.get()}
-            />
-        </Memo>
+        <EPImage
+            {...props}
+            onError={onError}
+            source={source$.get()}
+        />
     );
-};
+});
 
 export { Image };

@@ -1,19 +1,31 @@
 import { View } from 'dripsy';
 import { Image } from './image';
 
-const Avatar = ({ uri, size, borderSize = size + 12 }: { uri?: string; size: number; borderSize?: number }) => {
+const Avatar = ({
+    uri,
+    size,
+    borderSize = size + 12,
+}: {
+    uri?: string;
+    size: number;
+    borderSize?: number;
+}) => {
     return (
         <View
-            width={borderSize}
-            height={borderSize}
-            justifyContent='center'
-            alignItems='center'
+            sx={{
+                width: borderSize,
+                height: borderSize,
+                justifyContent: 'center',
+                alignItems: 'center',
+            }}
         >
             <Image
                 source='StoryBorderIcon'
                 width={borderSize}
                 height={borderSize}
-                position='absolute'
+                sx={{
+                    position: 'absolute',
+                }}
             />
 
             <Image

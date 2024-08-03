@@ -1,4 +1,3 @@
-import { image, INPUT_HEIGHT } from '@/configs';
 import { AntDesign } from '@expo/vector-icons';
 import { observer, Show, useObservable } from '@legendapp/state/react';
 import { Text, TextInput, useDripsyTheme, View } from 'dripsy';
@@ -10,7 +9,9 @@ import {
 } from 'react-native';
 import { Button } from '../form/button';
 import { useRef } from 'react';
-import { Image } from '../ui';
+import { Image } from '../ui/image';
+import { INPUT_HEIGHT } from '@/configs/theme';
+import type { image } from '@/configs/image';
 
 type InputProps = DripsyTextInputProps & {
     errMessage?: string;
@@ -109,7 +110,7 @@ const Input = observer(
                                 color:
                                     errMessage && !focus$.get()
                                         ? errColor
-                                        : 'gray900',
+                                        : 'primary950',
                             }}
                         >
                             {props.placeholder}
@@ -136,7 +137,7 @@ const Input = observer(
                             height: focus$.get() ? 'auto' : 'full',
                             paddingVertical: 0,
                             paddingRight: 30,
-                            fontWeight: 'bold',
+                            fontWeight: 'semibold',
                             ...props.sx,
                         }}
                         onFocus={onFocus}

@@ -1,9 +1,9 @@
-import { HEADER_HEIGHT } from '@/configs';
-import { useNavigation } from '@/hooks';
 import { SxProp, Text, View } from 'dripsy';
 import { ReactNode } from 'react';
-import { Button } from '../form';
-import { Image } from '../ui';
+import { Image } from '../ui/image';
+import { HEADER_HEIGHT } from '@/configs/theme';
+import { useNavigation } from '@react-navigation/native';
+import { Button } from '../form/button';
 
 type ScreenHeaderProps = {
     children?: ReactNode;

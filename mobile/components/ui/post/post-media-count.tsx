@@ -1,7 +1,6 @@
 import { Text, View } from 'dripsy';
 import { usePost } from './post';
 import { observer, useObserve } from '@legendapp/state/react';
-import { SPACING } from '@/configs';
 
 const PostMediaCount = observer(() => {
     const post = usePost();
@@ -18,24 +17,32 @@ const PostMediaCount = observer(() => {
         };
     });
 
-    if (!post?.currentPage.get() || post?.currentPage.get() === 0 || !post.showPage.get()) {
+    if (
+        !post?.currentPage.get() ||
+        post?.currentPage.get() === 0 ||
+        !post.showPage.get()
+    ) {
         return null;
     }
 
     return (
         <View
-            backgroundColor='$black'
-            borderRadius={9999}
-            width={44}
-            py={6}
-            position='absolute'
-            top={SPACING}
-            right={SPACING}
+            sx={{
+                backgroundColor: 'black',
+                borderRadius: 'full',
+                width: 44,
+                py: 6,
+                position: 'absolute',
+                top: 'md',
+                right: 'md',
+            }}
         >
             <Text
-                color='white'
-                textAlign='center'
-                fontSize={12}
+                sx={{
+                    color: 'white',
+                    textAlign: 'center',
+                    fontSize: 'sm',
+                }}
             >
                 {post?.currentPage.get() + 1}/{post?.data.images.length}
             </Text>

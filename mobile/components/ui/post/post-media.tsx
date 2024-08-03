@@ -5,8 +5,7 @@ import Carousel from 'react-native-snap-carousel';
 import { View } from 'dripsy';
 import { Image } from '../image';
 import { usePost } from './post';
-import { SPACING } from '@/configs';
-import { PostImage } from '@/types';
+import { PostImage } from '@/types/data/post';
 
 const PostMedia = observer(({ children }: { children: ReactNode }) => {
     const post = usePost();
@@ -14,7 +13,11 @@ const PostMedia = observer(({ children }: { children: ReactNode }) => {
     const ref = useRef<Carousel<PostImage>>(null);
 
     return (
-        <View mt={SPACING}>
+        <View
+            sx={{
+                mt: 'md',
+            }}
+        >
             <Carousel
                 ref={ref}
                 data={data?.images || []}
@@ -29,7 +32,11 @@ const PostMedia = observer(({ children }: { children: ReactNode }) => {
                     <Image
                         source={item.directus_files_id.id}
                         fromServer={true}
-                        aspectRatio={item.directus_files_id.width / item.directus_files_id.height}
+                        sx={{
+                            aspectRatio:
+                                item.directus_files_id.width /
+                                item.directus_files_id.height,
+                        }}
                     />
                 )}
             />

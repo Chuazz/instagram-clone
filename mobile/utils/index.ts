@@ -1,6 +1,6 @@
-import { i18n } from '@/configs';
-import { app$ } from '@/store';
-import { KeyValueType } from '@/types';
+import { i18n } from '@/configs/i18n';
+import { app$ } from '@/store/app';
+import { KeyValueType } from '@/types/common';
 
 const trans = (key: string, param?: KeyValueType<string, string>) => {
     const data = i18n.t(key, param);
@@ -16,4 +16,3 @@ const beauty = (data: string | number | boolean | object) => {
 };
 
 export { trans, beauty };
-export * from './db';

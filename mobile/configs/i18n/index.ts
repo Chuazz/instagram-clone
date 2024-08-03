@@ -1,5 +1,15 @@
-import { KeyValueType, LanguageType, OptionType } from '@/types';
+import { KeyValueType, LanguageType, OptionType } from '@/types/common';
 import { I18n } from 'i18n-js';
+
+import enCommon from './locales/en/common.json';
+import enInfo from './locales/en/info.json';
+import enAuth from './locales/en/auth.json';
+import enValidate from './locales/en/validate.json';
+
+import viCommon from './locales/vi/common.json';
+import viInfo from './locales/vi/info.json';
+import viAuth from './locales/vi/auth.json';
+import viValidate from './locales/vi/validate.json';
 
 const LANGUAGES: KeyValueType<LanguageType, OptionType<LanguageType>> = {
     vi: {
@@ -22,18 +32,16 @@ const FALLBACK_NAMESPACE = 'common';
 
 const translations: KeyValueType<LanguageType, unknown> = {
     en: {
-        common: require('./locales/en/common.json'),
-        info: require('./locales/en/info.json'),
-        post: require('./locales/en/post.json'),
-        auth: require('./locales/en/auth.json'),
-        validate: require('./locales/en/validate.json'),
+        common: enCommon,
+        info: enInfo,
+        auth: enAuth,
+        validate: enValidate,
     },
     vi: {
-        common: require('./locales/vi/common.json'),
-        info: require('./locales/vi/info.json'),
-        post: require('./locales/vi/post.json'),
-        auth: require('./locales/vi/auth.json'),
-        validate: require('./locales/vi/validate.json'),
+        common: viCommon,
+        info: viInfo,
+        auth: viAuth,
+        validate: viValidate,
     },
 };
 

@@ -1,18 +1,16 @@
-import {
-    Post,
-    PostFooter,
-    PostHeader,
-    PostMedia,
-    PostMediaCount,
-} from '@/components/ui/post';
-import { queryKey } from '@/configs';
-import { useGet } from '@/hooks';
-import { queryClient } from '@/providers';
+import { Post } from '@/components/ui/post';
+import { PostFooter } from '@/components/ui/post/post-footer';
+import { PostHeader } from '@/components/ui/post/post-header';
+import { PostMedia } from '@/components/ui/post/post-media';
+import { PostMediaCount } from '@/components/ui/post/post-media-count';
+import { queryKey } from '@/configs/query-key';
+import { useGet } from '@/hooks/use-get';
+import { queryClient } from '@/providers/react-query-provider';
 import { ReactNode } from 'react';
 import { FlatList, RefreshControl } from 'react-native';
 
 const HomePostList = ({ listHeader }: { listHeader: ReactNode }) => {
-    const storyQuery = useGet({
+    const postQuery = useGet({
         collection: 'post',
         query: {
             filter: {
@@ -38,15 +36,16 @@ const HomePostList = ({ listHeader }: { listHeader: ReactNode }) => {
         },
     });
 
+    console.log('🚀 ~ HomePostList ~ postQuery:', postQuery);
     return (
         <FlatList
-            data={storyQuery.data}
+            data={postQuery.data}
             keyExtractor={(item) => item?.id.toString()}
             ListHeaderComponent={() => listHeader}
-            showsVerticalScrollIndicator={false}
+            showsVerticalScrollIndicator={true}
             refreshControl={
                 <RefreshControl
-                    refreshing={storyQuery.isFetching}
+                    refreshing={postQuery.isFetching}
                     onRefresh={() => {
                         queryClient.invalidateQueries({
                             queryKey: queryKey.post.lists?.(),

@@ -1,5 +1,5 @@
-import { FALLBACK_LANGUAGE, LANGUAGES } from '@/configs';
-import { LanguageType } from '@/types';
+import { LANGUAGES, FALLBACK_LANGUAGE } from '@/configs/i18n';
+import { LanguageType } from '@/types/common';
 import { observable } from '@legendapp/state';
 import { getLocales } from 'expo-localization';
 

@@ -3,9 +3,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { SxProp, View } from 'dripsy';
 import { ScreenFooter } from './screen-footer';
 import { ScreenHeader } from './screen-header';
-import { Image } from '../ui';
 import { StyleSheet } from 'react-native';
-import { image } from '@/configs';
+import type { image } from '@/configs/image';
+import { Image } from '../ui/image';
 
 type ScreenProps = {
     children: ReactNode;
