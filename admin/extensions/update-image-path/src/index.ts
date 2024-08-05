@@ -1,16 +1,6 @@
 import { defineHook } from '@directus/extensions-sdk';
-import {
-    createDirectus,
-    deleteFiles,
-    login,
-    rest,
-    withToken,
-} from '@directus/sdk';
 import { randomUUID } from 'crypto';
-
-const client = createDirectus('http://172.18.127.185:8055').with(rest());
-
-const auth = client.request(login('sonnv1912@gmail.com', '11111111'));
+import fs from 'fs';
 
 export default defineHook(({ action, filter }) => {
     action('post.items.create', async (data, context) => {
@@ -125,16 +115,10 @@ export default defineHook(({ action, filter }) => {
 
     filter('post.items.delete', async (data, _meta, context) => {
         const payload = (data as number[])?.[0];
-        const token = (await auth).access_token;
-
-        if (!token) {
-            return;
-        }
 
         const postFilesQuery = context.database
             .table('post_files')
             .where('post_id', payload);
-
         const postFiles = await postFilesQuery.select();
 
         if (postFiles.length) {
@@ -143,25 +127,43 @@ export default defineHook(({ action, filter }) => {
                 .where('name', 'post')
                 .first();
 
-            await client.request(
-                withToken(
-                    token,
-                    deleteFiles(
-                        postFiles.map(
-                            (file: { directus_files_id: string }) =>
-                                file.directus_files_id,
-                        ),
-                    ),
+            const fileQuey = context.database.table('directus_files').whereIn(
+                'id',
+                postFiles.map(
+                    (file: { directus_files_id: string }) =>
+                        file.directus_files_id,
                 ),
             );
 
-            await context.database
-                .table('directus_folders')
-                .where('name', payload)
-                .where('parent', parentFolder.id)
-                .delete();
+            fs.readdir('/directus/uploads', async (err, uploadFiles) => {
+                if (err?.message) {
+                    return;
+                }
 
-            await postFilesQuery.delete();
+                (await fileQuey).map(
+                    async (file: { filename_disk: string }) => {
+                        const foundUploadFiles = uploadFiles.filter((t) =>
+                            t.includes(file.filename_disk.split('.')?.[0]!),
+                        );
+
+                        foundUploadFiles.forEach((foundUploadFile) => {
+                            fs.unlinkSync(
+                                `/directus/uploads/${foundUploadFile}`,
+                            );
+                        });
+                    },
+                );
+
+                await fileQuey.delete();
+
+                await context.database
+                    .table('directus_folders')
+                    .where('name', payload)
+                    .where('parent', parentFolder.id)
+                    .delete();
+
+                await postFilesQuery.delete();
+            });
         }
     });
 });
