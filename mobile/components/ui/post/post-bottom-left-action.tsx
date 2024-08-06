@@ -1,5 +1,5 @@
-import { Ionicons } from '@expo/vector-icons';
 import { View } from 'dripsy';
+import { Image } from '../image';
 
 const PostBottomLeftAction = () => {
     return (
@@ -10,22 +10,28 @@ const PostBottomLeftAction = () => {
                 gap: 'md',
             }}
         >
-            <Ionicons
-                name='heart-outline'
-                size={25}
-            />
-
-            <Ionicons
-                name='chatbubble-outline'
-                size={22}
-                style={{
-                    transform: [{ rotate: '270deg' }],
+            <Image
+                source='HeartOutlineIcon'
+                sx={{
+                    width: 'icon-md',
+                    height: 'icon-md',
                 }}
             />
 
-            <Ionicons
-                name='paper-plane-outline'
-                size={22}
+            <Image
+                source='CommentOutlineIcon'
+                sx={{
+                    width: 'icon-md',
+                    height: 'icon-md',
+                }}
+            />
+
+            <Image
+                source='SendOutlineIcon'
+                sx={{
+                    width: 'icon-md',
+                    height: 'icon-md',
+                }}
             />
         </View>
     );

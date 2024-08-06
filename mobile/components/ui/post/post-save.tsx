@@ -1,12 +1,15 @@
-import { Ionicons } from '@expo/vector-icons';
+import { Image } from '../image';
 
 const PostSave = () => {
-	return (
-		<Ionicons
-			name='bookmark-outline'
-			size={25}
-		/>
-	);
+    return (
+        <Image
+            source='Save2OutlineIcon'
+            sx={{
+                width: 'icon-md',
+                height: 'icon-md',
+            }}
+        />
+    );
 };
 
 export { PostSave };

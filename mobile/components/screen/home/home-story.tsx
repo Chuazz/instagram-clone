@@ -22,22 +22,24 @@ const HomeStory = () => {
         },
     });
 
+    if (!storyQuery.data?.length) {
+        return null;
+    }
+
     return (
-        <View>
-            <FlatList
-                horizontal={true}
-                showsHorizontalScrollIndicator={false}
-                showsVerticalScrollIndicator={false}
-                data={storyQuery.data}
-                contentContainerStyle={{
-                    paddingHorizontal: SPACING,
-                    marginTop: 20,
-                    gap: SPACING,
-                }}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => <HomeStoryItem data={item} />}
-            />
-        </View>
+        <FlatList
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            showsVerticalScrollIndicator={false}
+            data={storyQuery.data}
+            contentContainerStyle={{
+                paddingHorizontal: SPACING,
+                marginTop: 20,
+                gap: SPACING,
+            }}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={({ item }) => <HomeStoryItem data={item} />}
+        />
     );
 };
 

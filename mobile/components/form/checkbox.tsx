@@ -25,7 +25,11 @@ const CheckBox = ({
             }}
         >
             <Image
-                source={data.code === value ? 'CheckBoxIcon' : 'UnCheckBoxIcon'}
+                source={
+                    data.code === value
+                        ? 'CheckBoxFillIcon'
+                        : 'SquareOutlineIcon'
+                }
                 sx={{
                     size: 20,
                     width: 20,

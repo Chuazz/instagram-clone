@@ -13,7 +13,7 @@ import { Navigation } from './components/layout/navigation';
 import { AppBottomSheet } from './components/bottom-sheet/app-bottom-sheet';
 import { StatusBar } from 'expo-status-bar';
 
-const App = () => {
+const App = observer(() => {
     return (
         <GestureHandlerRootView>
             <ReactQueryProvider>
@@ -43,6 +43,6 @@ const App = () => {
             </ReactQueryProvider>
         </GestureHandlerRootView>
     );
-};
+});
 
 export default App;

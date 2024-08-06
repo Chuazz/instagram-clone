@@ -1,8 +1,9 @@
 import { Button } from '@/components/form/button';
 import { usePost } from './post';
 import { i18n } from '@/configs/i18n';
+import { observer } from '@legendapp/state/react';
 
-const PostTotalComments = () => {
+const PostTotalComments = observer(() => {
     const post = usePost();
 
     if (!post?.data.total_comments.get()) {
@@ -16,6 +17,6 @@ const PostTotalComments = () => {
             })}
         </Button>
     );
-};
+});
 
 export { PostTotalComments };

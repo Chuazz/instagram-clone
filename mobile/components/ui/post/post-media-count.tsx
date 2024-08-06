@@ -1,41 +1,56 @@
-import { Text, View } from 'dripsy';
-import { usePost } from './post';
 import { observer, useObserve } from '@legendapp/state/react';
+import { Text, useSx } from 'dripsy';
+import Animated, {
+    useSharedValue,
+    withDelay,
+    withSequence,
+    withTiming,
+} from 'react-native-reanimated';
+import { usePost } from './post';
 
 const PostMediaCount = observer(() => {
     const post = usePost();
+    const opacity = useSharedValue(0);
+    const sx = useSx();
 
-    useObserve(post?.currentPage, (target) => {
-        const id = setTimeout(() => {
-            if (target.value) {
-                post?.showPage.set(false);
-            }
-        }, 5000);
+    useObserve(post?.showPage, (target) => {
+        if (target.value) {
+            post?.showPage.set(false);
 
-        target.onCleanup = () => {
-            clearTimeout(id);
-        };
+            opacity.value = withSequence(
+                withTiming(1, {
+                    duration: 500,
+                }),
+                withDelay(
+                    5000,
+                    withTiming(0, {
+                        duration: 500,
+                    }),
+                ),
+            );
+        }
     });
 
-    if (
-        !post?.currentPage.get() ||
-        post?.currentPage.get() === 0 ||
-        !post.showPage.get()
-    ) {
+    if (Number(post?.currentPage.get()) < 0) {
         return null;
     }
 
     return (
-        <View
-            sx={{
-                backgroundColor: 'black',
-                borderRadius: 'full',
-                width: 44,
-                py: 6,
-                position: 'absolute',
-                top: 'md',
-                right: 'md',
-            }}
+        <Animated.View
+            style={[
+                sx({
+                    backgroundColor: 'black',
+                    borderRadius: 'full',
+                    width: 44,
+                    py: 6,
+                    position: 'absolute',
+                    top: 'md',
+                    right: 'md',
+                }),
+                {
+                    opacity,
+                },
+            ]}
         >
             <Text
                 sx={{
@@ -44,9 +59,9 @@ const PostMediaCount = observer(() => {
                     fontSize: 'sm',
                 }}
             >
-                {post?.currentPage.get() + 1}/{post?.data.images.length}
+                {Number(post?.currentPage.get()) + 1}/{post?.data.images.length}
             </Text>
-        </View>
+        </Animated.View>
     );
 });
 

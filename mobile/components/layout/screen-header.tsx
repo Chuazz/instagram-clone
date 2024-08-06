@@ -40,7 +40,7 @@ const ScreenHeader = ({ children, sx, content }: ScreenHeaderProps) => {
                         }}
                     >
                         <Image
-                            source='ArrowLeftLongIcon'
+                            source='ArrowLeftOutlineIcon'
                             tintColor='black'
                             sx={{
                                 width: 'iconMd',

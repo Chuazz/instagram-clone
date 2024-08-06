@@ -12,6 +12,7 @@ const Navigation = () => {
                 screenOptions={{
                     headerShown: false,
                 }}
+                initialRouteName='HomeScreen'
             >
                 {Object.keys(routes).map((key) => (
                     <Stack.Screen

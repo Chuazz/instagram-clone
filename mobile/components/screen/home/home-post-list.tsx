@@ -6,6 +6,7 @@ import { PostMediaCount } from '@/components/ui/post/post-media-count';
 import { queryKey } from '@/configs/query-key';
 import { useGet } from '@/hooks/use-get';
 import { queryClient } from '@/providers/react-query-provider';
+import { beauty } from '@/utils';
 import { ReactNode } from 'react';
 import { FlatList, RefreshControl } from 'react-native';
 
@@ -25,10 +26,15 @@ const HomePostList = ({ listHeader }: { listHeader: ReactNode }) => {
                 'content',
                 'date_created',
                 {
-                    user_created: ['avatar', 'first_name', 'last_name'],
+                    user_created: ['id', 'avatar', 'first_name'],
                     images: [
                         {
-                            directus_files_id: ['id', 'width', 'height'],
+                            directus_files_id: [
+                                'id',
+                                'width',
+                                'height',
+                                'type',
+                            ],
                         },
                     ],
                 },
@@ -36,7 +42,6 @@ const HomePostList = ({ listHeader }: { listHeader: ReactNode }) => {
         },
     });
 
-    console.log('🚀 ~ HomePostList ~ postQuery:', postQuery);
     return (
         <FlatList
             data={postQuery.data}
@@ -53,10 +58,6 @@ const HomePostList = ({ listHeader }: { listHeader: ReactNode }) => {
                     }}
                 />
             }
-            contentContainerStyle={{
-                gap: 28,
-                paddingBottom: 12,
-            }}
             renderItem={({ item }) => (
                 <Post data={item}>
                     <PostHeader />
