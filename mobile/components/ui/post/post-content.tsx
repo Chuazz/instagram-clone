@@ -1,7 +1,8 @@
 import { Text } from 'dripsy';
 import { usePost } from './post';
+import { observer } from '@legendapp/state/react';
 
-const PostContent = () => {
+const PostContent = observer(() => {
     const post = usePost();
 
     if (!post?.data.content.get()) {
@@ -9,13 +10,17 @@ const PostContent = () => {
     }
 
     return (
-        <Text numberOfLines={1}>
+        <Text
+            numberOfLines={1}
+            sx={{
+                fontWeight: 'semibold',
+            }}
+        >
             {post?.data.user_created.first_name.get()}
-            {post?.data.user_created.last_name.get()}
 
             <Text> {post?.data.content.get()}</Text>
         </Text>
     );
-};
+});
 
 export { PostContent };

@@ -44,7 +44,7 @@ const Button = ({
     const sxProps = useSx();
     const { theme } = useDripsyTheme();
     const primary = theme.colors.primary700;
-    const gray = theme.colors.gray200;
+    const gray = theme.colors.gray100;
     const scale = useSharedValue(1);
 
     const viewAnimatedStyle = useAnimatedStyle(() => ({
@@ -60,7 +60,7 @@ const Button = ({
 
         const button: SxProp = {
             borderRadius: 'md',
-            padding: size,
+            paddingVertical: size,
             borderWidth: 1,
             borderColor: 'transparent',
             alignSelf: center ? 'flex-center' : 'flex-start',
@@ -70,6 +70,7 @@ const Button = ({
             fontWeight: 'bold',
             textAlign: 'center',
             fontSize: size,
+            paddingHorizontal: 12,
         };
 
         if (schema === 'primary') {
@@ -97,7 +98,7 @@ const Button = ({
         if (schema === 'gray') {
             button.backgroundColor = gray;
 
-            text.color = 'white';
+            text.color = 'gray900';
 
             indicatorColor = gray;
 
@@ -174,7 +175,6 @@ const Button = ({
     return (
         <GestureDetector gesture={tapGesture}>
             <Animated.View
-                activeOpacity={0.6}
                 style={[
                     sxProps({
                         ...styles.button,

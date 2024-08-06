@@ -54,7 +54,7 @@ const Input = observer(
                 return 'EyeSlashIcon';
             }
 
-            return 'CloseRoundIcon';
+            return 'CloseOutlineIcon';
         })();
 
         const onFocus = (e: NativeSyntheticEvent<TextInputFocusEventData>) => {

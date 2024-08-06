@@ -1,7 +1,7 @@
 import { Button } from '@/components/form/button';
 import { i18n } from '@/configs/i18n';
-import { Entypo } from '@expo/vector-icons';
 import { View } from 'dripsy';
+import { Image } from '../image';
 
 const PostTopRightAction = () => {
     return (
@@ -9,14 +9,23 @@ const PostTopRightAction = () => {
             sx={{
                 flexDirection: 'row',
                 gap: 'sm',
+                alignItems: 'center',
             }}
         >
-            <Button content={i18n.t('common.follow')} />
+            <Button
+                size='sm'
+                schema='gray'
+                rounded={false}
+                content={i18n.t('common.follow')}
+            />
 
-            <Button variant='outline'>
-                <Entypo
-                    name='dots-three-vertical'
-                    size={16}
+            <Button variant='transparent'>
+                <Image
+                    source='MoreOutlineIcon'
+                    sx={{
+                        width: 'icon-md',
+                        height: 'icon-md',
+                    }}
                 />
             </Button>
         </View>

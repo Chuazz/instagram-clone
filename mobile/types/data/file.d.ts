@@ -4,8 +4,8 @@ type File = {
     filename_disk: string;
     filename_download: string;
     title: string;
-    type: string;
-    folder: unknown;
+    type: 'image/jpeg';
+    folder: string;
     uploaded_by: string;
     uploaded_on: string;
     modified_by: unknown;

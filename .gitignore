@@ -1,13 +1,23 @@
+# Package
 node_modules
 
+# Andriod
 android
 
+# VS Code setting
 .vscode
 
+# Expo
 .expo
 expo-env.d.ts
+%ProgramData%
 
+# Environment
 .env
 .env.local
 
+# Build
 dist
+
+# Expo auto generate
+mobile/.gitignore

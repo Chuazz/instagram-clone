@@ -1,12 +1,13 @@
 import { View } from 'dripsy';
 import { Image } from './image';
+import { User } from '@/types/data/user';
 
 const Avatar = ({
-    uri,
+    user,
     size,
     borderSize = size + 12,
 }: {
-    uri?: string;
+    user?: User;
     size: number;
     borderSize?: number;
 }) => {
@@ -21,19 +22,24 @@ const Avatar = ({
         >
             <Image
                 source='StoryBorderIcon'
-                width={borderSize}
-                height={borderSize}
                 sx={{
                     position: 'absolute',
+                    width: borderSize,
+                    height: borderSize,
                 }}
             />
 
             <Image
                 fromServer={true}
-                source={uri!}
-                width={size}
-                height={size}
-                borderRadius={9999}
+                source={user?.avatar}
+                placeholder={
+                    user?.gender === 'male' ? 'MaleIcon' : 'FemaleIcon'
+                }
+                sx={{
+                    borderRadius: 'full',
+                    width: size,
+                    height: size,
+                }}
             />
         </View>
     );
