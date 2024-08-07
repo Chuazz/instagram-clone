@@ -1,8 +1,8 @@
 import { Button } from '@/components/form/button';
 import { Screen } from '@/components/layout/screen';
 import { Image } from '@/components/ui/image';
-import { ScreenProps } from '@/types/route-params';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@gorhom/bottom-sheet';
+import { SCREEN_WIDTH, SCREEN_HEIGHT } from '@/configs/theme';
+import { ScreenProps } from '@/types/route';
 import { useMount } from '@legendapp/state/react';
 import { Text, useDripsyTheme } from 'dripsy';
 import Animated, {

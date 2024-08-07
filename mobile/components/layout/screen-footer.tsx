@@ -16,9 +16,12 @@ const ScreenFooter = ({
             sx={{
                 position: 'absolute',
                 bottom: 0,
-                width: 'screenWidth',
+                width: 'screen-width',
                 padding: 'md',
                 paddingBottom: insets.bottom + 12,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
                 ...sx,
             }}
         >

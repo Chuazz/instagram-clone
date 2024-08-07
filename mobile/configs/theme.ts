@@ -1,5 +1,5 @@
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@gorhom/bottom-sheet';
 import { makeTheme } from 'dripsy';
+import { Dimensions } from 'react-native';
 
 const SPACING = 12;
 
@@ -7,9 +7,11 @@ const INPUT_HEIGHT = 60;
 
 const RADIUS_FULL = 9999;
 
-const BUTTON_MD_SIZE = 40;
-
 const HEADER_HEIGHT = 50;
+
+const SCREEN_WIDTH = Dimensions.get('screen').width;
+
+const SCREEN_HEIGHT = Dimensions.get('screen').height;
 
 const light = {
     white: '#fff',
@@ -64,16 +66,27 @@ const theme = makeTheme({
     },
     radii: {
         full: RADIUS_FULL,
+        xs: 4,
         sm: 8,
-        md: 12,
+        md: SPACING,
         lg: 16,
-        xl: 20,
+        xl: 24,
     },
     space: {
         xs: 4,
         sm: 8,
         md: SPACING,
         lg: 16,
+        xl: 24,
+    },
+    fontSizes: {
+        sm: 12,
+        md: 14,
+        lg: 16,
+        xl: 24,
+        '2xl': 32,
+        '3xl': 40,
+        '4xl': 48,
     },
     sizes: {
         full: '100%',
@@ -82,15 +95,6 @@ const theme = makeTheme({
         'icon-md': 24,
         'icon-lg': 28,
         'icon-xl': 40,
-    },
-    fontSizes: {
-        sm: 12,
-        md: 14,
-        lg: 18,
-        xl: 24,
-        '2xl': 32,
-        '3xl': 40,
-        '4xl': 48,
     },
     customFonts: {
         PublicSans: {
@@ -127,6 +131,7 @@ export {
     SPACING,
     INPUT_HEIGHT,
     RADIUS_FULL,
-    BUTTON_MD_SIZE,
     HEADER_HEIGHT,
+    SCREEN_HEIGHT,
+    SCREEN_WIDTH,
 };

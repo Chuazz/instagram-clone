@@ -3,7 +3,7 @@ import { Input } from '@/components/form/input';
 import { Screen } from '@/components/layout/screen';
 import { i18n } from '@/configs/i18n';
 import { register$ } from '@/store/register';
-import { ScreenProps } from '@/types/route-params';
+import { ScreenProps } from '@/types/route';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ScrollView, Text } from 'dripsy';
 import { Controller, useForm } from 'react-hook-form';

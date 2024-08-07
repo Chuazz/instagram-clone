@@ -3,7 +3,7 @@ import { Input } from '@/components/form/input';
 import { Screen } from '@/components/layout/screen';
 import { i18n } from '@/configs/i18n';
 import { register$ } from '@/store/register';
-import { ScreenProps } from '@/types/route-params';
+import { ScreenProps } from '@/types/route';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ScrollView, Text } from 'dripsy';
 import { Controller, useForm } from 'react-hook-form';
@@ -26,7 +26,7 @@ const UserNameScreen = ({ navigation }: ScreenProps<'UserNameScreen'>) => {
     const onSubmit = (data: { account: string }) => {
         register$.account.set(data.account);
 
-        navigation.navigate('UserNameScreen');
+        navigation.navigate('PolicyScreen');
     };
 
     return (
@@ -48,7 +48,16 @@ const UserNameScreen = ({ navigation }: ScreenProps<'UserNameScreen'>) => {
                         fontWeight: 'bold',
                     }}
                 >
-                    {i18n.t('auth.what_your_name')}
+                    {i18n.t('auth.create_user_name')}
+                </Text>
+
+                <Text
+                    sx={{
+                        lineHeight: 20,
+                        fontWeight: 'medium',
+                    }}
+                >
+                    {i18n.t('auth.add_user_name_with_suggestion')}
                 </Text>
 
                 <Controller
@@ -56,7 +65,7 @@ const UserNameScreen = ({ navigation }: ScreenProps<'UserNameScreen'>) => {
                     name='account'
                     render={({ field, fieldState }) => (
                         <Input
-                            placeholder={i18n.t('auth.full_name')}
+                            placeholder={i18n.t('auth.user_name')}
                             value={field.value}
                             autoFocus={true}
                             errMessage={fieldState.error?.message}

@@ -2,7 +2,7 @@ import { Button } from '@/components/form/button';
 import { Screen } from '@/components/layout/screen';
 import { i18n } from '@/configs/i18n';
 import { register$ } from '@/store/register';
-import { ScreenProps } from '@/types/route-params';
+import { ScreenProps } from '@/types/route';
 import { ScrollView, Text } from 'dripsy';
 
 const SaveLoginScreen = ({ navigation }: ScreenProps<'SaveLoginScreen'>) => {

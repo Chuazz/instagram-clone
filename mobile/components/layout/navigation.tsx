@@ -1,18 +1,22 @@
 import { routes } from '@/configs/routes';
-import { RouteParams } from '@/types/route-params';
+import { app$ } from '@/store/app';
+import { RouteParams } from '@/types/route';
+import { observer } from '@legendapp/state/react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator<RouteParams>();
 
-const Navigation = () => {
+const Navigation = observer(() => {
     return (
         <NavigationContainer>
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false,
                 }}
-                initialRouteName='HomeScreen'
+                initialRouteName={
+                    app$.isLogin.get() ? 'HomeScreen' : 'LogInScreen'
+                }
             >
                 {Object.keys(routes).map((key) => (
                     <Stack.Screen
@@ -25,6 +29,6 @@ const Navigation = () => {
             </Stack.Navigator>
         </NavigationContainer>
     );
-};
+});
 
 export { Navigation };

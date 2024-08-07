@@ -31,8 +31,8 @@ const CheckBox = ({
                         : 'SquareOutlineIcon'
                 }
                 sx={{
-                    size: 20,
-                    width: 20,
+                    size: 'icon-md',
+                    width: 'icon-md',
                 }}
                 tintColor={data.code === value ? checkedColor : unCheckColor}
             />

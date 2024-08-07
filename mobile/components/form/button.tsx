@@ -1,20 +1,15 @@
 import { ActivityIndicator, SxProp, Text, useDripsyTheme, useSx } from 'dripsy';
-import { ReactNode, useEffect, useMemo } from 'react';
-import {
-    Gesture,
-    GestureDetector,
-    TouchableOpacityProps,
-} from 'react-native-gesture-handler';
+import { ReactNode, useMemo } from 'react';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
     useAnimatedStyle,
     useSharedValue,
     withSpring,
 } from 'react-native-reanimated';
 
-type ButtonProps = Omit<TouchableOpacityProps, 'style'> & {
+type ButtonProps = {
     content?: string;
     children?: ReactNode;
-    onPress?: () => void;
     sx?: SxProp;
     textSx?: SxProp;
     indicatorColor?: string;
@@ -23,7 +18,9 @@ type ButtonProps = Omit<TouchableOpacityProps, 'style'> & {
     center?: boolean;
     rounded?: boolean;
     loading?: boolean;
+    disable?: boolean;
     variant?: 'fill' | 'outline' | 'transparent';
+    onPress?: () => void;
 };
 
 const Button = ({
@@ -38,8 +35,8 @@ const Button = ({
     schema = 'primary',
     variant = 'fill',
     center = true,
+    disable,
     onPress,
-    ...props
 }: ButtonProps) => {
     const sxProps = useSx();
     const { theme } = useDripsyTheme();
@@ -103,7 +100,7 @@ const Button = ({
             indicatorColor = gray;
 
             if (variant === 'outline') {
-                button.borderColor = gray;
+                button.borderColor = 'gray200';
 
                 text.color = 'gray700';
 
@@ -132,6 +129,7 @@ const Button = ({
         if (variant === 'transparent') {
             button.backgroundColor = 'transparent';
             button.padding = 0;
+            button.paddingVertical = 0;
         }
 
         return {
@@ -182,7 +180,6 @@ const Button = ({
                     }),
                     viewAnimatedStyle,
                 ]}
-                {...props}
             >
                 {render}
             </Animated.View>

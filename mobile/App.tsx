@@ -12,16 +12,36 @@ import { SplashScreen } from './components/layout/splash-screen';
 import { Navigation } from './components/layout/navigation';
 import { AppBottomSheet } from './components/bottom-sheet/app-bottom-sheet';
 import { StatusBar } from 'expo-status-bar';
+import { Button } from './components/form/button';
+import { reloadAsync } from 'expo-updates';
 
 const App = observer(() => {
     return (
         <GestureHandlerRootView>
             <ReactQueryProvider>
-                <SafeAreaProvider>
-                    <StatusBar style='dark' />
+                <DripsyProvider theme={theme}>
+                    <SafeAreaProvider>
+                        <StatusBar style='dark' />
 
-                    <SplashScreen>
-                        <DripsyProvider theme={theme}>
+                        <SplashScreen>
+                            {__DEV__ && (
+                                <Button
+                                    content='reload'
+                                    size='sm'
+                                    rounded={false}
+                                    sx={{
+                                        position: 'absolute',
+                                        bottom: 0,
+                                        right: 0,
+                                        zIndex: 9999,
+                                    }}
+                                    onPress={async () => {
+                                        await reloadAsync();
+                                    }}
+                                />
+                            )}
+                            <AppBottomSheet />
+
                             <Text
                                 sx={{
                                     display: 'none',
@@ -30,16 +50,12 @@ const App = observer(() => {
                                 {trans('')}
                             </Text>
 
-                            <BottomSheetModalProvider>
-                                <ModalProvider>
-                                    <AppBottomSheet />
-
-                                    <Navigation />
-                                </ModalProvider>
-                            </BottomSheetModalProvider>
-                        </DripsyProvider>
-                    </SplashScreen>
-                </SafeAreaProvider>
+                            <ModalProvider>
+                                <Navigation />
+                            </ModalProvider>
+                        </SplashScreen>
+                    </SafeAreaProvider>
+                </DripsyProvider>
             </ReactQueryProvider>
         </GestureHandlerRootView>
     );

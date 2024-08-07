@@ -29,8 +29,8 @@ const Screen = ({ children, sx, backgroundImage }: ScreenProps) => {
                 <Image
                     source={backgroundImage}
                     sx={{
-                        width: 'screenWidth',
-                        height: 'screenHeight',
+                        width: 'screen-width',
+                        height: 'screen-height',
                         ...StyleSheet.absoluteFillObject,
                     }}
                 />

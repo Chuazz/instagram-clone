@@ -1,41 +1,43 @@
 import { bottomSheet } from '@/configs/bottom-sheet';
 import { BottomSheetsType } from '@/types/bottom-sheet';
-import { BottomSheetModalProps } from '@gorhom/bottom-sheet';
 import { observable } from '@legendapp/state';
 import { ReactNode } from 'react';
 
 export type OpenSheetProps = {
     name: keyof BottomSheetsType;
-    listing?: boolean;
-    params?: Omit<BottomSheetsType[keyof BottomSheetsType], 'openSheet'>;
-    options?: Omit<BottomSheetModalProps, 'children'>;
+    params?: BottomSheetsType[keyof BottomSheetsType];
 };
 
 export type BottomSheetType = {
     sheet: ReactNode | undefined;
-    listing: boolean;
-
-    options: Omit<BottomSheetModalProps, 'children'> | undefined;
+    visible: boolean;
 
     openSheet: (_props: OpenSheetProps) => void;
+    closeSheet: () => void;
 };
 
 const bottomSheet$ = observable<BottomSheetType>({
     sheet: undefined,
-    options: undefined,
-    listing: false,
 
-    openSheet({ name, options, params, listing }) {
+    visible: false,
+
+    openSheet({ name, params }) {
         const Component = bottomSheet[name];
 
         bottomSheet$.sheet.set(
             <Component
                 {...params}
-                closeSheet={() => bottomSheet$.sheet.set(undefined)}
+                closeSheet={() => {
+                    bottomSheet$.visible.set(false);
+                }}
             />,
         );
-        bottomSheet$.options.set(options);
-        bottomSheet$.listing.set(!!listing);
+
+        bottomSheet$.visible.set(true);
+    },
+
+    closeSheet() {
+        bottomSheet$.visible.set(false);
     },
 });
 

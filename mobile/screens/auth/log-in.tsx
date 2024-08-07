@@ -5,7 +5,7 @@ import { Image } from '@/components/ui/image';
 import { i18n, LANGUAGES } from '@/configs/i18n';
 import { useBottomSheet } from '@/hooks/use-bottom-sheet';
 import { app$ } from '@/store/app';
-import { ScreenProps } from '@/types/route-params';
+import { ScreenProps } from '@/types/route';
 import { observer } from '@legendapp/state/react';
 import { ScrollView, Text, View } from 'dripsy';
 
@@ -91,7 +91,7 @@ const LogInScreen = observer(({ navigation }: ScreenProps<'LogInScreen'>) => {
                             width: 'full',
                         }}
                         onPress={() => {
-                            navigation.navigate('LogInScreen');
+                            navigation.navigate('AccountScreen');
                         }}
                     />
                 </View>

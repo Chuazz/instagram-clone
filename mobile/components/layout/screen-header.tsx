@@ -4,14 +4,21 @@ import { Image } from '../ui/image';
 import { HEADER_HEIGHT } from '@/configs/theme';
 import { useNavigation } from '@react-navigation/native';
 import { Button } from '../form/button';
+import { Show } from '@legendapp/state/react';
 
 type ScreenHeaderProps = {
     children?: ReactNode;
     sx?: SxProp;
     content?: string;
+    canGoBack?: boolean;
 };
 
-const ScreenHeader = ({ children, sx, content }: ScreenHeaderProps) => {
+const ScreenHeader = ({
+    children,
+    sx,
+    content,
+    canGoBack = true,
+}: ScreenHeaderProps) => {
     const navigation = useNavigation();
 
     return (
@@ -25,50 +32,54 @@ const ScreenHeader = ({ children, sx, content }: ScreenHeaderProps) => {
                 ...sx,
             }}
         >
-            {children ? (
-                children
-            ) : (
-                <>
-                    <Button
-                        variant='transparent'
-                        center={true}
-                        sx={{
-                            width: 'iconMd',
-                        }}
-                        onPress={() => {
-                            navigation.goBack();
-                        }}
-                    >
-                        <Image
-                            source='ArrowLeftOutlineIcon'
-                            tintColor='black'
+            <Show
+                if={children}
+                else={
+                    <>
+                        {canGoBack && (
+                            <Button
+                                variant='transparent'
+                                sx={{
+                                    width: 'icon-md',
+                                }}
+                                onPress={() => {
+                                    navigation.goBack();
+                                }}
+                            >
+                                <Image
+                                    source='ArrowLeftOutlineIcon'
+                                    tintColor='black'
+                                    sx={{
+                                        width: 'icon-md',
+                                        height: 'icon-md',
+                                    }}
+                                />
+                            </Button>
+                        )}
+
+                        <Text
+                            numberOfLines={1}
                             sx={{
-                                width: 'iconMd',
-                                height: 'iconMd',
+                                flex: 1,
+                                fontWeight: 'semibold',
+                                fontSize: 'lg',
+                                textAlign: 'center',
+                            }}
+                        >
+                            {content}
+                        </Text>
+
+                        <View
+                            sx={{
+                                width: 'icon-md',
+                                height: 'full',
                             }}
                         />
-                    </Button>
-
-                    <Text
-                        numberOfLines={1}
-                        sx={{
-                            flex: 1,
-                            fontWeight: 'semibold',
-                            fontSize: 'lg',
-                            textAlign: 'center',
-                        }}
-                    >
-                        {content}
-                    </Text>
-
-                    <View
-                        sx={{
-                            width: 'iconMd',
-                            height: 'full',
-                        }}
-                    />
-                </>
-            )}
+                    </>
+                }
+            >
+                {children}
+            </Show>
         </View>
     );
 };
