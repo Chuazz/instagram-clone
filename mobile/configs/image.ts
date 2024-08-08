@@ -23,7 +23,8 @@ import MoreOutlineIcon from '@/assets/icons/ic_more_outline.png';
 import MessengerOutlineIcon from '@/assets/icons/ic_messenger_outline.png';
 import PlayFillIcon from '@/assets/icons/ic_play_fill.png';
 import PauseFillIcon from '@/assets/icons/ic_pause_fill.png';
-import UserCircleFillIcon from '@/assets/icons/ic_user_cicrle_fill.png';
+import UserCircleFillIcon from '@/assets/icons/ic_user_circle_fill.png';
+import CropOutlineIcon from '@/assets/icons/ic_crop_outline.png';
 
 const image = {
     BackgroundGradientImage,
@@ -52,6 +53,7 @@ const image = {
     PlayFillIcon,
     PauseFillIcon,
     UserCircleFillIcon,
+    CropOutlineIcon,
 };
 
 export { image };

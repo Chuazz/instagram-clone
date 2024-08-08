@@ -13,18 +13,18 @@ const UserNameScreen = ({ navigation }: ScreenProps<'UserNameScreen'>) => {
     //? TODO: Update validate message
     const { control, handleSubmit } = useForm({
         defaultValues: {
-            account: __DEV__ ? 'chuazz' : '',
+            userName: __DEV__ ? 'chuazz' : '',
         },
         resolver: zodResolver(
             z.object({
-                account: z.string().min(1, i18n.t('validate.invalid_email')),
+                userName: z.string().min(1, i18n.t('validate.invalid_email')),
             }),
         ),
     });
 
     //? TODO: Check email exists
-    const onSubmit = (data: { account: string }) => {
-        register$.account.set(data.account);
+    const onSubmit = (data: { userName: string }) => {
+        register$.userName.set(data.userName);
 
         navigation.navigate('PolicyScreen');
     };
@@ -62,7 +62,7 @@ const UserNameScreen = ({ navigation }: ScreenProps<'UserNameScreen'>) => {
 
                 <Controller
                     control={control}
-                    name='account'
+                    name='userName'
                     render={({ field, fieldState }) => (
                         <Input
                             placeholder={i18n.t('auth.user_name')}
@@ -87,7 +87,7 @@ const UserNameScreen = ({ navigation }: ScreenProps<'UserNameScreen'>) => {
                 <Button
                     size='sm'
                     variant='transparent'
-                    content={i18n.t('auth.already_have_account')}
+                    content={i18n.t('auth.already_have_userName')}
                     onPress={() => {
                         navigation.goBack();
                     }}

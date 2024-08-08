@@ -10,65 +10,59 @@ type ImageProps = Omit<
 > & {
     source?: keyof typeof image | (string & NonNullable<unknown>);
     placeholder?: keyof typeof image | (string & NonNullable<unknown>);
-    fromServer?: boolean;
     sx?: SxProp;
 };
 
-const Image = observer(
-    ({
-        source,
-        placeholder = 'PictureIcon',
-        fromServer,
-        ...props
-    }: ImageProps) => {
-        const source$ = useObservable(() => {
-            const result = image?.[source as keyof typeof image];
+const Image = observer(({ source, placeholder, ...props }: ImageProps) => {
+    const source$ = useObservable(() => {
+        const result = image?.[source as keyof typeof image];
 
-            if (result) {
-                return result;
-            }
+        if (result) {
+            return result;
+        }
 
-            if (fromServer) {
-                return {
-                    uri: process.env.EXPO_PUBLIC_API_URL + '/assets/' + source,
-                };
-            }
+        if (source) {
+            return {
+                uri: source,
+            };
+        }
 
-            return (
-                image[placeholder as keyof typeof image] || image.PictureIcon
-            );
-        });
+        return image?.[placeholder as keyof typeof image] || image.PictureIcon;
+    });
 
-        const onError = () => {
-            if (image[placeholder as keyof typeof image]) {
-                source$.set(image[placeholder as keyof typeof image]);
-
-                return;
-            }
-
-            source$.set(image.PictureIcon);
-        };
-
-        useEffect(() => {
-            if (image[source as keyof typeof image]) {
-                source$.set(image[source as keyof typeof image]);
-
-                return;
-            }
-
-            if (!fromServer) {
-                source$.set(image.PictureIcon);
-            }
-        }, [source, fromServer]);
-
-        return (
-            <EPImage
-                {...props}
-                onError={onError}
-                source={source$.get()}
-            />
+    const onError = () => {
+        source$.set(
+            image[placeholder as keyof typeof image] || image.PictureIcon,
         );
-    },
-);
+    };
+
+    useEffect(() => {
+        if (image[source as keyof typeof image]) {
+            source$.set(image[source as keyof typeof image]);
+
+            return;
+        }
+
+        if (source) {
+            source$.set({
+                uri: source,
+            });
+
+            return;
+        }
+
+        source$.set(
+            image[placeholder as keyof typeof image] || image.PictureIcon,
+        );
+    }, [source]);
+
+    return (
+        <EPImage
+            {...props}
+            source={source$.get()}
+            onError={onError}
+        />
+    );
+});
 
 export { Image };

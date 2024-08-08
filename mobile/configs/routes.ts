@@ -11,12 +11,12 @@ import { UserNameScreen } from '@/screens/auth/user-name';
 import { HomeScreen } from '@/screens/home';
 import { WelcomeScreen } from '@/screens/welcome';
 import { KeyValueType } from '@/types/common';
-import { AppRouteParams, AuthRouteParams } from '@/types/route';
+import { AppStackParamsList, AuthStackParamsList } from '@/types/route';
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { FC } from 'react';
 
 const authRoutes: KeyValueType<
-    keyof AuthRouteParams,
+    keyof AuthStackParamsList,
     {
         options?: NativeStackNavigationOptions;
         component: FC<any>;
@@ -52,7 +52,7 @@ const authRoutes: KeyValueType<
 };
 
 const appRoutes: KeyValueType<
-    keyof AppRouteParams,
+    keyof AppStackParamsList,
     {
         options?: NativeStackNavigationOptions;
         component: FC<any>;

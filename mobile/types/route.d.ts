@@ -1,6 +1,6 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-type AuthRouteParams = {
+type AuthStackParamsList = {
     LogInScreen: undefined;
     AccountScreen: undefined;
     BirthDayScreen: undefined;
@@ -13,22 +13,20 @@ type AuthRouteParams = {
     AvatarScreen: undefined;
 };
 
-type AppRouteParams = {
+type AppStackParamsList = {
     HomeScreen: undefined;
     WelcomeScreen: undefined;
 };
 
-type RouteParams = AuthRouteParams & AppRouteParams;
+type RouteStackParamsList = AuthStackParamsList & AppStackParamsList;
 
-export type ScreenProps<T extends keyof RouteParams> = NativeStackScreenProps<
-    RouteParams,
-    T
->;
+export type ScreenProps<T extends keyof RouteStackParamsList> =
+    NativeStackScreenProps<RouteStackParamsList, T>;
 
 export {
-    RouteParams,
-    AuthRouteParams,
+    RouteStackParamsList,
+    AuthStackParamsList,
     ScreenProps,
-    RouteParams,
-    AppRouteParams,
+    RouteStackParamsList,
+    AppStackParamsList,
 };
