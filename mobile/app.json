@@ -1,11 +1,11 @@
 {
     "expo": {
-        "name": "app-name",
-        "slug": "app-name",
+        "name": "instagram-clone",
+        "slug": "instagram-clone",
         "version": "0.0.0",
         "orientation": "portrait",
         "icon": "./assets/icons/ic_app.png",
-        "scheme": "app-name",
+        "scheme": "instagram-clone",
         "userInterfaceStyle": "automatic",
         "splash": {
             "image": "./assets/images/img_splash.png",
@@ -20,9 +20,16 @@
                 "foregroundImage": "./assets/icons/ic_app.png",
                 "backgroundColor": "#ffffff"
             },
-            "package": "com.chuazz.appname"
+            "package": "com.chuazz.instagramClone"
         },
-        "plugins": [],
+        "plugins": [
+            [
+                "expo-image-picker",
+                {
+                    "photosPermission": "The app accesses your photos to let you share them with your friends."
+                }
+            ]
+        ],
         "experiments": {
             "typedRoutes": true
         },
