@@ -56,14 +56,17 @@ const AppBottomSheet = observer(() => {
             return;
         }
 
-        opacity.value = withTiming(0);
+        opacity.value = withTiming(0, {
+            duration: 500,
+        });
+
         maxHeight.value = withTiming(0);
 
         const id = setTimeout(() => {
             zIndex.value = -1;
 
             bottomSheet$.sheet.set(undefined);
-        }, 300);
+        }, 600);
 
         target.onCleanup = () => clearTimeout(id);
     });
