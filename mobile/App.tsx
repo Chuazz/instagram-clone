@@ -1,19 +1,19 @@
+import '@/configs/reactotron';
 import { theme } from '@/configs/theme';
 import { ModalProvider } from '@/providers/modal-provider';
 import { trans } from '@/utils';
-import { BottomSheetModalProvider } from '@gorhom/bottom-sheet';
 import { observer } from '@legendapp/state/react';
 import { DripsyProvider, Text } from 'dripsy';
+import { StatusBar } from 'expo-status-bar';
+import { reloadAsync } from 'expo-updates';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import 'react-native-reanimated';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { ReactQueryProvider } from './providers/react-query-provider';
-import { SplashScreen } from './components/layout/splash-screen';
-import { Navigation } from './components/layout/navigation';
 import { AppBottomSheet } from './components/bottom-sheet/app-bottom-sheet';
-import { StatusBar } from 'expo-status-bar';
 import { Button } from './components/form/button';
-import { reloadAsync } from 'expo-updates';
+import { Navigation } from './components/layout/navigation';
+import { SplashScreen } from './components/layout/splash-screen';
+import { ReactQueryProvider } from './providers/react-query-provider';
 
 const App = observer(() => {
     return (
