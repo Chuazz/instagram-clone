@@ -6,7 +6,8 @@ import {
     useObservable,
     useObserve,
 } from '@legendapp/state/react';
-import { View } from 'dripsy';
+import { useSx, View } from 'dripsy';
+import { useMemo } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, { useSharedValue, withTiming } from 'react-native-reanimated';
@@ -17,31 +18,39 @@ const AppBottomSheet = observer(() => {
     const zIndex = useSharedValue(-1);
     const contentHeight$ = useObservable(0);
     const prevMaxHeight = useSharedValue(0);
+    const sx = useSx();
 
-    const panGesture = Gesture.Pan()
-        .onStart(() => {
-            prevMaxHeight.value = Math.min(
-                contentHeight$.get(),
-                maxHeight.value,
-            );
-        })
-        .onUpdate((e) => {
-            if (e.translationY > 0 && e.translationY < contentHeight$.get()) {
-                maxHeight.value =
-                    prevMaxHeight.value - Math.abs(e.translationY);
-            }
+    const panGesture = useMemo(
+        () =>
+            Gesture.Pan()
+                .onStart(() => {
+                    prevMaxHeight.value = Math.min(
+                        contentHeight$.get(),
+                        maxHeight.value,
+                    );
+                })
+                .onUpdate((e) => {
+                    if (
+                        e.translationY > 0 &&
+                        e.translationY < contentHeight$.get()
+                    ) {
+                        maxHeight.value =
+                            prevMaxHeight.value - Math.abs(e.translationY);
+                    }
 
-            if (e.translationY < 0) {
-                maxHeight.value =
-                    prevMaxHeight.value + Math.abs(e.translationY);
-            }
-        })
-        .onEnd((e) => {
-            if (maxHeight.value <= 200 || e.velocityY >= 700) {
-                bottomSheet$.visible.set(false);
-            }
-        })
-        .runOnJS(true);
+                    if (e.translationY < 0) {
+                        maxHeight.value =
+                            prevMaxHeight.value + Math.abs(e.translationY);
+                    }
+                })
+                .onEnd((e) => {
+                    if (maxHeight.value <= 200 || e.velocityY >= 700) {
+                        bottomSheet$.visible.set(false);
+                    }
+                })
+                .runOnJS(true),
+        [],
+    );
 
     useObserve(bottomSheet$.visible, (target) => {
         if (target.value) {
@@ -84,8 +93,10 @@ const AppBottomSheet = observer(() => {
                 style={[
                     {
                         opacity,
-                        backgroundColor: 'rgba(0,0,0,0.4)',
                     },
+                    sx({
+                        backgroundColor: 'blackAlpha500',
+                    }),
                     StyleSheet.absoluteFillObject,
                 ]}
             >
@@ -116,10 +127,13 @@ const AppBottomSheet = observer(() => {
                         onLayout={(e) => {
                             contentHeight$.set(e.nativeEvent.layout.height);
                         }}
-                        sx={{
-                            pt: 'xl',
-                        }}
                     >
+                        <View
+                            sx={{
+                                height: 28,
+                            }}
+                        />
+
                         {bottomSheet$.sheet.get()}
 
                         <GestureDetector gesture={panGesture}>
@@ -131,7 +145,6 @@ const AppBottomSheet = observer(() => {
                                     justifyContent: 'center',
                                     top: 0,
                                     height: 28,
-                                    // backgroundColor: 'red',
                                 }}
                             >
                                 <View

@@ -9,6 +9,7 @@ import {
 const defaultOptions: ModalOptions = {
     backdropOpacity: 0.4,
     backBehavior: 'clear',
+    disableFlingGesture: true,
 };
 
 const stack = createModalStack(modal, defaultOptions);

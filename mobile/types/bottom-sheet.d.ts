@@ -1,10 +1,16 @@
-type BottomSheetsType = {
-    SelectLanguage: {
-        closeSheet: () => void;
-    };
-    ImagePicker: {
-        closeSheet: () => void;
-    };
+import { ImagePickerAsset } from 'expo-image-picker';
+
+type BaseBottomSheetProps<T> = T & {
+    closeSheet: () => void;
 };
 
-export { BottomSheetsType };
+type BottomSheetsType = {
+    SelectLanguage: BaseBottomSheetProps<{
+        test: string;
+    }>;
+    ImagePicker: BaseBottomSheetProps<{
+        onSuccess: (_result: ImagePickerAsset[]) => void;
+    }>;
+};
+
+export { BaseBottomSheetProps, BottomSheetsType };

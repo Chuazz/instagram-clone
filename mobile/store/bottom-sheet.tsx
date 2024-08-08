@@ -3,16 +3,18 @@ import { BottomSheetsType } from '@/types/bottom-sheet';
 import { observable } from '@legendapp/state';
 import { ReactNode } from 'react';
 
-export type OpenSheetProps = {
-    name: keyof BottomSheetsType;
-    params?: BottomSheetsType[keyof BottomSheetsType];
+export type OpenSheetProps<Type extends keyof BottomSheetsType> = {
+    name: Type;
+    params?: Omit<BottomSheetsType[Type], 'closeSheet'>;
 };
 
 export type BottomSheetType = {
     sheet: ReactNode | undefined;
     visible: boolean;
 
-    openSheet: (_props: OpenSheetProps) => void;
+    openSheet: <Type extends keyof BottomSheetsType>(
+        _props: OpenSheetProps<Type>,
+    ) => void;
     closeSheet: () => void;
 };
 

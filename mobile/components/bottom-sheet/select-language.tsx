@@ -1,19 +1,16 @@
 import { i18n, SUPPORT_LANGUAGES } from '@/configs/i18n';
 import { app$ } from '@/store/app';
 import { BottomSheetsType } from '@/types/bottom-sheet';
-import { SCREEN_WIDTH } from '@gorhom/bottom-sheet';
 import { observer } from '@legendapp/state/react';
-import { ScrollView, Text, useDripsyTheme, View } from 'dripsy';
+import { ScrollView, Text, View } from 'dripsy';
 import { reloadAsync } from 'expo-updates';
-import { FlatList, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Button } from '../form/button';
 import { CheckBox } from '../form/checkbox';
 import { Image } from '../ui/image';
 
 const SelectLanguage = observer(
     ({ closeSheet }: BottomSheetsType['SelectLanguage']) => {
-        const { theme } = useDripsyTheme();
-
         return (
             <>
                 <Image
@@ -47,7 +44,6 @@ const SelectLanguage = observer(
                         </Text>
 
                         <Button
-                            center={false}
                             variant='transparent'
                             onPress={() => {
                                 closeSheet?.();
