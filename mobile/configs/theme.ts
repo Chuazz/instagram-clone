@@ -1,11 +1,12 @@
 import { makeTheme } from 'dripsy';
 import { Dimensions } from 'react-native';
 
-const SPACING = 12;
+const GAP_MD = 12;
+const GAP_LG = 16;
 
 const INPUT_HEIGHT = 60;
 
-const RADIUS_FULL = 9999;
+const RADIUS_FULL = 500;
 
 const HEADER_HEIGHT = 50;
 
@@ -14,8 +15,17 @@ const SCREEN_WIDTH = Dimensions.get('screen').width;
 const SCREEN_HEIGHT = Dimensions.get('screen').height;
 
 const light = {
+    transparent: 'transparent',
+
     white: '#fff',
+    whiteAlpha300: 'rgba(255,255,255, 0.3)',
+    whiteAlpha400: 'rgba(255,255,255, 0.4)',
+    whiteAlpha500: 'rgba(255,255,255, 0.5)',
+
     black: '#000',
+    blackAlpha300: 'rgba(0, 0, 0, 0.3)',
+    blackAlpha400: 'rgba(0, 0, 0, 0.4)',
+    blackAlpha500: 'rgba(0, 0, 0, 0.5)',
 
     primary50: '#ecfaff',
     primary100: '#d4f2ff',
@@ -68,15 +78,15 @@ const theme = makeTheme({
         full: RADIUS_FULL,
         xs: 4,
         sm: 8,
-        md: SPACING,
+        md: GAP_MD,
         lg: 16,
         xl: 24,
     },
     space: {
         xs: 4,
         sm: 8,
-        md: SPACING,
-        lg: 16,
+        md: GAP_MD,
+        lg: GAP_LG,
         xl: 24,
     },
     fontSizes: {
@@ -92,6 +102,7 @@ const theme = makeTheme({
         full: '100%',
         'screen-height': SCREEN_HEIGHT,
         'screen-width': SCREEN_WIDTH,
+        'icon-sm': 16,
         'icon-md': 24,
         'icon-lg': 28,
         'icon-xl': 40,
@@ -128,7 +139,8 @@ declare module 'dripsy' {
 
 export {
     theme,
-    SPACING,
+    GAP_MD,
+    GAP_LG,
     INPUT_HEIGHT,
     RADIUS_FULL,
     HEADER_HEIGHT,
