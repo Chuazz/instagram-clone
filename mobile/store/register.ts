@@ -1,4 +1,5 @@
 import { observable } from '@legendapp/state';
+import { Asset } from 'expo-media-library';
 
 type RegisterType = {
     type: 'phone' | 'email';
@@ -7,6 +8,8 @@ type RegisterType = {
     saveInfo: boolean;
     birth: string;
     name: string;
+    userName: string;
+    avatar: Asset | undefined;
 };
 
 const register$ = observable<RegisterType>({
@@ -16,6 +19,8 @@ const register$ = observable<RegisterType>({
     saveInfo: false,
     birth: new Date().toDateString(),
     name: '',
+    userName: '',
+    avatar: undefined,
 });
 
 export { register$ };
