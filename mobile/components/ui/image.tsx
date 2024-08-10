@@ -1,11 +1,11 @@
 import { image } from '@/configs/image';
 import { observer, useObservable } from '@legendapp/state/react';
-import { Image as EPImage, SxProp } from 'dripsy';
+import { SxProp, useSx } from 'dripsy';
 import { useEffect } from 'react';
-import { ImageProps as RNImageProps } from 'react-native';
+import { Image as EPImage, ImageProps as EPImageProps } from 'expo-image';
 
 type ImageProps = Omit<
-    RNImageProps,
+    EPImageProps,
     'source' | 'style' | 'width' | 'height'
 > & {
     source?: keyof typeof image | (string & NonNullable<unknown>);
@@ -13,7 +13,9 @@ type ImageProps = Omit<
     sx?: SxProp;
 };
 
-const Image = observer(({ source, placeholder, ...props }: ImageProps) => {
+const Image = observer(({ source, placeholder, sx, ...props }: ImageProps) => {
+    const sxStyle = useSx();
+
     const source$ = useObservable(() => {
         const result = image?.[source as keyof typeof image];
 
@@ -58,7 +60,9 @@ const Image = observer(({ source, placeholder, ...props }: ImageProps) => {
 
     return (
         <EPImage
+            transition={1000}
             {...props}
+            style={sxStyle(sx || {})}
             source={source$.get()}
             onError={onError}
         />
