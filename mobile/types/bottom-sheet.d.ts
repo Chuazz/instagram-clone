@@ -1,16 +1,16 @@
-import { ImagePickerAsset } from 'expo-image-picker';
+import { OpenSheetProps } from '@/store/bottom-sheet';
 
 type BaseBottomSheetProps<T> = T & {
     closeSheet: () => void;
+    openSheet: <TName extends keyof BottomSheetStackParamsList>(
+        _props: OpenSheetProps<TName>,
+    ) => void;
 };
 
-type BottomSheetsType = {
-    SelectLanguage: BaseBottomSheetProps<{
-        test: string;
-    }>;
-    ImagePicker: BaseBottomSheetProps<{
-        onSuccess: (_result: ImagePickerAsset[]) => void;
-    }>;
+type BottomSheetStackParamsList = {
+    SelectLanguage: BaseBottomSheetProps<{}>;
+    MediaPicker: BaseBottomSheetProps<{}>;
+    MediaLibrary: BaseBottomSheetProps<{}>;
 };
 
-export { BaseBottomSheetProps, BottomSheetsType };
+export { BaseBottomSheetProps, BottomSheetStackParamsList };

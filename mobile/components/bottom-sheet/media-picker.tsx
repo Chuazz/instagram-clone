@@ -1,18 +1,27 @@
-import { i18n, SUPPORT_LANGUAGES } from '@/configs/i18n';
-import { app$ } from '@/store/app';
+import { i18n } from '@/configs/i18n';
+import { SCREEN_HEIGHT } from '@/configs/theme';
 import { BottomSheetStackParamsList } from '@/types/bottom-sheet';
-import { observer } from '@legendapp/state/react';
+import { observer, Show } from '@legendapp/state/react';
 import { ScrollView, Text, View } from 'dripsy';
-import { reloadAsync } from 'expo-updates';
 import { StyleSheet } from 'react-native';
 import { Button } from '../form/button';
-import { CheckBox } from '../form/checkbox';
+import { LoadingOverlay } from '../layout/loading-overlay';
 import { Image } from '../ui/image';
 
-const SelectLanguage = observer(
-    ({ closeSheet }: BottomSheetStackParamsList['SelectLanguage']) => {
+const MediaPicker = observer(
+    ({ closeSheet, openSheet }: BottomSheetStackParamsList['MediaPicker']) => {
+        const pickImage = async () => {
+            openSheet({
+                name: 'MediaLibrary',
+            });
+        };
+
         return (
             <>
+                <Show if={false}>
+                    <LoadingOverlay />
+                </Show>
+
                 <Image
                     source='BackgroundGradientImage'
                     sx={{
@@ -22,7 +31,11 @@ const SelectLanguage = observer(
                     }}
                 />
 
-                <View sx={{ pb: 'md' }}>
+                <View
+                    sx={{
+                        height: SCREEN_HEIGHT - SCREEN_HEIGHT * 0.3,
+                    }}
+                >
                     <View
                         sx={{
                             gap: 'sm',
@@ -40,7 +53,7 @@ const SelectLanguage = observer(
                                 flex: 1,
                             }}
                         >
-                            {i18n.t('common.select_your_language')}
+                            {i18n.t('common.add_image')}
                         </Text>
 
                         <Button
@@ -64,43 +77,33 @@ const SelectLanguage = observer(
                             sx={{
                                 borderRadius: 'md',
                                 mx: 'md',
-                                px: 'lg',
-                                mb: 12,
+                                mb: 'sm',
                                 backgroundColor: 'white',
                                 elevation: 2,
                             }}
                         >
-                            {SUPPORT_LANGUAGES.map((item) => (
-                                <View
-                                    key={item.code}
-                                    sx={{
-                                        flexDirection: 'row',
-                                        alignItems: 'center',
-                                        justifyContent: 'space-between',
-                                        py: 'md',
-                                    }}
-                                >
-                                    <Text
-                                        sx={{
-                                            color: 'black',
-                                            fontWeight: 'medium',
-                                            fontSize: 'lg',
-                                        }}
-                                    >
-                                        {item.label}
-                                    </Text>
+                            <Button
+                                content={i18n.t('common.select_from_gallery')}
+                                rounded={false}
+                                schema='white'
+                                contentSx={{
+                                    textAlign: 'left',
+                                    fontWeight: 'semibold',
+                                    fontSize: 'lg',
+                                }}
+                                onPress={pickImage}
+                            />
 
-                                    <CheckBox
-                                        data={item}
-                                        value={app$.locale.get()}
-                                        onChange={async () => {
-                                            await reloadAsync();
-
-                                            app$.locale.set(item.code);
-                                        }}
-                                    />
-                                </View>
-                            ))}
+                            <Button
+                                content={i18n.t('common.take_picture')}
+                                rounded={false}
+                                schema='white'
+                                contentSx={{
+                                    textAlign: 'left',
+                                    fontWeight: 'semibold',
+                                    fontSize: 'lg',
+                                }}
+                            />
                         </View>
                     </ScrollView>
                 </View>
@@ -109,4 +112,4 @@ const SelectLanguage = observer(
     },
 );
 
-export { SelectLanguage };
+export { MediaPicker };
