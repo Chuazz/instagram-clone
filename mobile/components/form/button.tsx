@@ -1,4 +1,13 @@
-import { ActivityIndicator, SxProp, Text, useDripsyTheme, useSx } from 'dripsy';
+import type { image } from '@/configs/image';
+import { Show } from '@legendapp/state/react';
+import {
+    ActivityIndicator,
+    SxProp,
+    Text,
+    useDripsyTheme,
+    useSx,
+    View,
+} from 'dripsy';
 import { ReactNode, useMemo } from 'react';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
@@ -6,16 +15,21 @@ import Animated, {
     useSharedValue,
     withSpring,
 } from 'react-native-reanimated';
+import { Image } from '../ui/image';
 
 type ButtonProps = {
     content?: string;
     children?: ReactNode;
     sx?: SxProp;
-    textSx?: SxProp;
+    contentSx?: SxProp;
+    iconSx?: SxProp;
+    leftIconSx?: SxProp;
+    rightIconSx?: SxProp;
     indicatorColor?: string;
+    leftIcon?: keyof typeof image;
+    rightIcon?: keyof typeof image;
     size?: 'sm' | 'md' | 'lg';
-    schema?: 'primary' | 'gray' | 'white';
-    center?: boolean;
+    schema?: 'primary' | 'gray' | 'white' | 'black';
     rounded?: boolean;
     loading?: boolean;
     disable?: boolean;
@@ -27,47 +41,44 @@ const Button = ({
     children,
     content,
     sx,
-    textSx,
+    contentSx,
+    iconSx,
+    leftIconSx,
+    rightIconSx,
     indicatorColor,
     loading = false,
     size = 'md',
     rounded = true,
     schema = 'primary',
     variant = 'fill',
-    center = true,
+    leftIcon,
+    rightIcon,
     disable,
     onPress,
 }: ButtonProps) => {
     const sxProps = useSx();
     const { theme } = useDripsyTheme();
-    const primary = theme.colors.primary700;
-    const gray = theme.colors.gray100;
     const scale = useSharedValue(1);
+    const primary = useMemo(() => theme.colors.primary700, []);
+    const gray = useMemo(() => theme.colors.gray100, []);
 
-    const viewAnimatedStyle = useAnimatedStyle(() => ({
-        transform: [
-            {
-                scale: scale.value,
-            },
-        ],
-    }));
-
-    const styles = (() => {
+    const styles = useMemo(() => {
         let indicatorColor = '';
 
         const button: SxProp = {
+            flexDirection: 'row',
+            alignItems: 'center',
             borderRadius: 'md',
             paddingVertical: size,
-            borderWidth: 1,
+            paddingHorizontal: 'md',
+            borderWidth: 2,
             borderColor: 'transparent',
-            alignSelf: center ? 'flex-center' : 'flex-start',
+            gap: 'xs',
         };
 
         const text: SxProp = {
             fontWeight: 'bold',
-            textAlign: 'center',
             fontSize: size,
-            paddingHorizontal: 12,
         };
 
         if (schema === 'primary') {
@@ -116,6 +127,22 @@ const Button = ({
 
         if (schema === 'white') {
             button.backgroundColor = 'white';
+            text.color = 'black';
+
+            if (variant === 'transparent') {
+                text.color = 'white';
+            }
+
+            if (variant === 'outline') {
+                button.borderColor = 'white';
+                text.color = 'white';
+            }
+        }
+
+        if (schema === 'black') {
+            if (variant === 'transparent') {
+                text.color = 'black';
+            }
         }
 
         if (rounded) {
@@ -130,6 +157,7 @@ const Button = ({
             button.backgroundColor = 'transparent';
             button.padding = 0;
             button.paddingVertical = 0;
+            button.paddingHorizontal = 0;
         }
 
         return {
@@ -137,9 +165,9 @@ const Button = ({
             text,
             indicatorColor,
         };
-    })();
+    }, [schema, variant, rounded, size]);
 
-    const render = (() => {
+    const render = useMemo(() => {
         if (loading) {
             return (
                 <ActivityIndicator
@@ -152,8 +180,49 @@ const Button = ({
             return children;
         }
 
-        return <Text sx={{ ...styles.text, ...textSx }}>{content}</Text>;
-    })();
+        return (
+            <>
+                <Show if={leftIcon}>
+                    <Image
+                        source={leftIcon}
+                        sx={{
+                            width: `icon-${size}`,
+                            height: `icon-${size}`,
+                            tintColor: styles.text.color?.toString(),
+                            ...iconSx,
+                            ...leftIconSx,
+                        }}
+                    />
+                </Show>
+
+                <Show if={content}>
+                    <Text
+                        sx={{
+                            textAlign:
+                                !leftIcon && !rightIcon ? 'center' : 'left',
+                            ...styles.text,
+                            ...contentSx,
+                        }}
+                    >
+                        {content}
+                    </Text>
+                </Show>
+
+                <Show if={rightIcon}>
+                    <Image
+                        source={rightIcon}
+                        sx={{
+                            width: `icon-${size}`,
+                            height: `icon-${size}`,
+                            tintColor: styles.text.color?.toString(),
+                            ...iconSx,
+                            ...rightIconSx,
+                        }}
+                    />
+                </Show>
+            </>
+        );
+    }, [content, leftIcon, rightIcon, children, schema]);
 
     const tapGesture = useMemo(
         () =>
@@ -167,22 +236,37 @@ const Button = ({
                     onPress?.();
                 })
                 .runOnJS(true),
-        [],
+        [onPress],
     );
+
+    const viewAnimatedStyle = useAnimatedStyle(() => ({
+        transform: [
+            {
+                scale: scale.value,
+            },
+        ],
+    }));
 
     return (
         <GestureDetector gesture={tapGesture}>
-            <Animated.View
-                style={[
-                    sxProps({
-                        ...styles.button,
-                        ...sx,
-                    }),
-                    viewAnimatedStyle,
-                ]}
+            <View
+                sx={{
+                    alignItems: 'flex-start',
+                    justifyContent: 'flex-start',
+                }}
             >
-                {render}
-            </Animated.View>
+                <Animated.View
+                    style={[
+                        sxProps({
+                            ...styles.button,
+                            ...sx,
+                        }),
+                        viewAnimatedStyle,
+                    ]}
+                >
+                    {render}
+                </Animated.View>
+            </View>
         </GestureDetector>
     );
 };

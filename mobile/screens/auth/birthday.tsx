@@ -1,6 +1,8 @@
 import { Button } from '@/components/form/button';
 import { DatePicker } from '@/components/form/date-picker';
 import { Screen } from '@/components/layout/screen';
+import { ScreenFooter } from '@/components/layout/screen-footer';
+import { ScreenHeader } from '@/components/layout/screen-header';
 import { i18n } from '@/configs/i18n';
 import { register$ } from '@/store/register';
 import { ScreenProps } from '@/types/route';
@@ -11,8 +13,11 @@ import { ScrollView, Text } from 'dripsy';
 const BirthDayScreen = observer(
     ({ navigation }: ScreenProps<'BirthDayScreen'>) => {
         return (
-            <Screen backgroundImage='BackgroundGradientImage'>
-                <Screen.Header />
+            <Screen
+                backgroundImage='BackgroundGradientImage'
+                navigation={navigation}
+            >
+                <ScreenHeader />
 
                 <ScrollView
                     showsVerticalScrollIndicator={false}
@@ -78,7 +83,7 @@ const BirthDayScreen = observer(
                     />
                 </ScrollView>
 
-                <Screen.Footer>
+                <ScreenFooter>
                     <Button
                         size='sm'
                         variant='transparent'
@@ -87,7 +92,7 @@ const BirthDayScreen = observer(
                             navigation.goBack();
                         }}
                     />
-                </Screen.Footer>
+                </ScreenFooter>
             </Screen>
         );
     },

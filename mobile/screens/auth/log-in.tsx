@@ -3,17 +3,17 @@ import { Input } from '@/components/form/input';
 import { Screen } from '@/components/layout/screen';
 import { Image } from '@/components/ui/image';
 import { i18n, LANGUAGES } from '@/configs/i18n';
-import { useBottomSheet } from '@/hooks/use-bottom-sheet';
 import { app$ } from '@/store/app';
 import { ScreenProps } from '@/types/route';
 import { observer } from '@legendapp/state/react';
 import { ScrollView, Text, View } from 'dripsy';
 
 const LogInScreen = observer(({ navigation }: ScreenProps<'LogInScreen'>) => {
-    const sheet = useBottomSheet();
-
     return (
-        <Screen backgroundImage='BackgroundGradientImage'>
+        <Screen
+            backgroundImage='BackgroundGradientImage'
+            navigation={navigation}
+        >
             <ScrollView
                 showsVerticalScrollIndicator={false}
                 contentContainerSx={{
@@ -29,15 +29,15 @@ const LogInScreen = observer(({ navigation }: ScreenProps<'LogInScreen'>) => {
                     variant='transparent'
                     content={LANGUAGES[app$.locale.get()].label}
                     onPress={() => {
-                        sheet.open({
-                            name: 'SelectLanguage',
-                            listing: true,
-                            options: {
-                                handleComponent: null,
-                                enableDynamicSizing: false,
-                                snapPoints: ['30%', '70%'],
-                            },
-                        });
+                        // sheet.open({
+                        //     name: 'SelectLanguage',
+                        //     listing: true,
+                        //     options: {
+                        //         handleComponent: null,
+                        //         enableDynamicSizing: false,
+                        //         snapPoints: ['30%', '70%'],
+                        //     },
+                        // });
                     }}
                 />
 

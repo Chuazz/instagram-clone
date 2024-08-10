@@ -1,5 +1,7 @@
 import { Button } from '@/components/form/button';
 import { Screen } from '@/components/layout/screen';
+import { ScreenFooter } from '@/components/layout/screen-footer';
+import { ScreenHeader } from '@/components/layout/screen-header';
 import { i18n } from '@/configs/i18n';
 import { ScreenProps } from '@/types/route';
 import { Text } from 'dripsy';
@@ -7,8 +9,11 @@ import { ScrollView } from 'dripsy';
 
 const PolicyScreen = ({ navigation }: ScreenProps<'PolicyScreen'>) => {
     return (
-        <Screen backgroundImage='BackgroundGradientImage'>
-            <Screen.Header />
+        <Screen
+            backgroundImage='BackgroundGradientImage'
+            navigation={navigation}
+        >
+            <ScreenHeader />
 
             <ScrollView
                 showsVerticalScrollIndicator={false}
@@ -155,7 +160,7 @@ const PolicyScreen = ({ navigation }: ScreenProps<'PolicyScreen'>) => {
                 />
             </ScrollView>
 
-            <Screen.Footer>
+            <ScreenFooter>
                 <Button
                     size='sm'
                     variant='transparent'
@@ -164,7 +169,7 @@ const PolicyScreen = ({ navigation }: ScreenProps<'PolicyScreen'>) => {
                         navigation.goBack();
                     }}
                 />
-            </Screen.Footer>
+            </ScreenFooter>
         </Screen>
     );
 };
