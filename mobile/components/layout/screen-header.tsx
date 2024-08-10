@@ -39,22 +39,12 @@ const ScreenHeader = ({
                         {canGoBack && (
                             <Button
                                 variant='transparent'
-                                sx={{
-                                    width: 'icon-md',
-                                }}
+                                schema='black'
+                                leftIcon='ArrowLeftOutlineIcon'
                                 onPress={() => {
                                     navigation.goBack();
                                 }}
-                            >
-                                <Image
-                                    source='ArrowLeftOutlineIcon'
-                                    tintColor='black'
-                                    sx={{
-                                        width: 'icon-md',
-                                        height: 'icon-md',
-                                    }}
-                                />
-                            </Button>
+                            />
                         )}
 
                         <Text
