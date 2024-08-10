@@ -10,5 +10,14 @@
     "and": "And",
     "the": "The",
     "add_image": "Add image",
-    "skip": "Skip"
+    "skip": "Skip",
+    "select_from_gallery": "Select from gallery",
+    "take_picture": "Take a photo",
+    "edit": "Edit",
+    "done": "Done",
+    "rotate": "Rotate",
+    "select_album": "Select album",
+    "recently": "Recently",
+    "album": "Album",
+    "show_all": "Show all"
 }

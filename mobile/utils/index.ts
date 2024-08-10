@@ -11,4 +11,8 @@ const trans = (key: string, param?: KeyValueType<string, string>) => {
     return data;
 };
 
-export { trans };
+const beauty = (data: string | number | boolean | object) => {
+    console.log(`beauty log`, JSON.stringify(data, null, 2));
+};
+
+export { trans, beauty };

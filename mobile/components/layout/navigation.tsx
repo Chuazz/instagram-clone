@@ -1,21 +1,29 @@
 import { routes } from '@/configs/routes';
 import { app$ } from '@/store/app';
-import { RouteParams } from '@/types/route';
+import { RouteStackParamsList } from '@/types/route';
 import { observer } from '@legendapp/state/react';
-import { NavigationContainer } from '@react-navigation/native';
+import {
+    createNavigationContainerRef,
+    NavigationContainer,
+} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { ReactNode } from 'react';
 
-const Stack = createNativeStackNavigator<RouteParams>();
+const Stack = createNativeStackNavigator<RouteStackParamsList>();
 
-const Navigation = observer(() => {
+export const navigationRef = createNavigationContainerRef();
+
+const Navigation = observer(({ children }: { children: ReactNode }) => {
     return (
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
+            {children}
+
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false,
                 }}
                 initialRouteName={
-                    app$.isLogin.get() ? 'HomeScreen' : 'LogInScreen'
+                    app$.isLogin.get() ? 'HomeScreen' : 'PolicyScreen'
                 }
             >
                 {Object.keys(routes).map((key) => (
