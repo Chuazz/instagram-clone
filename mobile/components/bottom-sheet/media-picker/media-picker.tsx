@@ -177,7 +177,7 @@ const MediaPicker = observer(
                                                     <Button
                                                         variant='transparent'
                                                         sx={{
-                                                            borderWidth: 4,
+                                                            borderWidth: 3,
                                                             borderColor:
                                                                 selected$.find(
                                                                     (t) =>

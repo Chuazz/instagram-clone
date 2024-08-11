@@ -153,8 +153,8 @@ const PolicyScreen = ({ navigation }: ScreenProps<'PolicyScreen'>) => {
                     content={i18n.t('auth.i_agree')}
                     sx={{
                         mt: 'md',
-                        width: 'full',
                     }}
+                    fullWidth={true}
                     onPress={() => {
                         navigation.navigate('AvatarScreen');
                     }}

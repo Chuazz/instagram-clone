@@ -31,6 +31,7 @@ type ButtonProps = {
     size?: 'sm' | 'md' | 'lg';
     schema?: 'primary' | 'gray' | 'white' | 'black';
     rounded?: boolean;
+    fullWidth?: boolean;
     loading?: boolean;
     disable?: boolean;
     variant?: 'fill' | 'outline' | 'transparent';
@@ -53,6 +54,7 @@ const Button = ({
     variant = 'fill',
     leftIcon,
     rightIcon,
+    fullWidth,
     disable,
     onPress,
 }: ButtonProps) => {
@@ -263,14 +265,15 @@ const Button = ({
         <GestureDetector gesture={tapGesture}>
             <View
                 sx={{
-                    ...sx,
                     alignItems: 'flex-start',
                     justifyContent: 'flex-start',
+                    width: fullWidth ? 'full' : 'auto',
                 }}
             >
                 <Animated.View
                     style={[
                         sxProps({
+                            width: fullWidth ? 'full' : 'auto',
                             ...styles.button,
                             ...sx,
                         }),

@@ -83,9 +83,7 @@ const LogInScreen = observer(({ navigation }: ScreenProps<'LogInScreen'>) => {
                 <Button
                     content={i18n.t('auth.create_new_account')}
                     variant='outline'
-                    sx={{
-                        width: 'full',
-                    }}
+                    fullWidth={true}
                     onPress={() => {
                         navigation.navigate('AccountScreen');
                     }}

@@ -124,8 +124,8 @@ const AvatarScreen = observer(({ navigation }: ScreenProps<'AvatarScreen'>) => {
                     content={i18n.t('common.add_image')}
                     sx={{
                         mt: 'sm',
-                        width: 'full',
                     }}
+                    fullWidth={true}
                     onPress={() =>
                         bottomSheet$.openSheet({
                             name: 'MediaPicker',
@@ -146,9 +146,9 @@ const AvatarScreen = observer(({ navigation }: ScreenProps<'AvatarScreen'>) => {
                     content={i18n.t('common.skip')}
                     schema='gray'
                     variant='outline'
+                    fullWidth={true}
                     sx={{
                         mt: 'sm',
-                        width: 'full',
                     }}
                     onPress={onSubmit}
                 />

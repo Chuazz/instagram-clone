@@ -74,8 +74,8 @@ const NameScreen = ({ navigation }: ScreenProps<'NameScreen'>) => {
                     content={i18n.t('common.next')}
                     sx={{
                         mt: 'sm',
-                        width: 'full',
                     }}
+                    fullWidth={true}
                     onPress={handleSubmit(onSubmit)}
                 />
             </ScrollView>

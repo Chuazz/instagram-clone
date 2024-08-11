@@ -85,9 +85,7 @@ const PasswordScreen = ({ navigation }: ScreenProps<'PasswordScreen'>) => {
 
                 <Button
                     content={i18n.t('common.next')}
-                    sx={{
-                        mt: 'sm',
-                    }}
+                    fullWidth={true}
                     onPress={handleSubmit(onSubmit)}
                 />
             </ScrollView>
