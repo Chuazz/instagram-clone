@@ -51,11 +51,10 @@ const CarouselItem = observer(
                         else={
                             <Image
                                 source={file.id}
-                                fromServer={true}
+                                contentFit='contain'
                                 sx={{
                                     width: 'screen-width',
                                     height: 'full',
-                                    resizeMode: 'contain',
                                 }}
                             />
                         }

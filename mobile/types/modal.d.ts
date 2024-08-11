@@ -1,9 +1,10 @@
+import { MediaType } from './common';
+
 type ModalStackParamsList = {
     LogOut: undefined;
     CropImage: {
-        uri: string | undefined;
-        width: number | undefined;
-        height: number | undefined;
+        image: MediaType;
+        onSuccess: (_result: MediaType) => void;
     };
 };
 

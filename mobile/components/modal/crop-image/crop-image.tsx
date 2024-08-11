@@ -1,6 +1,6 @@
 import { i18n } from '@/configs/i18n';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/configs/theme';
-import { observer } from '@legendapp/state/react';
+import { observer, Show, useObservable } from '@legendapp/state/react';
 import { View } from 'dripsy';
 import { StatusBar } from 'expo-status-bar';
 import { Platform, StatusBar as RNStatusBar } from 'react-native';
@@ -18,31 +18,39 @@ import { CropLine } from './crop-line';
 import { Image } from '@/components/ui/image';
 import { Button } from '@/components/form/button';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import ImageEditor from '@react-native-community/image-editor';
+import { LoadingOverlay } from '@/components/layout/loading-overlay';
+import { beauty } from '@/utils';
 
 const CROP_HEIGHT = 250;
+const CROP_WIDTH = SCREEN_WIDTH;
 
 const MINUS_HEIGHT = 100;
 
 const CropImage = observer(
     ({ modal: { params, closeModal } }: ModalProps<'CropImage'>) => {
+        const { onSuccess, image } = params || {};
+
         const rotate = useSharedValue(0);
         const imageTranslateY = useSharedValue(100);
         const prevImageTranslateY = useSharedValue(0);
         const imageHeight = useSharedValue(0);
+        const imageWidth = useSharedValue(0);
         const insets = useSafeAreaInsets();
+        const cropping$ = useObservable(false);
 
         const size = useMemo(() => {
-            if (!params?.width && !params?.height && params?.uri) {
-                RNImage.getSize(params?.uri, (width, height) => {
+            if (!image?.width && !image?.height && image?.uri) {
+                RNImage.getSize(image?.uri, (width, height) => {
                     return { width, height };
                 });
             }
 
             return {
-                width: params?.width || SCREEN_WIDTH,
-                height: params?.height || SCREEN_HEIGHT - MINUS_HEIGHT,
+                width: image?.width || SCREEN_WIDTH,
+                height: image?.height || SCREEN_HEIGHT - MINUS_HEIGHT,
             };
-        }, [params?.uri]);
+        }, [image?.uri]);
 
         const panGesture = useMemo(
             () =>
@@ -91,6 +99,45 @@ const CropImage = observer(
             ],
         }));
 
+        const onDone = () => {
+            const cropWidthRatio = CROP_WIDTH / imageWidth.value;
+            const cropHeightRatio = CROP_HEIGHT / imageHeight.value;
+            const heightRatio = size.height / imageHeight.value;
+            const y = imageTranslateY.value * heightRatio;
+
+            if (!image?.uri) {
+                return;
+            }
+
+            ImageEditor.cropImage(image?.uri, {
+                resizeMode: 'contain',
+                offset: {
+                    x: 0,
+                    y,
+                },
+                size: {
+                    height: size.height * cropHeightRatio,
+                    width: size.width * cropWidthRatio,
+                },
+            })
+                .then((result) => {
+                    onSuccess?.({
+                        height: result.height,
+                        type: result.type,
+                        uri: result.uri,
+                        width: result.width,
+                    });
+
+                    closeModal();
+                })
+                .catch((e) => {
+                    console.log(e);
+                })
+                .finally(() => {
+                    cropping$.set(false);
+                });
+        };
+
         return (
             <View
                 sx={{
@@ -104,6 +151,10 @@ const CropImage = observer(
                 }}
             >
                 <StatusBar backgroundColor='black' />
+
+                <Show if={cropping$}>
+                    <LoadingOverlay />
+                </Show>
 
                 <View
                     sx={{
@@ -124,7 +175,7 @@ const CropImage = observer(
                         variant='transparent'
                         schema='white'
                         content={i18n.t('common.done')}
-                        onPress={closeModal}
+                        onPress={onDone}
                     />
                 </View>
 
@@ -154,18 +205,18 @@ const CropImage = observer(
                         />
 
                         <Image
-                            source={params?.uri}
+                            source={image?.uri}
+                            contentFit='contain'
                             sx={{
-                                resizeMode: 'contain',
                                 width: 'full',
                                 aspectRatio: size.width / size.height,
                                 maxHeight: SCREEN_HEIGHT - MINUS_HEIGHT,
                                 maxWidth: 'screen-width',
                             }}
-                            onLayout={(e) =>
-                                (imageHeight.value =
-                                    e.nativeEvent.layout.height)
-                            }
+                            onLayout={(e) => {
+                                imageHeight.value = e.nativeEvent.layout.height;
+                                imageWidth.value = e.nativeEvent.layout.width;
+                            }}
                         />
 
                         <GestureDetector gesture={panGesture}>
@@ -173,7 +224,7 @@ const CropImage = observer(
                                 style={[
                                     StyleSheet.absoluteFillObject,
                                     {
-                                        width: '100%',
+                                        width: CROP_WIDTH,
                                         height: CROP_HEIGHT,
                                         overflow: 'hidden',
                                         zIndex: 10,
@@ -183,9 +234,9 @@ const CropImage = observer(
                             >
                                 <Animated.View style={imageAnimatedStyle}>
                                     <Image
-                                        source={params?.uri}
+                                        source={image?.uri}
+                                        contentFit='contain'
                                         sx={{
-                                            resizeMode: 'contain',
                                             width: 'full',
                                             aspectRatio:
                                                 size.width / size.height,
@@ -196,7 +247,7 @@ const CropImage = observer(
                                     />
                                 </Animated.View>
 
-                                <CropLine />
+                                <CropLine onZoom={() => {}} />
                             </Animated.View>
                         </GestureDetector>
                     </Animated.View>

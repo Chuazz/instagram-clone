@@ -1,5 +1,5 @@
 import { SCREEN_WIDTH } from '@/configs/theme';
-import { MediaType, useMediaLibrary } from '@/hooks/use-media-library';
+import { LibraryType, useMediaLibrary } from '@/hooks/use-media-library';
 import { BottomSheetStackParamsList } from '@/types/bottom-sheet';
 import { observer, Show, useObservable } from '@legendapp/state/react';
 import { ScrollView, Text, View } from 'dripsy';
@@ -21,7 +21,7 @@ const MediaPicker = observer(
         closeSheet,
     }: BottomSheetStackParamsList['MediaPicker']) => {
         const { assets, gettingAssets } = useMediaLibrary();
-        const asset$ = useObservable<MediaType>();
+        const library$ = useObservable<LibraryType>();
         const pagerRef = useRef<PagerViewRef>(null);
         const selected$ = useObservable<Asset[]>([]);
 
@@ -92,7 +92,7 @@ const MediaPicker = observer(
                                             <Button
                                                 variant='transparent'
                                                 onPress={() => {
-                                                    asset$.set(asset);
+                                                    library$.set(asset);
 
                                                     pagerRef.current?.scrollTo(
                                                         2,
@@ -150,9 +150,9 @@ const MediaPicker = observer(
                                 px: 'md',
                             }}
                         >
-                            <Show if={asset$}>
+                            <Show if={library$}>
                                 <AlbumDetail
-                                    asset={asset$.get()!}
+                                    asset={library$.get()!}
                                     onCancel={() => {
                                         pagerRef.current?.scrollTo(1);
                                     }}
@@ -170,7 +170,7 @@ const MediaPicker = observer(
                                             gap: 'xs',
                                         }}
                                     >
-                                        {asset$
+                                        {library$
                                             .get()
                                             ?.media.assets.map((item) => (
                                                 <View key={item.id}>
@@ -197,11 +197,11 @@ const MediaPicker = observer(
                                                                 width:
                                                                     SCREEN_WIDTH /
                                                                         3 -
-                                                                    19,
+                                                                    17,
                                                                 height:
                                                                     SCREEN_WIDTH /
                                                                         3 -
-                                                                    19,
+                                                                    17,
                                                                 borderRadius:
                                                                     'sm',
                                                             }}

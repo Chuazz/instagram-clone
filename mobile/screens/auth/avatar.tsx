@@ -9,6 +9,7 @@ import { register$ } from '@/store/register';
 import { ScreenProps } from '@/types/route';
 import { Memo, observer, Show } from '@legendapp/state/react';
 import { ScrollView, Text, useDripsyTheme, useSx, View } from 'dripsy';
+import { useMemo } from 'react';
 import { useModal } from 'react-native-modalfy';
 import { Shadow } from 'react-native-shadow-2';
 
@@ -20,6 +21,14 @@ const AvatarScreen = observer(({ navigation }: ScreenProps<'AvatarScreen'>) => {
     const onSubmit = () => {
         navigation.navigate('PolicyScreen');
     };
+
+    const avatar = useMemo(() => {
+        if (register$.avatar.cropped.get()) {
+            return register$.avatar.cropped.get();
+        }
+
+        return register$.avatar.original.get();
+    }, [register$.avatar.original.get(), register$.avatar.cropped.get()]);
 
     return (
         <Screen
@@ -63,56 +72,53 @@ const AvatarScreen = observer(({ navigation }: ScreenProps<'AvatarScreen'>) => {
                     </Text>
                 </Show>
 
-                <Memo>
-                    <View
-                        sx={{
-                            alignItems: 'center',
-                        }}
+                <View
+                    sx={{
+                        alignItems: 'center',
+                    }}
+                >
+                    <Shadow
+                        distance={16}
+                        startColor={theme.colors.gray100}
+                        style={sx({
+                            borderRadius: 'full',
+                        })}
                     >
-                        <Shadow
-                            distance={16}
-                            startColor={theme.colors.gray100}
-                            style={sx({
-                                borderRadius: 'full',
-                            })}
-                        >
-                            <Image
-                                source={register$.avatar.uri.get()}
-                                placeholder='UserCircleFillIcon'
-                                sx={{
-                                    width: 250,
-                                    height: 250,
-                                    borderRadius: 'full',
-                                    tintColor: register$.avatar.get()
-                                        ? undefined
-                                        : '#ced2db',
-                                    borderWidth: 10,
-                                    borderColor: 'white',
-                                }}
-                            />
-                        </Shadow>
-                    </View>
-
-                    <Show if={register$.avatar}>
-                        <Button
-                            schema='gray'
-                            variant='outline'
-                            size='sm'
-                            leftIcon='CropOutlineIcon'
-                            content={i18n.t('common.edit')}
+                        <Image
+                            source={avatar?.uri}
+                            placeholder='UserCircleFillIcon'
                             sx={{
-                                alignSelf: 'center',
-                            }}
-                            onPress={() => {
-                                openModal('CropImage', {
-                                    width: register$.avatar.width.get(),
-                                    height: register$.avatar.height.get(),
-                                    uri: register$.avatar.uri.get(),
-                                });
+                                width: 250,
+                                height: 250,
+                                borderRadius: 'full',
+                                tintColor: avatar ? undefined : '#ced2db',
+                                borderWidth: 10,
+                                borderColor: 'white',
                             }}
                         />
-                    </Show>
-                </Memo>
+                    </Shadow>
+                </View>
+
+                <Show if={register$.avatar.original}>
+                    <Button
+                        schema='gray'
+                        variant='outline'
+                        size='sm'
+                        leftIcon='CropOutlineIcon'
+                        content={i18n.t('common.edit')}
+                        sx={{
+                            alignSelf: 'center',
+                        }}
+                        onPress={() => {
+                            openModal('CropImage', {
+                                image: register$.avatar.original.get()!,
+                                onSuccess(result) {
+                                    register$.avatar.cropped.set(result);
+                                },
+                            });
+                        }}
+                    />
+                </Show>
             </ScrollView>
 
             <ScreenFooter
@@ -132,11 +138,15 @@ const AvatarScreen = observer(({ navigation }: ScreenProps<'AvatarScreen'>) => {
                             params: {
                                 multiple: false,
                                 onSelect(items) {
-                                    register$.avatar.set(items[0]);
+                                    register$.avatar.cropped.set(undefined);
+
+                                    register$.avatar.original.set({
+                                        uri: items[0].uri,
+                                        height: items[0].height,
+                                        width: items[0].width,
+                                        type: items[0].mediaType,
+                                    });
                                 },
-                                // onSuccess(result) {
-                                //     register$.avatar.set(result[0]);
-                                // },
                             },
                         })
                     }

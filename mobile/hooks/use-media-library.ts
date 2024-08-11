@@ -8,7 +8,7 @@ import {
     usePermissions,
 } from 'expo-media-library';
 
-type MediaType = {
+type LibraryType = {
     album: Album;
     media: PagedInfo<Asset>;
 };
@@ -17,7 +17,7 @@ const useMediaLibrary = (onDenied?: () => void) => {
     const gettingAssets$ = useObservable(false);
     const [permissionResponse, requestPermission] = usePermissions();
 
-    const assets$ = useObservable<MediaType[]>([]);
+    const assets$ = useObservable<LibraryType[]>([]);
 
     useEffectOnce(() => {
         const getFiles = async () => {
@@ -61,4 +61,4 @@ const useMediaLibrary = (onDenied?: () => void) => {
     };
 };
 
-export { useMediaLibrary, MediaType };
+export { useMediaLibrary, LibraryType };

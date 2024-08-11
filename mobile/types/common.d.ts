@@ -13,4 +13,11 @@ type KeyValueType<
     [key in TKey]: TValue;
 };
 
-export type { OptionType, KeyValueType, LanguageType };
+type MediaType = {
+    width: number;
+    height: number;
+    uri: string;
+    type: string;
+};
+
+export type { OptionType, KeyValueType, LanguageType, MediaType };

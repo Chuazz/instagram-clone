@@ -3,20 +3,28 @@ import { View } from 'dripsy';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 
 type CropLineProps = {
-    onZoom: (_scale: number) => void;
+    onZoomIn: (_scale: number) => void;
+    onZoomOut: (_scale: number) => void;
 };
 
-const CropLine = ({ onZoom }: CropLineProps) => {
-    const panGesture = Gesture.Pan()
+const CropLine = ({ onZoomIn, onZoomOut }: CropLineProps) => {
+    const topLefGesture = Gesture.Pan()
         .onStart(() => {})
         .onUpdate((e) => {
-            beauty(e);
+            beauty([e.translationX, e.translationY]);
+        })
+        .runOnJS(true);
+
+    const topRightGesture = Gesture.Pan()
+        .onStart(() => {})
+        .onUpdate((e) => {
+            beauty([e.translationX, e.translationY]);
         })
         .runOnJS(true);
 
     return (
         <>
-            <GestureDetector gesture={panGesture}>
+            <GestureDetector gesture={topLefGesture}>
                 <View
                     sx={{
                         position: 'absolute',
@@ -25,23 +33,24 @@ const CropLine = ({ onZoom }: CropLineProps) => {
                         borderLeftWidth: 2.5,
                         borderTopWidth: 2.5,
                         borderColor: 'white',
-                        backgroundColor: 'red',
                         zIndex: 999,
                     }}
                 />
             </GestureDetector>
 
-            <View
-                sx={{
-                    position: 'absolute',
-                    width: 24,
-                    height: 24,
-                    bottom: 0,
-                    borderLeftWidth: 2.5,
-                    borderBottomWidth: 2.5,
-                    borderColor: 'white',
-                }}
-            />
+            <GestureDetector gesture={topRightGesture}>
+                <View
+                    sx={{
+                        position: 'absolute',
+                        width: 24,
+                        height: 24,
+                        bottom: 0,
+                        borderLeftWidth: 2.5,
+                        borderBottomWidth: 2.5,
+                        borderColor: 'white',
+                    }}
+                />
+            </GestureDetector>
 
             <View
                 sx={{

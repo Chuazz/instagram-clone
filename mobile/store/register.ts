@@ -1,5 +1,5 @@
+import { MediaType } from '@/types/common';
 import { observable } from '@legendapp/state';
-import { Asset } from 'expo-media-library';
 
 type RegisterType = {
     type: 'phone' | 'email';
@@ -9,7 +9,10 @@ type RegisterType = {
     birth: string;
     name: string;
     userName: string;
-    avatar: Asset | undefined;
+    avatar: {
+        cropped: MediaType | undefined;
+        original: MediaType | undefined;
+    };
 };
 
 const register$ = observable<RegisterType>({
@@ -20,7 +23,10 @@ const register$ = observable<RegisterType>({
     birth: new Date().toDateString(),
     name: '',
     userName: '',
-    avatar: undefined,
+    avatar: {
+        cropped: undefined,
+        original: undefined,
+    },
 });
 
 export { register$ };
