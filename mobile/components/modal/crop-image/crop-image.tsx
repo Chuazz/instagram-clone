@@ -3,6 +3,7 @@ import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/configs/theme';
 import { observer } from '@legendapp/state/react';
 import { View } from 'dripsy';
 import { StatusBar } from 'expo-status-bar';
+import { Platform, StatusBar as RNStatusBar } from 'react-native';
 import { useMemo } from 'react';
 import { Image as RNImage, StyleSheet } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
@@ -16,7 +17,11 @@ import Animated, {
 import { CropLine } from './crop-line';
 import { Image } from '@/components/ui/image';
 import { Button } from '@/components/form/button';
-import { Screen } from '@/components/layout/screen';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+
+const CROP_HEIGHT = 250;
+
+const MINUS_HEIGHT = 100;
 
 const CropImage = observer(
     ({ modal: { params, closeModal } }: ModalProps<'CropImage'>) => {
@@ -24,6 +29,7 @@ const CropImage = observer(
         const imageTranslateY = useSharedValue(100);
         const prevImageTranslateY = useSharedValue(0);
         const imageHeight = useSharedValue(0);
+        const insets = useSafeAreaInsets();
 
         const size = useMemo(() => {
             if (!params?.width && !params?.height && params?.uri) {
@@ -34,7 +40,7 @@ const CropImage = observer(
 
             return {
                 width: params?.width || SCREEN_WIDTH,
-                height: params?.height || SCREEN_HEIGHT - 100,
+                height: params?.height || SCREEN_HEIGHT - MINUS_HEIGHT,
             };
         }, [params?.uri]);
 
@@ -52,7 +58,7 @@ const CropImage = observer(
                         imageTranslateY.value = withClamp(
                             {
                                 min: 0,
-                                max: imageHeight.value - 200,
+                                max: imageHeight.value - CROP_HEIGHT,
                             },
                             withTiming(imageTranslateY.value),
                         );
@@ -86,11 +92,15 @@ const CropImage = observer(
         }));
 
         return (
-            <Screen
+            <View
                 sx={{
                     backgroundColor: 'black',
                     width: 'screen-width',
-                    gap: 8,
+                    height: '100%',
+                    mt:
+                        Platform.OS === 'android'
+                            ? RNStatusBar.currentHeight
+                            : insets.top,
                 }}
             >
                 <StatusBar backgroundColor='black' />
@@ -120,7 +130,8 @@ const CropImage = observer(
 
                 <View
                     sx={{
-                        flexGrow: 1,
+                        height: SCREEN_HEIGHT - 145,
+                        backgroundColor: 'black',
                         justifyContent: 'center',
                         alignItems: 'center',
                     }}
@@ -148,7 +159,7 @@ const CropImage = observer(
                                 resizeMode: 'contain',
                                 width: 'full',
                                 aspectRatio: size.width / size.height,
-                                maxHeight: SCREEN_HEIGHT - 100,
+                                maxHeight: SCREEN_HEIGHT - MINUS_HEIGHT,
                                 maxWidth: 'screen-width',
                             }}
                             onLayout={(e) =>
@@ -163,7 +174,7 @@ const CropImage = observer(
                                     StyleSheet.absoluteFillObject,
                                     {
                                         width: '100%',
-                                        height: 250,
+                                        height: CROP_HEIGHT,
                                         overflow: 'hidden',
                                         zIndex: 10,
                                     },
@@ -178,7 +189,8 @@ const CropImage = observer(
                                             width: 'full',
                                             aspectRatio:
                                                 size.width / size.height,
-                                            maxHeight: SCREEN_HEIGHT - 100,
+                                            maxHeight:
+                                                SCREEN_HEIGHT - MINUS_HEIGHT,
                                             maxWidth: 'screen-width',
                                         }}
                                     />
@@ -202,7 +214,7 @@ const CropImage = observer(
                         rotate.value = withTiming(rotate.value + 90);
                     }}
                 />
-            </Screen>
+            </View>
         );
     },
 );

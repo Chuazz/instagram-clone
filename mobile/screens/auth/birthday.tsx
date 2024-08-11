@@ -78,6 +78,7 @@ const BirthDayScreen = observer(
                         content={i18n.t('common.next')}
                         sx={{
                             mt: 'sm',
+                            width: 'full',
                         }}
                         onPress={() => navigation.navigate('NameScreen')}
                     />

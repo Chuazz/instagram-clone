@@ -152,6 +152,7 @@ const SheetItem = ({
                 <View
                     sx={{
                         height: PAN_HEIGHT,
+                        backgroundColor: 'transparent',
                     }}
                 />
 

@@ -68,12 +68,14 @@ const Button = ({
         const button: SxProp = {
             flexDirection: 'row',
             alignItems: 'center',
+            justifyContent: 'center',
             borderRadius: 'md',
             paddingVertical: size,
             paddingHorizontal: 'md',
             borderWidth: 2,
             borderColor: 'transparent',
             gap: 'xs',
+            overflow: 'hidden',
         };
 
         const text: SxProp = {
@@ -158,6 +160,7 @@ const Button = ({
             button.padding = 0;
             button.paddingVertical = 0;
             button.paddingHorizontal = 0;
+            button.borderRadius = size;
         }
 
         return {
@@ -198,8 +201,6 @@ const Button = ({
                 <Show if={content}>
                     <Text
                         sx={{
-                            textAlign:
-                                !leftIcon && !rightIcon ? 'center' : 'left',
                             ...styles.text,
                             ...contentSx,
                         }}
@@ -222,18 +223,29 @@ const Button = ({
                 </Show>
             </>
         );
-    }, [content, leftIcon, rightIcon, children, schema]);
+    }, [
+        content,
+        leftIcon,
+        rightIcon,
+        children,
+        schema,
+        variant,
+        rounded,
+        size,
+    ]);
 
     const tapGesture = useMemo(
         () =>
             Gesture.Tap()
                 .onTouchesDown(() => {
-                    scale.value = withSpring(0.9);
+                    scale.value = withSpring(0.95);
                 })
                 .onTouchesUp(() => {
                     scale.value = withSpring(1);
 
-                    onPress?.();
+                    setTimeout(() => {
+                        onPress?.();
+                    }, 300);
                 })
                 .runOnJS(true),
         [onPress],
@@ -251,6 +263,7 @@ const Button = ({
         <GestureDetector gesture={tapGesture}>
             <View
                 sx={{
+                    ...sx,
                     alignItems: 'flex-start',
                     justifyContent: 'flex-start',
                 }}

@@ -52,6 +52,7 @@ const SaveLoginScreen = ({ navigation }: ScreenProps<'SaveLoginScreen'>) => {
                     content={i18n.t('common.next')}
                     sx={{
                         mt: 'sm',
+                        width: 'full',
                     }}
                     onPress={() => onConfirm(true)}
                 />
@@ -60,6 +61,9 @@ const SaveLoginScreen = ({ navigation }: ScreenProps<'SaveLoginScreen'>) => {
                     variant='outline'
                     schema='gray'
                     content={i18n.t('common.not_now')}
+                    sx={{
+                        width: 'full',
+                    }}
                     onPress={() => onConfirm(false)}
                 />
             </ScrollView>

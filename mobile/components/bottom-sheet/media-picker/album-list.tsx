@@ -20,13 +20,9 @@ const AlbumList = ({
                 }}
             >
                 <Button
+                    leftIcon='ArrowLeftOutlineIcon'
                     schema='black'
-                    contentSx={{
-                        fontWeight: 'medium',
-                        fontSize: 'lg',
-                    }}
                     variant='transparent'
-                    content={i18n.t('common.cancel')}
                     onPress={onCancel}
                 />
 

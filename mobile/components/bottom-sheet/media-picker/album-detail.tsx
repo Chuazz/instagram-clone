@@ -1,15 +1,19 @@
 import { Button } from '@/components/form/button';
-import { Image } from '@/components/ui/image';
-import { SCREEN_WIDTH } from '@/configs/theme';
+import { i18n } from '@/configs/i18n';
 import { MediaType } from '@/hooks/use-media-library';
 import { Text, View } from 'dripsy';
+import { ReactNode } from 'react';
 
 const AlbumDetail = ({
     asset,
+    children,
     onCancel,
+    onDone,
 }: {
     asset: MediaType;
+    children: ReactNode;
     onCancel: () => void;
+    onDone: () => void;
 }) => {
     return (
         <>
@@ -25,6 +29,9 @@ const AlbumDetail = ({
                     leftIcon='ArrowLeftOutlineIcon'
                     schema='black'
                     variant='transparent'
+                    sx={{
+                        width: 40,
+                    }}
                     onPress={onCancel}
                 />
 
@@ -38,35 +45,17 @@ const AlbumDetail = ({
                 </Text>
 
                 <Button
-                    leftIcon='ArrowLeftOutlineIcon'
+                    content={i18n.t('common.done')}
                     schema='black'
                     variant='transparent'
                     sx={{
-                        opacity: 0,
+                        width: 40,
                     }}
+                    onPress={onDone}
                 />
             </View>
 
-            {asset.media.assets.map((item, index) => (
-                <View
-                    key={item.id}
-                    sx={{ mt: index < 3 ? undefined : 'xl' }}
-                >
-                    <Button
-                        variant='transparent'
-                        onPress={() => {}}
-                    >
-                        <Image
-                            source={item.uri}
-                            sx={{
-                                width: SCREEN_WIDTH / 3 - 15,
-                                height: SCREEN_WIDTH / 3 - 15,
-                                borderRadius: 'sm',
-                            }}
-                        />
-                    </Button>
-                </View>
-            ))}
+            {children}
         </>
     );
 };

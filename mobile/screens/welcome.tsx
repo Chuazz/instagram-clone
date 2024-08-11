@@ -147,6 +147,7 @@ const WelcomeScreen = ({ navigation }: ScreenProps<'WelcomeScreen'>) => {
 
     return (
         <Screen
+            navigation={navigation}
             sx={{
                 backgroundColor: 'primary800',
                 justifyContent: 'center',

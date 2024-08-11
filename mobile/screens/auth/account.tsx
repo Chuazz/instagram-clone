@@ -85,6 +85,7 @@ const AccountScreen = ({ navigation }: ScreenProps<'AccountScreen'>) => {
                     content={i18n.t('common.next')}
                     sx={{
                         mt: 'sm',
+                        width: 'full',
                     }}
                     onPress={handleSubmit(onSubmit)}
                 />
@@ -93,6 +94,9 @@ const AccountScreen = ({ navigation }: ScreenProps<'AccountScreen'>) => {
                     content={i18n.t('auth.sign_up_with_mobile')}
                     schema='gray'
                     variant='outline'
+                    sx={{
+                        width: 'full',
+                    }}
                 />
             </ScrollView>
 

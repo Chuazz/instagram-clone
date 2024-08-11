@@ -5,7 +5,7 @@ import { observer, useEffectOnce } from '@legendapp/state/react';
 import { NavigationProp } from '@react-navigation/native';
 import { SxProp, View } from 'dripsy';
 import { ReactNode, useEffect } from 'react';
-import { BackHandler, StyleSheet } from 'react-native';
+import { BackHandler, Platform, StatusBar, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Image } from '../ui/image';
 

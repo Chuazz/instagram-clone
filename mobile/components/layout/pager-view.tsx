@@ -8,47 +8,61 @@ import {
     useImperativeHandle,
     useRef,
 } from 'react';
+import { observer, useEffectOnce, useObservable } from '@legendapp/state/react';
+import { Observable } from '@legendapp/state';
 
 type PagerViewProps = {
     children: ReactNode;
     itemWidth?: number;
     sx?: SxProp;
+    initial?: number;
 };
 
 type PagerViewRef = {
     scrollTo: (_index: number) => void;
+    index$: Observable<number>;
 };
 
-const PagerView = forwardRef<PagerViewRef, PagerViewProps>(
-    ({ children, sx, itemWidth = SCREEN_WIDTH }, ref) => {
-        const scrollRef = useRef<RNScrollView>(null);
+const PagerView = observer(
+    forwardRef<PagerViewRef, PagerViewProps>(
+        ({ children, sx, itemWidth = SCREEN_WIDTH, initial = 0 }, ref) => {
+            const scrollRef = useRef<RNScrollView>(null);
+            const index$ = useObservable(initial);
 
-        const scrollTo = useCallback((index: number) => {
-            scrollRef.current?.scrollTo({
-                y: index * itemWidth,
-            });
-        }, []);
+            const scrollTo = useCallback((index: number) => {
+                scrollRef.current?.scrollTo({
+                    x: index * itemWidth,
+                });
 
-        useImperativeHandle(ref, () => ({
-            scrollTo,
-        }));
+                index$.set(index);
+            }, []);
 
-        return (
-            <ScrollView
-                ref={scrollRef}
-                contentContainerSx={{
-                    flexGrow: 1,
-                    ...sx,
-                }}
-                showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
-                horizontal={true}
-                scrollEnabled={false}
-            >
-                {children}
-            </ScrollView>
-        );
-    },
+            useEffectOnce(() => {
+                scrollTo(initial);
+            }, []);
+
+            useImperativeHandle(ref, () => ({
+                scrollTo,
+                index$,
+            }));
+
+            return (
+                <ScrollView
+                    ref={scrollRef}
+                    showsVerticalScrollIndicator={false}
+                    showsHorizontalScrollIndicator={false}
+                    horizontal={true}
+                    scrollEnabled={false}
+                    contentContainerSx={{
+                        flexGrow: 1,
+                        ...sx,
+                    }}
+                >
+                    {children}
+                </ScrollView>
+            );
+        },
+    ),
 );
 
 PagerView.displayName = 'PagerView';

@@ -130,6 +130,10 @@ const AvatarScreen = observer(({ navigation }: ScreenProps<'AvatarScreen'>) => {
                         bottomSheet$.openSheet({
                             name: 'MediaPicker',
                             params: {
+                                multiple: false,
+                                onSelect(items) {
+                                    register$.avatar.set(items[0]);
+                                },
                                 // onSuccess(result) {
                                 //     register$.avatar.set(result[0]);
                                 // },

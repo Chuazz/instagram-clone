@@ -61,6 +61,9 @@ const LogInScreen = observer(({ navigation }: ScreenProps<'LogInScreen'>) => {
 
                     <Button
                         content={i18n.t('auth.log_in')}
+                        sx={{
+                            width: 'full',
+                        }}
                         onPress={() => {
                             navigation.navigate('HomeScreen');
                         }}
@@ -77,24 +80,16 @@ const LogInScreen = observer(({ navigation }: ScreenProps<'LogInScreen'>) => {
                     </Text>
                 </View>
 
-                <View
+                <Button
+                    content={i18n.t('auth.create_new_account')}
+                    variant='outline'
                     sx={{
                         width: 'full',
-                        gap: 'md',
-                        alignItems: 'center',
                     }}
-                >
-                    <Button
-                        content={i18n.t('auth.create_new_account')}
-                        variant='outline'
-                        sx={{
-                            width: 'full',
-                        }}
-                        onPress={() => {
-                            navigation.navigate('AccountScreen');
-                        }}
-                    />
-                </View>
+                    onPress={() => {
+                        navigation.navigate('AccountScreen');
+                    }}
+                />
             </ScrollView>
         </Screen>
     );

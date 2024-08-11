@@ -1,4 +1,5 @@
 import { OpenSheetProps } from '@/store/bottom-sheet';
+import { Asset } from 'expo-media-library';
 
 type BaseBottomSheetProps<T> = T & {
     closeSheet: () => void;
@@ -9,8 +10,10 @@ type BaseBottomSheetProps<T> = T & {
 
 type BottomSheetStackParamsList = {
     SelectLanguage: BaseBottomSheetProps<{}>;
-    MediaPicker: BaseBottomSheetProps<{}>;
-    MediaLibrary: BaseBottomSheetProps<{}>;
+    MediaPicker: BaseBottomSheetProps<{
+        multiple?: boolean;
+        onSelect: (_items: Asset[]) => void;
+    }>;
 };
 
 export { BaseBottomSheetProps, BottomSheetStackParamsList };

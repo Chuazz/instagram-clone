@@ -74,6 +74,7 @@ const NameScreen = ({ navigation }: ScreenProps<'NameScreen'>) => {
                     content={i18n.t('common.next')}
                     sx={{
                         mt: 'sm',
+                        width: 'full',
                     }}
                     onPress={handleSubmit(onSubmit)}
                 />
@@ -83,7 +84,7 @@ const NameScreen = ({ navigation }: ScreenProps<'NameScreen'>) => {
                 <Button
                     size='sm'
                     variant='transparent'
-                    content={i18n.t('auth.already_have_name')}
+                    content={i18n.t('auth.already_have_account')}
                     onPress={() => {
                         navigation.goBack();
                     }}
