@@ -3,7 +3,7 @@ import { LibraryType, useMediaLibrary } from '@/hooks/use-media-library';
 import { BottomSheetStackParamsList } from '@/types/bottom-sheet';
 import { observer, Show, useObservable } from '@legendapp/state/react';
 import { ScrollView, Text, View } from 'dripsy';
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { Button } from '../../form/button';
 import { LoadingOverlay } from '../../layout/loading-overlay';
 import { PagerView, PagerViewRef } from '../../layout/pager-view';
@@ -13,10 +13,13 @@ import { AlbumList } from './album-list';
 import { MediaPickerType } from './media-picker-type';
 import { StyleSheet } from 'react-native';
 import { Asset } from 'expo-media-library';
+import { i18n } from '@/configs/i18n';
+import { OptionType } from '@/types/common';
 
 const MediaPicker = observer(
     ({
         multiple,
+        moreOptions = [],
         onSelect,
         closeSheet,
     }: BottomSheetStackParamsList['MediaPicker']) => {
@@ -25,10 +28,6 @@ const MediaPicker = observer(
         const pagerRef = useRef<PagerViewRef>(null);
         const selected$ = useObservable<Asset[]>([]);
 
-        const pickImage = () => {
-            pagerRef.current?.scrollTo(1);
-        };
-
         const onAssetPress = (item: Asset) => {
             if (multiple) {
                 return;
@@ -36,6 +35,24 @@ const MediaPicker = observer(
 
             selected$.set([item]);
         };
+
+        const options: OptionType[] = useMemo(
+            () => [
+                {
+                    code: 'pick_image',
+                    label: i18n.t('common.select_from_gallery'),
+                    onPress() {
+                        pagerRef.current?.scrollTo(1);
+                    },
+                },
+                {
+                    code: 'take_photo',
+                    label: i18n.t('common.take_picture'),
+                },
+                ...moreOptions,
+            ],
+            [moreOptions],
+        );
 
         return (
             <>
@@ -62,10 +79,22 @@ const MediaPicker = observer(
                                 width: 'screen-width',
                             }}
                         >
-                            <MediaPickerType
-                                onCancel={closeSheet}
-                                onPickImage={pickImage}
-                            />
+                            <MediaPickerType onCancel={closeSheet}>
+                                {options.map((option) => (
+                                    <Button
+                                        key={option.code}
+                                        content={option.label}
+                                        rounded={false}
+                                        schema='white'
+                                        contentSx={{
+                                            textAlign: 'left',
+                                            fontWeight: 'semibold',
+                                            fontSize: 'lg',
+                                        }}
+                                        onPress={() => option.onPress?.()}
+                                    />
+                                ))}
+                            </MediaPickerType>
                         </View>
                     </ScrollView>
 

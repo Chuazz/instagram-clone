@@ -1,26 +1,22 @@
-import { Avatar } from '@/components/ui/avatar';
+import { User } from '@/components/ui/user';
+import { UserAvatar } from '@/components/ui/user/user-avatar';
+import { UserName } from '@/components/ui/user/user-name';
 import { Post } from '@/types/data/post';
-import { Text, View } from 'dripsy';
 import React from 'react';
 
 const HomeStoryItem = ({ data }: { data: Post }) => {
     return (
-        <View
+        <User
+            data={data.user_created}
             sx={{
                 alignItems: 'center',
                 gap: 4,
             }}
         >
-            <Avatar
-                size={80}
-                uri={data.user_created.avatar}
-            />
+            <UserAvatar size={80} />
 
-            <Text>
-                {data.user_created.first_name}
-                {data.user_created.last_name}
-            </Text>
-        </View>
+            <UserName />
+        </User>
     );
 };
 

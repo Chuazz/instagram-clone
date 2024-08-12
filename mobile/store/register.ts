@@ -13,6 +13,7 @@ type RegisterType = {
         cropped: MediaType | undefined;
         original: MediaType | undefined;
     };
+    shareAvatar: boolean;
 };
 
 const register$ = observable<RegisterType>({
@@ -21,6 +22,7 @@ const register$ = observable<RegisterType>({
     password: '',
     saveInfo: false,
     birth: new Date().toDateString(),
+    shareAvatar: false,
     name: '',
     userName: '',
     avatar: {

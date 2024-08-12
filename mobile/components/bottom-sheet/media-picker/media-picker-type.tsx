@@ -3,13 +3,14 @@ import { Image } from '@/components/ui/image';
 import { i18n } from '@/configs/i18n';
 import { SCREEN_HEIGHT } from '@/configs/theme';
 import { ScrollView, Text, View } from 'dripsy';
+import { ReactNode } from 'react';
 
 type MediaPickerTypeProps = {
     onCancel: () => void;
-    onPickImage: () => void;
+    children: ReactNode;
 };
 
-const MediaPickerType = ({ onCancel, onPickImage }: MediaPickerTypeProps) => {
+const MediaPickerType = ({ onCancel, children }: MediaPickerTypeProps) => {
     return (
         <View
             sx={{
@@ -60,28 +61,7 @@ const MediaPickerType = ({ onCancel, onPickImage }: MediaPickerTypeProps) => {
                         elevation: 2,
                     }}
                 >
-                    <Button
-                        content={i18n.t('common.select_from_gallery')}
-                        rounded={false}
-                        schema='white'
-                        contentSx={{
-                            textAlign: 'left',
-                            fontWeight: 'semibold',
-                            fontSize: 'lg',
-                        }}
-                        onPress={onPickImage}
-                    />
-
-                    <Button
-                        content={i18n.t('common.take_picture')}
-                        rounded={false}
-                        schema='white'
-                        contentSx={{
-                            textAlign: 'left',
-                            fontWeight: 'semibold',
-                            fontSize: 'lg',
-                        }}
-                    />
+                    {children}
                 </View>
             </ScrollView>
         </View>

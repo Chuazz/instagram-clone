@@ -11,7 +11,7 @@ const trans = (key: string, param?: KeyValueType<string, string>) => {
     return data;
 };
 
-const beauty = (data: string | number | boolean | object) => {
+const beauty = (data: unknown) => {
     console.log(`beauty log`, JSON.stringify(data, null, 2));
 };
 

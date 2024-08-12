@@ -1,11 +1,19 @@
+import { Button } from '@/components/form/button';
+import { LoadingOverlay } from '@/components/layout/loading-overlay';
+import { Image } from '@/components/ui/image';
 import { i18n } from '@/configs/i18n';
 import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/configs/theme';
 import { observer, Show, useObservable } from '@legendapp/state/react';
+import ImageEditor from '@react-native-community/image-editor';
 import { View } from 'dripsy';
 import { StatusBar } from 'expo-status-bar';
-import { Platform, StatusBar as RNStatusBar } from 'react-native';
 import { useMemo } from 'react';
-import { Image as RNImage, StyleSheet } from 'react-native';
+import {
+    Platform,
+    Image as RNImage,
+    StatusBar as RNStatusBar,
+    StyleSheet,
+} from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { ModalProps } from 'react-native-modalfy';
 import Animated, {
@@ -14,17 +22,11 @@ import Animated, {
     withClamp,
     withTiming,
 } from 'react-native-reanimated';
-import { CropLine } from './crop-line';
-import { Image } from '@/components/ui/image';
-import { Button } from '@/components/form/button';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import ImageEditor from '@react-native-community/image-editor';
-import { LoadingOverlay } from '@/components/layout/loading-overlay';
-import { beauty } from '@/utils';
+import { CropLine } from './crop-line';
 
 const CROP_HEIGHT = 250;
 const CROP_WIDTH = SCREEN_WIDTH;
-
 const MINUS_HEIGHT = 100;
 
 const CropImage = observer(

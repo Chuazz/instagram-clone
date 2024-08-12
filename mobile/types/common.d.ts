@@ -4,6 +4,7 @@ type OptionType<TCode = string> = {
     code: TCode;
     label: string;
     subLabel?: string;
+    onPress?: () => void;
 };
 
 type KeyValueType<

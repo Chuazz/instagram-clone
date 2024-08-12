@@ -54,7 +54,7 @@ const Carousel = ({ media, height, onSwipe }: CarouselProps) => {
                         }
                     }}
                     onSwipeRight={() => {
-                        if (translateX.value < 0) {
+                        if (index > 0) {
                             translateX.value = withTiming(
                                 -(prevTranslateX.value - SCREEN_WIDTH),
                             );

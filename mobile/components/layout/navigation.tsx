@@ -23,7 +23,7 @@ const Navigation = observer(({ children }: { children: ReactNode }) => {
                     headerShown: false,
                 }}
                 initialRouteName={
-                    app$.isLogin.get() ? 'HomeScreen' : 'AvatarScreen'
+                    app$.isLogin.get() ? 'HomeScreen' : 'FollowScreen'
                 }
             >
                 {Object.keys(routes).map((key) => (

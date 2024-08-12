@@ -3,10 +3,11 @@ import { observer, useObservable } from '@legendapp/state/react';
 import { SxProp, useSx } from 'dripsy';
 import { useEffect } from 'react';
 import { Image as EPImage, ImageProps as EPImageProps } from 'expo-image';
+import { beauty } from '@/utils';
 
 type ImageProps = Omit<
     EPImageProps,
-    'source' | 'style' | 'width' | 'height'
+    'source' | 'style' | 'width' | 'height' | 'placeholder' | 'tintColor'
 > & {
     source?: keyof typeof image | (string & NonNullable<unknown>);
     placeholder?: keyof typeof image | (string & NonNullable<unknown>);

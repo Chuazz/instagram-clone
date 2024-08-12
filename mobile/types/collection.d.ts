@@ -1,11 +1,12 @@
 import { Post } from './data/post';
 import { User } from './data/user';
 
-type CollectionType = {
-	post: Post;
-	user: User;
+type SystemCollectionType = {
+    user: User;
 };
 
-type CollectionArrayType = 'post' | 'user';
+type CollectionType = {
+    post: Post;
+};
 
-export type { CollectionType, CollectionArrayType };
+export type { CollectionType, SystemCollectionType };

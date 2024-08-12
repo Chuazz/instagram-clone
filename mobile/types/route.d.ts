@@ -11,11 +11,12 @@ type AuthStackParamsList = {
     UserNameScreen: undefined;
     PolicyScreen: undefined;
     AvatarScreen: undefined;
+    WelcomeScreen: undefined;
+    FollowScreen: undefined;
 };
 
 type AppStackParamsList = {
     HomeScreen: undefined;
-    WelcomeScreen: undefined;
 };
 
 type RouteStackParamsList = AuthStackParamsList & AppStackParamsList;

@@ -102,7 +102,7 @@ const theme = makeTheme({
         full: '100%',
         'screen-height': SCREEN_HEIGHT,
         'screen-width': SCREEN_WIDTH,
-        'icon-sm': 16,
+        'icon-sm': 20,
         'icon-md': 24,
         'icon-lg': 28,
         'icon-xl': 40,

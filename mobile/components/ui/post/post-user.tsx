@@ -1,8 +1,10 @@
 import { Text, View } from 'dripsy';
 import { usePost } from './post';
-import { Avatar } from '../avatar';
 import { i18n } from '@/configs/i18n';
 import { observer } from '@legendapp/state/react';
+import { User } from '../user';
+import { UserAvatar } from '../user/user-avatar';
+import { UserName } from '../user/user-name';
 
 const PostUser = observer(() => {
     const data = usePost()?.data.get();
@@ -12,31 +14,25 @@ const PostUser = observer(() => {
     }
 
     return (
-        <View
+        <User
+            data={data.user_created}
             sx={{
                 flexDirection: 'row',
                 gap: 'sm',
                 alignItems: 'center',
             }}
         >
-            <Avatar
+            <UserAvatar
                 size={36}
                 borderSize={44}
-                user={data?.user_created}
             />
 
             <View>
-                <Text
-                    sx={{
-                        fontWeight: 'semibold',
-                    }}
-                >
-                    {data?.user_created.first_name}
-                </Text>
+                <UserName />
 
                 <Text>{i18n.t('post.suggested_for_you')}</Text>
             </View>
-        </View>
+        </User>
     );
 });
 

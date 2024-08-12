@@ -14,6 +14,7 @@ import Animated, {
     useAnimatedStyle,
     useSharedValue,
     withSpring,
+    withTiming,
 } from 'react-native-reanimated';
 import { Image } from '../ui/image';
 
@@ -165,12 +166,16 @@ const Button = ({
             button.borderRadius = size;
         }
 
+        if (disable) {
+            button.opacity = 0.5;
+        }
+
         return {
             button,
             text,
             indicatorColor,
         };
-    }, [schema, variant, rounded, size]);
+    }, [schema, variant, rounded, size, disable]);
 
     const render = useMemo(() => {
         if (loading) {
@@ -189,6 +194,7 @@ const Button = ({
             <>
                 <Show if={leftIcon}>
                     <Image
+                        transition={300}
                         source={leftIcon}
                         sx={{
                             width: `icon-${size}`,
@@ -240,17 +246,21 @@ const Button = ({
         () =>
             Gesture.Tap()
                 .onTouchesDown(() => {
-                    scale.value = withSpring(0.95);
+                    if (!disable && onPress) {
+                        scale.value = withTiming(0.9);
+                    }
                 })
-                .onTouchesUp(() => {
-                    scale.value = withSpring(1);
+                .onFinalize(() => {
+                    if (!disable && onPress) {
+                        scale.value = withTiming(1);
 
-                    setTimeout(() => {
-                        onPress?.();
-                    }, 300);
+                        setTimeout(() => {
+                            onPress?.();
+                        }, 300);
+                    }
                 })
                 .runOnJS(true),
-        [onPress],
+        [onPress, disable],
     );
 
     const viewAnimatedStyle = useAnimatedStyle(() => ({

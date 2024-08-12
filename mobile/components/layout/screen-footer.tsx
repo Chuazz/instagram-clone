@@ -17,11 +17,9 @@ const ScreenFooter = ({
                 position: 'absolute',
                 bottom: 0,
                 width: 'screen-width',
-                padding: 'md',
-                paddingBottom: insets.bottom + 12,
-                flexDirection: 'row',
-                justifyContent: 'center',
-                alignItems: 'center',
+                paddingHorizontal: 'md',
+                paddingTop: 'xl',
+                paddingBottom: insets.bottom + 16,
                 ...sx,
             }}
         >

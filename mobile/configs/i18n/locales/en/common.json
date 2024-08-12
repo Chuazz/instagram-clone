@@ -19,5 +19,8 @@
     "select_album": "Select album",
     "recently": "Recently",
     "album": "Album",
-    "show_all": "Show all"
+    "show_all": "Show all",
+    "change_image": "Change image",
+    "follow_users": "Follow {{amount}}+ users",
+    "search": "Search"
 }

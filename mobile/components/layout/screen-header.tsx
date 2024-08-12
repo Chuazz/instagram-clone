@@ -28,7 +28,7 @@ const ScreenHeader = ({
                 alignItems: 'center',
                 gap: 'md',
                 paddingHorizontal: 'md',
-                height: HEADER_HEIGHT,
+                minHeight: HEADER_HEIGHT,
                 ...sx,
             }}
         >
