@@ -1,76 +1,89 @@
-import { ActivityIndicator, SxProp, Text, useDripsyTheme, useSx } from 'dripsy';
-import { ReactNode, useEffect, useMemo } from 'react';
+import type { image } from '@/configs/image';
+import { Show } from '@legendapp/state/react';
 import {
-    Gesture,
-    GestureDetector,
-    TouchableOpacityProps,
-} from 'react-native-gesture-handler';
+    ActivityIndicator,
+    SxProp,
+    Text,
+    useDripsyTheme,
+    useSx,
+    View,
+} from 'dripsy';
+import { ReactNode, useMemo } from 'react';
+import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
     useAnimatedStyle,
     useSharedValue,
     withSpring,
+    withTiming,
 } from 'react-native-reanimated';
+import { Image } from '../ui/image';
 
-type ButtonProps = Omit<TouchableOpacityProps, 'style'> & {
+type ButtonProps = {
     content?: string;
     children?: ReactNode;
-    onPress?: () => void;
     sx?: SxProp;
-    textSx?: SxProp;
+    contentSx?: SxProp;
+    iconSx?: SxProp;
+    leftIconSx?: SxProp;
+    rightIconSx?: SxProp;
     indicatorColor?: string;
+    leftIcon?: keyof typeof image;
+    rightIcon?: keyof typeof image;
     size?: 'sm' | 'md' | 'lg';
-    schema?: 'primary' | 'gray' | 'white';
-    center?: boolean;
+    schema?: 'primary' | 'gray' | 'white' | 'black';
     rounded?: boolean;
+    fullWidth?: boolean;
     loading?: boolean;
+    disable?: boolean;
     variant?: 'fill' | 'outline' | 'transparent';
+    onPress?: () => void;
 };
 
 const Button = ({
     children,
     content,
     sx,
-    textSx,
+    contentSx,
+    iconSx,
+    leftIconSx,
+    rightIconSx,
     indicatorColor,
     loading = false,
     size = 'md',
     rounded = true,
     schema = 'primary',
     variant = 'fill',
-    center = true,
+    leftIcon,
+    rightIcon,
+    fullWidth,
+    disable,
     onPress,
-    ...props
 }: ButtonProps) => {
     const sxProps = useSx();
     const { theme } = useDripsyTheme();
-    const primary = theme.colors.primary700;
-    const gray = theme.colors.gray100;
     const scale = useSharedValue(1);
+    const primary = useMemo(() => theme.colors.primary700, []);
+    const gray = useMemo(() => theme.colors.gray100, []);
 
-    const viewAnimatedStyle = useAnimatedStyle(() => ({
-        transform: [
-            {
-                scale: scale.value,
-            },
-        ],
-    }));
-
-    const styles = (() => {
+    const styles = useMemo(() => {
         let indicatorColor = '';
 
         const button: SxProp = {
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
             borderRadius: 'md',
             paddingVertical: size,
-            borderWidth: 1,
+            paddingHorizontal: 'md',
+            borderWidth: 2,
             borderColor: 'transparent',
-            alignSelf: center ? 'flex-center' : 'flex-start',
+            gap: 'xs',
+            overflow: 'hidden',
         };
 
         const text: SxProp = {
             fontWeight: 'bold',
-            textAlign: 'center',
             fontSize: size,
-            paddingHorizontal: 12,
         };
 
         if (schema === 'primary') {
@@ -103,7 +116,7 @@ const Button = ({
             indicatorColor = gray;
 
             if (variant === 'outline') {
-                button.borderColor = gray;
+                button.borderColor = 'gray200';
 
                 text.color = 'gray700';
 
@@ -119,6 +132,22 @@ const Button = ({
 
         if (schema === 'white') {
             button.backgroundColor = 'white';
+            text.color = 'black';
+
+            if (variant === 'transparent') {
+                text.color = 'white';
+            }
+
+            if (variant === 'outline') {
+                button.borderColor = 'white';
+                text.color = 'white';
+            }
+        }
+
+        if (schema === 'black') {
+            if (variant === 'transparent') {
+                text.color = 'black';
+            }
         }
 
         if (rounded) {
@@ -132,6 +161,13 @@ const Button = ({
         if (variant === 'transparent') {
             button.backgroundColor = 'transparent';
             button.padding = 0;
+            button.paddingVertical = 0;
+            button.paddingHorizontal = 0;
+            button.borderRadius = size;
+        }
+
+        if (disable) {
+            button.opacity = 0.5;
         }
 
         return {
@@ -139,9 +175,9 @@ const Button = ({
             text,
             indicatorColor,
         };
-    })();
+    }, [schema, variant, rounded, size, disable]);
 
-    const render = (() => {
+    const render = useMemo(() => {
         if (loading) {
             return (
                 <ActivityIndicator
@@ -154,38 +190,109 @@ const Button = ({
             return children;
         }
 
-        return <Text sx={{ ...styles.text, ...textSx }}>{content}</Text>;
-    })();
+        return (
+            <>
+                <Show if={leftIcon}>
+                    <Image
+                        transition={300}
+                        source={leftIcon}
+                        sx={{
+                            width: `icon-${size}`,
+                            height: `icon-${size}`,
+                            tintColor: styles.text.color?.toString(),
+                            ...iconSx,
+                            ...leftIconSx,
+                        }}
+                    />
+                </Show>
+
+                <Show if={content}>
+                    <Text
+                        sx={{
+                            ...styles.text,
+                            ...contentSx,
+                        }}
+                    >
+                        {content}
+                    </Text>
+                </Show>
+
+                <Show if={rightIcon}>
+                    <Image
+                        source={rightIcon}
+                        sx={{
+                            width: `icon-${size}`,
+                            height: `icon-${size}`,
+                            tintColor: styles.text.color?.toString(),
+                            ...iconSx,
+                            ...rightIconSx,
+                        }}
+                    />
+                </Show>
+            </>
+        );
+    }, [
+        content,
+        leftIcon,
+        rightIcon,
+        children,
+        schema,
+        variant,
+        rounded,
+        size,
+    ]);
 
     const tapGesture = useMemo(
         () =>
             Gesture.Tap()
                 .onTouchesDown(() => {
-                    scale.value = withSpring(0.9);
+                    if (!disable && onPress) {
+                        scale.value = withTiming(0.9);
+                    }
                 })
-                .onTouchesUp(() => {
-                    scale.value = withSpring(1);
+                .onFinalize(() => {
+                    if (!disable && onPress) {
+                        scale.value = withTiming(1);
 
-                    onPress?.();
+                        setTimeout(() => {
+                            onPress?.();
+                        }, 300);
+                    }
                 })
                 .runOnJS(true),
-        [],
+        [onPress, disable],
     );
+
+    const viewAnimatedStyle = useAnimatedStyle(() => ({
+        transform: [
+            {
+                scale: scale.value,
+            },
+        ],
+    }));
 
     return (
         <GestureDetector gesture={tapGesture}>
-            <Animated.View
-                style={[
-                    sxProps({
-                        ...styles.button,
-                        ...sx,
-                    }),
-                    viewAnimatedStyle,
-                ]}
-                {...props}
+            <View
+                sx={{
+                    alignItems: 'flex-start',
+                    justifyContent: 'flex-start',
+                    width: fullWidth ? 'full' : 'auto',
+                }}
             >
-                {render}
-            </Animated.View>
+                <Animated.View
+                    style={[
+                        sxProps({
+                            width: fullWidth ? 'full' : 'auto',
+                            ...styles.button,
+                            ...sx,
+                        }),
+                        viewAnimatedStyle,
+                    ]}
+                >
+                    {render}
+                </Animated.View>
+            </View>
         </GestureDetector>
     );
 };

@@ -1,5 +1,4 @@
 import BackgroundGradientImage from '@/assets/images/img_background_gradient.png';
-import TransparentSneaker1Image from '@/assets/images/img_transparent_sneaker_1.png';
 import TextLogoImage from '@/assets/images/img_text_logo.png';
 import ContributorImage from '@/assets/images/img_contributor.png';
 
@@ -23,10 +22,14 @@ import MoreOutlineIcon from '@/assets/icons/ic_more_outline.png';
 import MessengerOutlineIcon from '@/assets/icons/ic_messenger_outline.png';
 import PlayFillIcon from '@/assets/icons/ic_play_fill.png';
 import PauseFillIcon from '@/assets/icons/ic_pause_fill.png';
+import UserCircleFillIcon from '@/assets/icons/ic_user_circle_fill.png';
+import CropOutlineIcon from '@/assets/icons/ic_crop_outline.png';
+import SearchOutlineIcon from '@/assets/icons/ic_search_outline.png';
+import CircleOutlineIcon from '@/assets/icons/ic_circle_outline.png';
+import CircleCheckFillIcon from '@/assets/icons/ic_circle_check_fill.png';
 
 const image = {
     BackgroundGradientImage,
-    TransparentSneaker1Image,
     TextLogoImage,
     ContributorImage,
     StoryBorderIcon,
@@ -50,6 +53,11 @@ const image = {
     MessengerOutlineIcon,
     PlayFillIcon,
     PauseFillIcon,
+    UserCircleFillIcon,
+    CropOutlineIcon,
+    SearchOutlineIcon,
+    CircleOutlineIcon,
+    CircleCheckFillIcon,
 };
 
 export { image };

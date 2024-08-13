@@ -1,11 +1,11 @@
 import { File } from '@/types/data/file';
-import { SCREEN_WIDTH } from '@gorhom/bottom-sheet';
 import Animated, {
     useAnimatedStyle,
     useSharedValue,
     withTiming,
 } from 'react-native-reanimated';
 import { CarouselItem } from './carousel-item';
+import { SCREEN_WIDTH } from '@/configs/theme';
 
 type CarouselProps = {
     media: File[];
@@ -54,7 +54,7 @@ const Carousel = ({ media, height, onSwipe }: CarouselProps) => {
                         }
                     }}
                     onSwipeRight={() => {
-                        if (translateX.value < 0) {
+                        if (index > 0) {
                             translateX.value = withTiming(
                                 -(prevTranslateX.value - SCREEN_WIDTH),
                             );

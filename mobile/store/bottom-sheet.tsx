@@ -1,41 +1,93 @@
 import { bottomSheet } from '@/configs/bottom-sheet';
-import { BottomSheetsType } from '@/types/bottom-sheet';
-import { BottomSheetModalProps } from '@gorhom/bottom-sheet';
+import { BottomSheetStackParamsList } from '@/types/bottom-sheet';
 import { observable } from '@legendapp/state';
-import { ReactNode } from 'react';
+import { ElementType, ReactNode } from 'react';
 
-export type OpenSheetProps = {
-    name: keyof BottomSheetsType;
-    listing?: boolean;
-    params?: Omit<BottomSheetsType[keyof BottomSheetsType], 'openSheet'>;
-    options?: Omit<BottomSheetModalProps, 'children'>;
+export type SheetItemType = {
+    name: keyof BottomSheetStackParamsList;
+    content: ReactNode | undefined;
+    visible: boolean;
+};
+
+export type OpenSheetProps<
+    TName extends keyof BottomSheetStackParamsList = keyof BottomSheetStackParamsList,
+> = {
+    name: TName;
+    params?: Omit<
+        BottomSheetStackParamsList[TName],
+        'closeSheet' | 'openSheet'
+    >;
 };
 
 export type BottomSheetType = {
-    sheet: ReactNode | undefined;
-    listing: boolean;
+    sheets: SheetItemType[];
 
-    options: Omit<BottomSheetModalProps, 'children'> | undefined;
+    visible: boolean;
 
-    openSheet: (_props: OpenSheetProps) => void;
+    openSheet: <TName extends keyof BottomSheetStackParamsList>(
+        _props: OpenSheetProps<TName>,
+    ) => void;
+
+    closeSheet: (_name?: keyof BottomSheetStackParamsList) => void;
 };
 
 const bottomSheet$ = observable<BottomSheetType>({
-    sheet: undefined,
-    options: undefined,
-    listing: false,
+    sheets: [],
 
-    openSheet({ name, options, params, listing }) {
-        const Component = bottomSheet[name];
+    openSheet({ name, params }) {
+        const Component = bottomSheet[name] as ElementType;
 
-        bottomSheet$.sheet.set(
-            <Component
-                {...params}
-                closeSheet={() => bottomSheet$.sheet.set(undefined)}
-            />,
+        bottomSheet$.sheets[bottomSheet$.sheets.length].set({
+            name,
+            visible: true,
+            content: (
+                <Component
+                    {...params}
+                    openSheet={({
+                        name: sheetName,
+                        params: sheetParams,
+                    }: OpenSheetProps) => {
+                        bottomSheet$.openSheet({
+                            name: sheetName,
+                            params: sheetParams,
+                        });
+                    }}
+                    closeSheet={() => {
+                        bottomSheet$.closeSheet(name);
+                    }}
+                />
+            ),
+        });
+    },
+
+    closeSheet(name) {
+        if (!bottomSheet$.sheets.length) {
+            return;
+        }
+
+        if (!name) {
+            bottomSheet$.sheets[bottomSheet$.sheets.length - 1].visible.set(
+                false,
+            );
+
+            return;
+        }
+
+        const index = bottomSheet$.sheets.findIndex(
+            (t) => t.name.get() === name,
         );
-        bottomSheet$.options.set(options);
-        bottomSheet$.listing.set(!!listing);
+
+        bottomSheet$.sheets[index].visible.set(false);
+    },
+
+    visible() {
+        const found = bottomSheet$.sheets.get().find((t) => t.visible);
+
+        if (found) {
+            return true;
+        }
+
+        return false;
     },
 });
 

@@ -1,9 +1,11 @@
 import { Button } from '@/components/form/button';
 import { Input } from '@/components/form/input';
 import { Screen } from '@/components/layout/screen';
+import { ScreenFooter } from '@/components/layout/screen-footer';
+import { ScreenHeader } from '@/components/layout/screen-header';
 import { i18n } from '@/configs/i18n';
 import { register$ } from '@/store/register';
-import { ScreenProps } from '@/types/route-params';
+import { ScreenProps } from '@/types/route';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ScrollView, Text } from 'dripsy';
 import { Controller, useForm } from 'react-hook-form';
@@ -13,25 +15,28 @@ const UserNameScreen = ({ navigation }: ScreenProps<'UserNameScreen'>) => {
     //? TODO: Update validate message
     const { control, handleSubmit } = useForm({
         defaultValues: {
-            account: __DEV__ ? 'chuazz' : '',
+            userName: __DEV__ ? 'chuazz' : '',
         },
         resolver: zodResolver(
             z.object({
-                account: z.string().min(1, i18n.t('validate.invalid_email')),
+                userName: z.string().min(1, i18n.t('validate.invalid_email')),
             }),
         ),
     });
 
     //? TODO: Check email exists
-    const onSubmit = (data: { account: string }) => {
-        register$.account.set(data.account);
+    const onSubmit = (data: { userName: string }) => {
+        register$.userName.set(data.userName);
 
-        navigation.navigate('UserNameScreen');
+        navigation.navigate('PolicyScreen');
     };
 
     return (
-        <Screen backgroundImage='BackgroundGradientImage'>
-            <Screen.Header />
+        <Screen
+            backgroundImage='BackgroundGradientImage'
+            navigation={navigation}
+        >
+            <ScreenHeader />
 
             <ScrollView
                 showsVerticalScrollIndicator={false}
@@ -48,15 +53,24 @@ const UserNameScreen = ({ navigation }: ScreenProps<'UserNameScreen'>) => {
                         fontWeight: 'bold',
                     }}
                 >
-                    {i18n.t('auth.what_your_name')}
+                    {i18n.t('auth.create_user_name')}
+                </Text>
+
+                <Text
+                    sx={{
+                        lineHeight: 20,
+                        fontWeight: 'medium',
+                    }}
+                >
+                    {i18n.t('auth.add_user_name_with_suggestion')}
                 </Text>
 
                 <Controller
                     control={control}
-                    name='account'
+                    name='userName'
                     render={({ field, fieldState }) => (
                         <Input
-                            placeholder={i18n.t('auth.full_name')}
+                            placeholder={i18n.t('auth.user_name')}
                             value={field.value}
                             autoFocus={true}
                             errMessage={fieldState.error?.message}
@@ -70,11 +84,12 @@ const UserNameScreen = ({ navigation }: ScreenProps<'UserNameScreen'>) => {
                     sx={{
                         mt: 'sm',
                     }}
+                    fullWidth={true}
                     onPress={handleSubmit(onSubmit)}
                 />
             </ScrollView>
 
-            <Screen.Footer>
+            <ScreenFooter>
                 <Button
                     size='sm'
                     variant='transparent'
@@ -83,7 +98,7 @@ const UserNameScreen = ({ navigation }: ScreenProps<'UserNameScreen'>) => {
                         navigation.goBack();
                     }}
                 />
-            </Screen.Footer>
+            </ScreenFooter>
         </Screen>
     );
 };

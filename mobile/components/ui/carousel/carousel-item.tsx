@@ -5,6 +5,7 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import { Image } from '../image';
 import { Video } from '../video';
 import { View } from 'dripsy';
+import { getAssetsUrl } from '@/utils/db';
 
 type CarouselItemProps = {
     file: File;
@@ -50,12 +51,11 @@ const CarouselItem = observer(
                         if={() => file.type !== 'image/jpeg'}
                         else={
                             <Image
-                                source={file.id}
-                                fromServer={true}
+                                source={getAssetsUrl(file.id)}
+                                contentFit='contain'
                                 sx={{
                                     width: 'screen-width',
                                     height: 'full',
-                                    resizeMode: 'contain',
                                 }}
                             />
                         }

@@ -1,20 +1,23 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { AccountScreen } from '@/screens/auth/account';
+import { AvatarScreen } from '@/screens/auth/avatar';
 import { BirthDayScreen } from '@/screens/auth/birthday';
+import { FollowScreen } from '@/screens/auth/follow';
 import { LogInScreen } from '@/screens/auth/log-in';
 import { NameScreen } from '@/screens/auth/name';
 import { PasswordScreen } from '@/screens/auth/password';
+import { PolicyScreen } from '@/screens/auth/policy';
 import { SaveLoginScreen } from '@/screens/auth/save-login';
 import { UserNameScreen } from '@/screens/auth/user-name';
+import { WelcomeScreen } from '@/screens/auth/welcome';
 import { HomeScreen } from '@/screens/home';
-import { WelcomeScreen } from '@/screens/welcome';
 import { KeyValueType } from '@/types/common';
-import { RouteParams } from '@/types/route-params';
+import { AppStackParamsList, AuthStackParamsList } from '@/types/route';
 import { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import { FC } from 'react';
 
-const routes: KeyValueType<
-    keyof RouteParams,
+const authRoutes: KeyValueType<
+    keyof AuthStackParamsList,
     {
         options?: NativeStackNavigationOptions;
         component: FC<any>;
@@ -41,12 +44,32 @@ const routes: KeyValueType<
     UserNameScreen: {
         component: UserNameScreen,
     },
-    HomeScreen: {
-        component: HomeScreen,
+    PolicyScreen: {
+        component: PolicyScreen,
+    },
+    AvatarScreen: {
+        component: AvatarScreen,
     },
     WelcomeScreen: {
         component: WelcomeScreen,
     },
+    FollowScreen: {
+        component: FollowScreen,
+    },
 };
 
-export { routes };
+const appRoutes: KeyValueType<
+    keyof AppStackParamsList,
+    {
+        options?: NativeStackNavigationOptions;
+        component: FC<any>;
+    }
+> = {
+    HomeScreen: {
+        component: HomeScreen,
+    },
+};
+
+const routes = Object.assign(appRoutes, authRoutes);
+
+export { routes, appRoutes, authRoutes };

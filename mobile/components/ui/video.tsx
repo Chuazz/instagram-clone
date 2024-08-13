@@ -1,6 +1,5 @@
 import { useCustomVideoPlayer } from '@/hooks/use-video-player';
 import { File } from '@/types/data/file';
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@gorhom/bottom-sheet';
 import { observer, Show } from '@legendapp/state/react';
 import { useDripsyTheme, View } from 'dripsy';
 import { Video as EPVideo, ResizeMode } from 'expo-av';
@@ -8,6 +7,7 @@ import React, { ReactNode } from 'react';
 import { ActivityIndicator, StatusBar, StyleSheet } from 'react-native';
 import { Button } from '../form/button';
 import { Image } from './image';
+import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@/configs/theme';
 
 type VideoProps = {
     /**

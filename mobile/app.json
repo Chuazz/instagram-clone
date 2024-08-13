@@ -1,11 +1,11 @@
 {
     "expo": {
-        "name": "app-name",
-        "slug": "app-name",
+        "name": "instagram-clone",
+        "slug": "instagram-clone",
         "version": "0.0.0",
         "orientation": "portrait",
         "icon": "./assets/icons/ic_app.png",
-        "scheme": "app-name",
+        "scheme": "instagram-clone",
         "userInterfaceStyle": "automatic",
         "splash": {
             "image": "./assets/images/img_splash.png",
@@ -20,9 +20,18 @@
                 "foregroundImage": "./assets/icons/ic_app.png",
                 "backgroundColor": "#ffffff"
             },
-            "package": "com.chuazz.appname"
+            "package": "com.chuazz.instagramClone"
         },
-        "plugins": [],
+        "plugins": [
+            [
+                "expo-media-library",
+                {
+                    "photosPermission": "Allow $(PRODUCT_NAME) to access your photos.",
+                    "savePhotosPermission": "Allow $(PRODUCT_NAME) to save photos.",
+                    "isAccessMediaLocationEnabled": true
+                }
+            ]
+        ],
         "experiments": {
             "typedRoutes": true
         },

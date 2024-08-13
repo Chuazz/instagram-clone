@@ -1,8 +1,22 @@
+import { CropImage } from '@/components/modal/crop-image';
 import { LogOut } from '@/components/modal/log-out';
-import { ModalStackConfig } from 'react-native-modalfy';
+import { KeyValueType } from '@/types/common';
+import { ModalStackParamsList } from '@/types/modal';
+import { ModalOptions } from 'react-native-modalfy';
 
-const modal: ModalStackConfig = {
-    LogOut,
+const defaultOptions: ModalOptions = {
+    backdropOpacity: 0.4,
+    backBehavior: 'clear',
+    disableFlingGesture: true,
 };
 
-export { modal };
+const modal: KeyValueType<keyof ModalStackParamsList, ModalOptions> = {
+    LogOut: {
+        modal: LogOut,
+    },
+    CropImage: {
+        modal: CropImage,
+    },
+};
+
+export { modal, defaultOptions };

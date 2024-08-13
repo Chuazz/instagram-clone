@@ -1,19 +1,31 @@
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '@gorhom/bottom-sheet';
 import { makeTheme } from 'dripsy';
+import { Dimensions } from 'react-native';
 
-const SPACING = 12;
+const GAP_MD = 12;
+const GAP_LG = 16;
 
 const INPUT_HEIGHT = 60;
 
-const RADIUS_FULL = 9999;
-
-const BUTTON_MD_SIZE = 40;
+const RADIUS_FULL = 500;
 
 const HEADER_HEIGHT = 50;
 
+const SCREEN_WIDTH = Dimensions.get('screen').width;
+
+const SCREEN_HEIGHT = Dimensions.get('screen').height;
+
 const light = {
+    transparent: 'transparent',
+
     white: '#fff',
+    whiteAlpha300: 'rgba(255,255,255, 0.3)',
+    whiteAlpha400: 'rgba(255,255,255, 0.4)',
+    whiteAlpha500: 'rgba(255,255,255, 0.5)',
+
     black: '#000',
+    blackAlpha300: 'rgba(0, 0, 0, 0.3)',
+    blackAlpha400: 'rgba(0, 0, 0, 0.4)',
+    blackAlpha500: 'rgba(0, 0, 0, 0.5)',
 
     primary50: '#ecfaff',
     primary100: '#d4f2ff',
@@ -64,33 +76,36 @@ const theme = makeTheme({
     },
     radii: {
         full: RADIUS_FULL,
+        xs: 4,
         sm: 8,
-        md: 12,
+        md: GAP_MD,
         lg: 16,
-        xl: 20,
+        xl: 24,
     },
     space: {
         xs: 4,
         sm: 8,
-        md: SPACING,
+        md: GAP_MD,
+        lg: GAP_LG,
+        xl: 24,
+    },
+    fontSizes: {
+        sm: 12,
+        md: 14,
         lg: 16,
+        xl: 24,
+        '2xl': 32,
+        '3xl': 40,
+        '4xl': 48,
     },
     sizes: {
         full: '100%',
         'screen-height': SCREEN_HEIGHT,
         'screen-width': SCREEN_WIDTH,
+        'icon-sm': 20,
         'icon-md': 24,
         'icon-lg': 28,
         'icon-xl': 40,
-    },
-    fontSizes: {
-        sm: 12,
-        md: 14,
-        lg: 18,
-        xl: 24,
-        '2xl': 32,
-        '3xl': 40,
-        '4xl': 48,
     },
     customFonts: {
         PublicSans: {
@@ -124,9 +139,11 @@ declare module 'dripsy' {
 
 export {
     theme,
-    SPACING,
+    GAP_MD,
+    GAP_LG,
     INPUT_HEIGHT,
     RADIUS_FULL,
-    BUTTON_MD_SIZE,
     HEADER_HEIGHT,
+    SCREEN_HEIGHT,
+    SCREEN_WIDTH,
 };

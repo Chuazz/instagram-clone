@@ -25,6 +25,8 @@ type User = {
     theme_light_overrides: unknown;
     theme_dark_overrides: unknown;
     gender: 'male' | 'female';
+    user_name: string;
+    checked: boolean;
 };
 
 export type { User };

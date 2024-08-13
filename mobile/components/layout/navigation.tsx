@@ -1,18 +1,30 @@
 import { routes } from '@/configs/routes';
-import { RouteParams } from '@/types/route-params';
-import { NavigationContainer } from '@react-navigation/native';
+import { app$ } from '@/store/app';
+import { RouteStackParamsList } from '@/types/route';
+import { observer } from '@legendapp/state/react';
+import {
+    createNavigationContainerRef,
+    NavigationContainer,
+} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { ReactNode } from 'react';
 
-const Stack = createNativeStackNavigator<RouteParams>();
+const Stack = createNativeStackNavigator<RouteStackParamsList>();
 
-const Navigation = () => {
+export const navigationRef = createNavigationContainerRef();
+
+const Navigation = observer(({ children }: { children: ReactNode }) => {
     return (
-        <NavigationContainer>
+        <NavigationContainer ref={navigationRef}>
+            {children}
+
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false,
                 }}
-                initialRouteName='HomeScreen'
+                initialRouteName={
+                    app$.isLogin.get() ? 'HomeScreen' : 'FollowScreen'
+                }
             >
                 {Object.keys(routes).map((key) => (
                     <Stack.Screen
@@ -25,6 +37,6 @@ const Navigation = () => {
             </Stack.Navigator>
         </NavigationContainer>
     );
-};
+});
 
 export { Navigation };

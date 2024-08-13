@@ -1,3 +1,4 @@
+import { MediaType } from '@/types/common';
 import { observable } from '@legendapp/state';
 
 type RegisterType = {
@@ -7,6 +8,12 @@ type RegisterType = {
     saveInfo: boolean;
     birth: string;
     name: string;
+    userName: string;
+    avatar: {
+        cropped: MediaType | undefined;
+        original: MediaType | undefined;
+    };
+    shareAvatar: boolean;
 };
 
 const register$ = observable<RegisterType>({
@@ -15,7 +22,13 @@ const register$ = observable<RegisterType>({
     password: '',
     saveInfo: false,
     birth: new Date().toDateString(),
+    shareAvatar: false,
     name: '',
+    userName: '',
+    avatar: {
+        cropped: undefined,
+        original: undefined,
+    },
 });
 
 export { register$ };
