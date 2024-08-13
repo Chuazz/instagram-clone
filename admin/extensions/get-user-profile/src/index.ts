@@ -5,16 +5,20 @@ export default defineHook(({ filter }) => {
         const result = await Promise.all(
             (data as any[]).map(async (t) => {
                 if (t.id) {
-                    const profile = await context.database
-                        .table('user_profile')
-                        .where('user_id', t.id)
-                        .first()
-                        .select('gender');
+                    try {
+                        const profile = await context.database
+                            .table('user_profile')
+                            .where('user_id', t.id)
+                            .first()
+                            .select('gender');
 
-                    return {
-                        ...t,
-                        ...profile,
-                    };
+                        return {
+                            ...t,
+                            ...profile,
+                        };
+                    } catch (error) {
+                        console.log('🚀 ~ get user profile error:', error);
+                    }
                 }
 
                 return t;
@@ -28,18 +32,23 @@ export default defineHook(({ filter }) => {
         const result = await Promise.all(
             (data as any[]).map(async (t) => {
                 if (t?.user_created?.id) {
-                    const profile = await context.database
-                        .table('user_profile')
-                        .where('user_id', t?.user_created?.id || -1)
-                        .first()
-                        .select('gender');
-                    return {
-                        ...t,
-                        user_created: {
-                            ...t.user_created,
-                            ...profile,
-                        },
-                    };
+                    try {
+                        const profile = await context.database
+                            .table('user_profile')
+                            .where('user_id', t?.user_created?.id || -1)
+                            .first()
+                            .select('gender');
+
+                        return {
+                            ...t,
+                            user_created: {
+                                ...t.user_created,
+                                ...profile,
+                            },
+                        };
+                    } catch (error) {
+                        console.log('🚀 ~ get user profile error:', error);
+                    }
                 }
                 return t;
             }),
