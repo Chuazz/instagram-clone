@@ -1,0 +1,10 @@
+{
+	"extends": "@instagram/typescript-config/base.json",
+	"compilerOptions": {
+		"paths": {
+			"@/*": ["./*"]
+		}
+	},
+	"exclude": ["node_modules", "android", "dist"],
+	"include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
+}

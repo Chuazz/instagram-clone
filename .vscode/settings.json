@@ -1,23 +1,43 @@
 {
-    "cSpell.words": [
-        "appname",
-        "chatbubble",
-        "compat",
-        "datetimepicker",
-        "directus",
-        "Dripsy",
-        "exclamationcircleo",
-        "filesize",
-        "gorhom",
-        "hookform",
-        "Ionicons",
-        "legendapp",
-        "Millis",
-        "modalfy",
-        "Pressable",
-        "Reactotron",
-        "symbolicate",
-        "tanstack",
-        "tseslint"
-    ]
+	"cSpell.words": [
+		"appname",
+		"biomejs",
+		"chatbubble",
+		"compat",
+		"datetimepicker",
+		"directus",
+		"Dripsy",
+		"exclamationcircleo",
+		"filesize",
+		"gorhom",
+		"hookform",
+		"Ionicons",
+		"legendapp",
+		"Millis",
+		"modalfy",
+		"Pressable",
+		"Reactotron",
+		"symbolicate",
+		"tanstack",
+		"tseslint"
+	],
+	"editor.defaultFormatter": "biomejs.biome",
+	"[typescript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[javascriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "biomejs.biome"
+	},
+	"[markdown]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	}
 }

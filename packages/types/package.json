@@ -1,0 +1,17 @@
+{
+	"name": "@instagram/types",
+	"version": "0.0.0",
+	"private": true,
+	"main": "./dist/index.js",
+	"exports": {
+		".": "./src/index.ts",
+		"./data": "./src/data/index.ts"
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch"
+	},
+	"dependencies": {
+		"@instagram/typescript-config": "*"
+	}
+}

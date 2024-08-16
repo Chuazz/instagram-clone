@@ -1,0 +1,9 @@
+{
+	"extends": "@instagram/typescript-config/base.json",
+	"compilerOptions": {
+		"outDir": "./dist",
+		"rootDir": "./src"
+	},
+	"exclude": ["dist"],
+	"include": ["src", "./assets.d.ts"]
+}

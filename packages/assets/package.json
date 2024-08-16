@@ -1,0 +1,22 @@
+{
+	"name": "@instagram/assets",
+	"version": "0.0.0",
+	"private": true,
+	"main": "./dist/index.js",
+	"exports": {
+		".": {
+			"types": "./src/index.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"dev": "yarn cp_icons && yarn cp_images && yarn cp_fonts && tsc --watch",
+		"cp_icons": "cp -R ./src/icons ./dist/icons",
+		"cp_images": "cp -R ./src/images ./dist/images",
+		"cp_fonts": "cp -R ./src/fonts ./dist/fonts",
+		"build": "tsc && yarn cp_icons && yarn cp_images && yarn cp_fonts"
+	},
+	"dependencies": {
+		"@instagram/typescript-config": "*"
+	}
+}

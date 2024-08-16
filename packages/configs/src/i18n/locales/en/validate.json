@@ -1,0 +1,7 @@
+{
+	"require": "Please provide {{field}}.",
+	"invalid_email": "Enter a valid email address.",
+	"at_least": {
+		"letter": "At least {{number}} letters."
+	}
+}

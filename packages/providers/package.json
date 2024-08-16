@@ -1,0 +1,20 @@
+{
+	"name": "@instagram/providers",
+	"version": "0.0.0",
+	"private": true,
+	"main": "./dist/index.js",
+	"exports": {
+		".": {
+			"types": "./src/index.ts",
+			"default": "./dist/index.js"
+		}
+	},
+	"scripts": {
+		"build": "tsc",
+		"dev": "tsc --watch"
+	},
+	"dependencies": {
+		"@tanstack/react-query": "^5.51.23",
+		"@instagram/typescript-config": "*"
+	}
+}
