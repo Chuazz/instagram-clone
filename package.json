@@ -2,8 +2,7 @@
 	"name": "instagram-new",
 	"private": true,
 	"scripts": {
-		"build": "turbo build",
-		"dev": "turbo dev",
+		"dev:admin": "turbo dev:admin",
 		"beauty": "npx @biomejs/biome check --write .",
 		"postinstall": "patch-package"
 	},
