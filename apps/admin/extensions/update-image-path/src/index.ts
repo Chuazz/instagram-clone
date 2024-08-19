@@ -114,10 +114,10 @@ export default defineHook(({ action, filter }) => {
 	filter('post.items.delete', async (data, _meta, context) => {
 		const payload = (data as number[])?.[0];
 
-		const postFilesQuery = context.database
+		const postFiles = await context.database
 			.table('post_files')
-			.where('post_id', payload);
-		const postFiles = await postFilesQuery.select();
+			.where('post_id', payload)
+			.select();
 
 		if (postFiles.length) {
 			const parentFolder = await context.database
@@ -154,8 +154,6 @@ export default defineHook(({ action, filter }) => {
 					.where('name', payload)
 					.where('parent', parentFolder.id)
 					.delete();
-
-				await postFilesQuery.delete();
 			});
 		}
 	});
