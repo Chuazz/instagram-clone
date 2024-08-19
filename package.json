@@ -3,6 +3,7 @@
 	"private": true,
 	"scripts": {
 		"dev:admin": "turbo dev:admin",
+		"dev:mobile": "turbo dev:mobile",
 		"beauty": "npx @biomejs/biome check --write .",
 		"postinstall": "patch-package"
 	},
