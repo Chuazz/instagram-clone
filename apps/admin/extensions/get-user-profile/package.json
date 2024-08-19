@@ -3,9 +3,15 @@
 	"description": "Please enter a description for your extension",
 	"icon": "extension",
 	"version": "1.0.0",
-	"keywords": ["directus", "directus-extension", "directus-extension-hook"],
+	"keywords": [
+		"directus",
+		"directus-extension",
+		"directus-extension-hook"
+	],
 	"type": "module",
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"directus:extension": {
 		"type": "hook",
 		"path": "dist/index.js",
@@ -14,7 +20,7 @@
 	},
 	"scripts": {
 		"build": "directus-extension build",
-		"dev": "directus-extension build -w --no-minify",
+		"dev:admin": "directus-extension build -w --no-minify",
 		"link": "directus-extension link"
 	},
 	"dependencies": {
