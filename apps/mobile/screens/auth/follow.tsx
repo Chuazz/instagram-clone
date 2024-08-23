@@ -10,7 +10,7 @@ import { UserNickname } from '@/components/ui/user/user-nickname';
 import { UserRadio } from '@/components/ui/user/user-radio';
 import { useGetUser } from '@/hooks/use-get-user';
 import { i18n } from '@instagram/configs';
-import type { ScreenProps } from '@instagram/types';
+import type { ScreenProps } from '@/types/routes';
 import { observer } from '@legendapp/state/react';
 import { ScrollView, Text, View } from 'dripsy';
 
@@ -101,9 +101,6 @@ const FollowScreen = observer(({ navigation }: ScreenProps<'FollowScreen'>) => {
 					content={i18n.t('common.next')}
 					rounded={false}
 					fullWidth={true}
-					onPress={() => {
-						navigation.navigate('HomeScreen');
-					}}
 				/>
 
 				<Text

@@ -1,4 +1,3 @@
-import { beauty } from '@/utils';
 import { View } from 'dripsy';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 
@@ -10,16 +9,12 @@ import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 const CropLine = () => {
 	const topLefGesture = Gesture.Pan()
 		.onStart(() => {})
-		.onUpdate((e) => {
-			beauty([e.translationX, e.translationY]);
-		})
+		.onUpdate((e) => {})
 		.runOnJS(true);
 
 	const topRightGesture = Gesture.Pan()
 		.onStart(() => {})
-		.onUpdate((e) => {
-			beauty([e.translationX, e.translationY]);
-		})
+		.onUpdate((e) => {})
 		.runOnJS(true);
 
 	return (

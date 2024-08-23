@@ -1,18 +1,18 @@
 import '@/configs/reactotron';
-import { theme } from '@instagram/configs';
 import { ModalProvider } from '@/providers/modal-provider';
 import { trans } from '@/utils';
+import { theme } from '@instagram/configs';
 import { observer } from '@legendapp/state/react';
 import { DripsyProvider, Text } from 'dripsy';
 import { StatusBar } from 'expo-status-bar';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import 'react-native-reanimated';
+import { ReactQueryProvider } from '@instagram/providers';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { AppBottomSheet } from './components/bottom-sheet/app-bottom-sheet/app-bottom-sheet';
-import { Navigation } from './components/navigation/app-navigation';
 import { SplashScreen } from './components/layout/splash-screen';
+import { Navigation } from './components/navigation/app-navigation';
 import { Toast } from './components/ui/toast';
-import { ReactQueryProvider } from '@instagram/providers';
 
 const App = observer(() => {
 	return (

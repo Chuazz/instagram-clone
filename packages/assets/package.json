@@ -13,8 +13,10 @@
 		"cp_icons": "shx mkdir -p ./dist/icons && shx cp -R ./src/icons/. ./dist/icons",
 		"cp_images": "shx mkdir -p ./dist/images && shx cp -R ./src/images/. ./dist/images",
 		"cp_fonts": "shx mkdir -p ./dist/fonts && shx cp -R ./src/fonts/. ./dist/fonts",
-		"dev": "yarn cp_icons && yarn cp_images && yarn cp_fonts && tsc --watch",
-		"build": "tsc && yarn cp_icons && yarn cp_images && yarn cp_fonts"
+		"cp_asset": "yarn cp_icons && yarn cp_images && yarn cp_fonts",
+		"dev": "yarn cp_asset && tsc --watch",
+		"dev:mobile": "yarn dev",
+		"build": "yarn cp_asset && tsc"
 	},
 	"dependencies": {
 		"@instagram/typescript-config": "*"

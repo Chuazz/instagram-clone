@@ -3,10 +3,12 @@ import { Input } from '@/components/form/input';
 import { Screen } from '@/components/layout/screen';
 import { Image } from '@/components/ui/image';
 import { useLogin } from '@/hooks/handle-auth';
+import { bottomSheet$ } from '@/stores/bottom-sheet';
+import type { ScreenProps } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { LANGUAGES, i18n } from '@instagram/configs';
 import { app$ } from '@instagram/stores';
-import type { LoginType, ScreenProps } from '@instagram/types';
+import type { LoginType } from '@instagram/types';
 import { observer } from '@legendapp/state/react';
 import { ScrollView, View } from 'dripsy';
 import { Controller, useForm } from 'react-hook-form';
@@ -32,7 +34,13 @@ const LogInScreen = observer(({ navigation }: ScreenProps<'LogInScreen'>) => {
 	});
 
 	const onSubmit = (data: LoginType) => {
-		loginMutate.mutate(data);
+		loginMutate.mutate(data, {
+			onSuccess() {
+				navigation.navigate('MainTab', {
+					screen: 'home',
+				});
+			},
+		});
 	};
 
 	return (
@@ -53,15 +61,9 @@ const LogInScreen = observer(({ navigation }: ScreenProps<'LogInScreen'>) => {
 					variant='transparent'
 					content={LANGUAGES[app$.locale.get()].label}
 					onPress={() => {
-						// sheet.open({
-						//     name: 'SelectLanguage',
-						//     listing: true,
-						//     options: {
-						//         handleComponent: null,
-						//         enableDynamicSizing: false,
-						//         snapPoints: ['30%', '70%'],
-						//     },
-						// });
+						bottomSheet$.openSheet({
+							name: 'SelectLanguage',
+						});
 					}}
 				/>
 
@@ -86,7 +88,6 @@ const LogInScreen = observer(({ navigation }: ScreenProps<'LogInScreen'>) => {
 							<Input
 								placeholder={i18n.t('auth.name_email_number')}
 								value={field.value}
-								// autoFocus={true}
 								errMessage={fieldState.error?.message}
 								onChangeText={field.onChange}
 							/>
@@ -101,7 +102,6 @@ const LogInScreen = observer(({ navigation }: ScreenProps<'LogInScreen'>) => {
 								placeholder={i18n.t('auth.password')}
 								value={field.value}
 								type='password'
-								// autoFocus={true}
 								errMessage={fieldState.error?.message}
 								onChangeText={field.onChange}
 							/>

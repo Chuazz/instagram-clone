@@ -1,20 +1,19 @@
-import { type LibraryType, useMediaLibrary } from '@/hooks/use-media-library';
-import type { BottomSheetStackParamsList } from '@/types';
-import { i18n } from '@instagram/configs';
-import { SCREEN_WIDTH } from '@instagram/configs';
+import { SCREEN_WIDTH, i18n } from '@instagram/configs';
 import type { OptionType } from '@instagram/types';
 import { Show, observer, useObservable } from '@legendapp/state/react';
 import { ScrollView, Text, View } from 'dripsy';
 import type { Asset } from 'expo-media-library';
 import { useMemo, useRef } from 'react';
 import { StyleSheet } from 'react-native';
-import { Button } from '../../form/button';
-import { LoadingOverlay } from '../../layout/loading-overlay';
-import { PagerView, type PagerViewRef } from '../../layout/pager-view';
-import { Image } from '../../ui/image';
 import { AlbumDetail } from './album-detail';
 import { AlbumList } from './album-list';
 import { MediaPickerType } from './media-picker-type';
+import type { BottomSheetStackParamsList } from '@/types';
+import { type LibraryType, useMediaLibrary } from '@/hooks/use-media-library';
+import { PagerView, type PagerViewRef } from '@/components/layout/pager-view';
+import { Image } from '@/components/ui/image';
+import { LoadingOverlay } from '@/components/layout/loading-overlay';
+import { Button } from '@/components/form/button';
 
 const MediaPicker = observer(
 	({

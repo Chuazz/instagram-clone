@@ -1,6 +1,5 @@
 import { bottomSheet$ } from '@/stores/bottom-sheet';
-import type { image } from '@instagram/configs';
-import type { RouteStackParamsList } from '@instagram/types';
+import type { image } from '@instagram/assets';
 import { observer, useEffectOnce } from '@legendapp/state/react';
 import type { NavigationProp } from '@react-navigation/native';
 import { type SxProp, View } from 'dripsy';
@@ -8,6 +7,7 @@ import { type ReactNode, useEffect } from 'react';
 import { BackHandler, StyleSheet } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Image } from '../ui/image';
+import type { RouteStackParamsList } from '@/types/routes';
 
 type ScreenProps = {
 	children: ReactNode;

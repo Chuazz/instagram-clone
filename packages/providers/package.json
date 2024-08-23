@@ -11,7 +11,8 @@
 	},
 	"scripts": {
 		"build": "tsc",
-		"dev": "tsc --watch"
+		"dev": "tsc --watch",
+		"dev:mobile": "yarn dev"
 	},
 	"dependencies": {
 		"@tanstack/react-query": "^5.51.23",

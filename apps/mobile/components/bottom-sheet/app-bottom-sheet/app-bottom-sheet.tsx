@@ -1,6 +1,6 @@
-import { bottomSheet$ } from '@/stores/bottom-sheet';
 import { observer } from '@legendapp/state/react';
 import { SheetItem } from './sheet-item';
+import { bottomSheet$ } from '@/stores/bottom-sheet';
 
 const AppBottomSheet = observer(() => {
 	return bottomSheet$.sheets.map((sheet, index) => (

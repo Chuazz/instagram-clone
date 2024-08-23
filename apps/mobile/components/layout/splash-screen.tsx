@@ -1,13 +1,14 @@
+import { font } from '@instagram/assets';
 import { app$ } from '@instagram/stores';
 import { when } from '@legendapp/state';
 import { enableReactTracking } from '@legendapp/state/config/enableReactTracking';
 import { ObservablePersistAsyncStorage } from '@legendapp/state/persist-plugins/async-storage';
+import { observer, useObservable } from '@legendapp/state/react';
 import { configureObservableSync, syncObservable } from '@legendapp/state/sync';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useFonts } from 'expo-font';
 import { hideAsync, preventAutoHideAsync } from 'expo-splash-screen';
 import { type ReactNode, useEffect } from 'react';
-import { font } from '@instagram/assets';
 
 preventAutoHideAsync();
 
@@ -22,7 +23,9 @@ enableReactTracking({
 	warnUnobserved: true,
 });
 
-const SplashScreen = ({ children }: { children: ReactNode }) => {
+const SplashScreen = observer(({ children }: { children: ReactNode }) => {
+	const loading$ = useObservable(false);
+
 	const [loaded] = useFonts({
 		PublicSans: font.PublicSans,
 		'PublicSans-Medium': font.PublicSansMedium,
@@ -43,18 +46,20 @@ const SplashScreen = ({ children }: { children: ReactNode }) => {
 					}).isLoaded,
 				);
 
-				hideAsync();
+				await hideAsync();
+
+				loading$.set(true && loaded);
 			}
 		};
 
 		handleLoad();
-	}, [loaded]);
+	}, [loaded, loading$.set]);
 
-	if (!loaded) {
+	if (!loading$.get()) {
 		return null;
 	}
 
 	return children;
-};
+});
 
 export { SplashScreen };

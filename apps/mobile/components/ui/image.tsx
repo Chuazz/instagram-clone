@@ -1,8 +1,10 @@
 import { image } from '@instagram/assets';
-import { observer, useObservable } from '@legendapp/state/react';
 import { type SxProp, useSx } from 'dripsy';
-import { Image as EPImage, type ImageProps as EPImageProps } from 'expo-image';
-import { useEffect } from 'react';
+import {
+	Image as EPImage,
+	type ImageProps as EPImageProps,
+} from 'react-native';
+import { useEffect, useRef, useState } from 'react';
 
 type ImageProps = Omit<
 	EPImageProps,
@@ -13,10 +15,10 @@ type ImageProps = Omit<
 	sx?: SxProp;
 };
 
-const Image = observer(({ source, placeholder, sx, ...props }: ImageProps) => {
+const Image = ({ source, placeholder, sx, ...props }: ImageProps) => {
 	const sxStyle = useSx();
 
-	const source$ = useObservable(() => {
+	const [_source, setSource] = useState(() => {
 		const result = image?.[source as keyof typeof image];
 
 		if (result) {
@@ -33,36 +35,35 @@ const Image = observer(({ source, placeholder, sx, ...props }: ImageProps) => {
 	});
 
 	const onError = () => {
-		source$.set(image[placeholder as keyof typeof image] || image.PictureIcon);
+		setSource(image[placeholder as keyof typeof image] || image.PictureIcon);
 	};
 
 	useEffect(() => {
 		if (image[source as keyof typeof image]) {
-			source$.set(image[source as keyof typeof image]);
+			setSource(image[source as keyof typeof image]);
 
 			return;
 		}
 
 		if (source) {
-			source$.set({
+			setSource({
 				uri: source,
 			});
 
 			return;
 		}
 
-		source$.set(image[placeholder as keyof typeof image] || image.PictureIcon);
-	}, [source, placeholder, source$.set]);
+		setSource(image[placeholder as keyof typeof image] || image.PictureIcon);
+	}, [source, placeholder]);
 
 	return (
 		<EPImage
-			transition={1000}
 			{...props}
 			style={sxStyle(sx || {})}
-			source={source$.get()}
+			source={_source}
 			onError={onError}
 		/>
 	);
-});
+};
 
 export { Image };

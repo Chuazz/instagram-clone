@@ -1,10 +1,16 @@
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-type HomeTabStackParamList = {
+type TabStackParamsList = {
+	MainTab: {
+		screen: 'home' | 'search';
+	};
+};
+
+type HomeTabStackParamsList = {
 	HomeScreen: undefined;
 };
 
-type SearchTabStackParamList = {
+type SearchTabStackParamsList = {
 	SearchScreen: undefined;
 };
 
@@ -22,11 +28,7 @@ type AuthStackParamsList = {
 	FollowScreen: undefined;
 };
 
-type AppStackParamsList = {
-	SocialTab: undefined;
-};
-
-type TabStackParamList = HomeTabStackParamList & SearchTabStackParamList;
+type AppStackParamsList = TabStackParamsList;
 
 type RouteStackParamsList = AuthStackParamsList & AppStackParamsList;
 
@@ -37,9 +39,8 @@ type ScreenProps<T extends keyof RouteStackParamsList> = NativeStackScreenProps<
 
 export type {
 	AuthStackParamsList,
-	ScreenProps,
 	RouteStackParamsList,
 	AppStackParamsList,
-	HomeTabStackParamList,
-	TabStackParamList,
+	ScreenProps,
 };
+export type { HomeTabStackParamsList, SearchTabStackParamsList };

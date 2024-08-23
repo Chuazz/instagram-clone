@@ -1,11 +1,12 @@
-import { type SheetItemType, bottomSheet$ } from '@/stores/bottom-sheet';
+import { bottomSheet$, type SheetItemType } from '@/stores/bottom-sheet';
 import { SCREEN_HEIGHT } from '@instagram/configs';
-import { useObserve } from '@legendapp/state/react';
+import { useObserve, useObserveEffect } from '@legendapp/state/react';
 import { View, useSx } from 'dripsy';
 import { useMemo } from 'react';
 import { Pressable, StyleSheet } from 'react-native';
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
 import Animated, {
+	ReduceMotion,
 	useSharedValue,
 	withDelay,
 	withTiming,
@@ -67,26 +68,41 @@ const SheetItem = ({
 		[MAX_HEIGHT, contentHeight.value, index, maxHeight, prevMaxHeight],
 	);
 
-	useObserve(bottomSheet$.sheets[index]?.visible, (target) => {
+	useObserveEffect(bottomSheet$.sheets[index]?.visible, (target) => {
 		if (target.value) {
-			opacity.value = withTiming(1);
+			opacity.value = withTiming(1, {
+				duration: DURATION,
+				reduceMotion: ReduceMotion.Never,
+			});
 
 			maxHeight.value = withTiming(MAX_HEIGHT, {
 				duration: DURATION,
+				reduceMotion: ReduceMotion.Never,
 			});
 
-			zIndex.value = withTiming(index + 1);
+			zIndex.value = withTiming(index + 1, {
+				duration: DURATION,
+				reduceMotion: ReduceMotion.Never,
+			});
 
 			return;
 		}
 
 		opacity.value = withTiming(0, {
-			duration: DURATION,
+			reduceMotion: ReduceMotion.Never,
 		});
 
-		maxHeight.value = withTiming(0);
+		maxHeight.value = withTiming(0, {
+			reduceMotion: ReduceMotion.Never,
+		});
 
-		zIndex.value = withDelay(DURATION, withTiming(-1));
+		zIndex.value = withDelay(
+			DURATION,
+			withTiming(-1, {
+				duration: DURATION,
+				reduceMotion: ReduceMotion.Never,
+			}),
+		);
 
 		const id = setTimeout(() => {
 			bottomSheet$.sheets.splice(index, 1);

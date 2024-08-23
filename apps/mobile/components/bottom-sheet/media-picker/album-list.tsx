@@ -1,7 +1,7 @@
+import { Button } from '@/components/form/button';
 import { i18n } from '@instagram/configs';
 import { Text, View } from 'dripsy';
 import type { ReactNode } from 'react';
-import { Button } from '../../form/button';
 
 const AlbumList = ({
 	onCancel,

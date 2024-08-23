@@ -2,8 +2,8 @@ import { Button } from '@/components/form/button';
 import { Screen } from '@/components/layout/screen';
 import { ScreenFooter } from '@/components/layout/screen-footer';
 import { ScreenHeader } from '@/components/layout/screen-header';
+import type { ScreenProps } from '@/types/routes';
 import { i18n } from '@instagram/configs';
-import type { ScreenProps } from '@instagram/types';
 import { Text } from 'dripsy';
 import { ScrollView } from 'dripsy';
 
@@ -163,6 +163,7 @@ const PolicyScreen = ({ navigation }: ScreenProps<'PolicyScreen'>) => {
 					size='sm'
 					variant='transparent'
 					content={i18n.t('auth.already_have_account')}
+					fullWidth={true}
 					onPress={() => {
 						navigation.goBack();
 					}}

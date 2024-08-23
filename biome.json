@@ -31,7 +31,8 @@
 	},
 	"formatter": {
 		"indentStyle": "tab",
-		"lineWidth": 80
+		"lineWidth": 80,
+		"attributePosition": "multiline"
 	},
 	"javascript": {
 		"formatter": {
@@ -51,7 +52,17 @@
 		}
 	},
 	"files": {
-		"include": ["**/*.ts", "**/*.tsx", "**/*.json"],
-		"ignore": ["**/*.min.js", "node_module/s", "android", ".expo"]
+		"include": [
+			"**/*.ts",
+			"**/*.tsx",
+			"**/*.json"
+		],
+		"ignore": [
+			"**/*.min.js",
+			"node_module",
+			"android",
+			".expo",
+			"dist"
+		]
 	}
 }
