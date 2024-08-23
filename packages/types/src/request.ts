@@ -4,6 +4,7 @@ type ErrorResponse = {
 		extensions: {
 			code: string;
 			reason?: string;
+			field?: string;
 		};
 	}[];
 };

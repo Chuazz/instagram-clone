@@ -10,11 +10,15 @@ import type { ScreenProps } from '@/types/routes';
 import { ScrollView, Text } from 'dripsy';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { useCreateUser } from '@/hooks/handle-auth';
+import type { DirectusUser } from '@directus/sdk';
 
 const PasswordScreen = ({ navigation }: ScreenProps<'PasswordScreen'>) => {
+	const createUserMutate = useCreateUser();
+
 	const { control, handleSubmit } = useForm({
 		defaultValues: {
-			password: __DEV__ ? '123456' : '',
+			password: __DEV__ ? '11111111' : '',
 		},
 		resolver: zodResolver(
 			z.object({
@@ -29,9 +33,19 @@ const PasswordScreen = ({ navigation }: ScreenProps<'PasswordScreen'>) => {
 	});
 
 	const onSubmit = (data: { password: string }) => {
-		register$.password.set(data.password);
+		createUserMutate.mutate(
+			{
+				email: register$.name.get(),
+				password: data.password,
+			} as DirectusUser,
+			{
+				onSuccess() {
+					register$.password.set(data.password);
 
-		navigation.navigate('SaveLoginScreen');
+					navigation.navigate('SaveLoginScreen');
+				},
+			},
+		);
 	};
 
 	return (
@@ -83,6 +97,7 @@ const PasswordScreen = ({ navigation }: ScreenProps<'PasswordScreen'>) => {
 				<Button
 					content={i18n.t('common.next')}
 					fullWidth={true}
+					loading={createUserMutate.isPending}
 					onPress={handleSubmit(onSubmit)}
 				/>
 			</ScrollView>
