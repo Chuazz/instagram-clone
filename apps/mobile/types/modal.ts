@@ -1,4 +1,4 @@
-import type { MediaType } from './common';
+import type { MediaType } from '@instagram/types';
 
 type ModalStackParamsList = {
 	LogOut: undefined;

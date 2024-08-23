@@ -1,5 +1,5 @@
-import { authRoutes } from '@/configs/routes';
-import type { AuthStackParamsList } from '@instagram/types';
+import { authRoutes } from '@/configs/route';
+import type { AuthStackParamsList } from '@/types/routes';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator<AuthStackParamsList>();

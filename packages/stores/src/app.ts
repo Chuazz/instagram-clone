@@ -10,6 +10,7 @@ type AppType = {
 	locale: LanguageType;
 	auth: AuthenticationData | undefined;
 	isLogin: boolean;
+	logOut: () => void;
 };
 
 const userLocale = __DEV__
@@ -19,21 +20,26 @@ const userLocale = __DEV__
 const app$ = observable<AppType>({
 	locale: userLocale ? userLocale : FALLBACK_LANGUAGE,
 	auth: undefined,
+
 	isLogin: () => {
+		const remainDay = differenceInDays(
+			new Date(currentTime.get().getTime() + (app$.auth.expires.get() || 0)),
+			currentTime.get(),
+		);
+
 		if (!app$.auth.expires.get()) {
 			return false;
 		}
 
-		if (
-			differenceInDays(
-				new Date(currentTime.get().getTime() + (app$.auth.expires.get() || 0)),
-				currentTime.get(),
-			) > 0
-		) {
+		if (remainDay > 0) {
 			return true;
 		}
 
 		return false;
+	},
+
+	logOut() {
+		app$.auth.delete();
 	},
 });
 

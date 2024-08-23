@@ -1,4 +1,4 @@
-import { SocialTabNavigation } from '@/components/navigation/social-tab-navigation';
+import { MainTabNavigation } from '@/components/navigation/main-tab-navigation';
 import { AccountScreen } from '@/screens/auth/account';
 import { AvatarScreen } from '@/screens/auth/avatar';
 import { BirthDayScreen } from '@/screens/auth/birthday';
@@ -10,13 +10,8 @@ import { PolicyScreen } from '@/screens/auth/policy';
 import { SaveLoginScreen } from '@/screens/auth/save-login';
 import { UserNameScreen } from '@/screens/auth/user-name';
 import { WelcomeScreen } from '@/screens/auth/welcome';
-import { HomeScreen } from '@/screens/home';
-import type {
-	AppStackParamsList,
-	AuthStackParamsList,
-	HomeTabStackParamList,
-	KeyValueType,
-} from '@instagram/types';
+import type { AppStackParamsList, AuthStackParamsList } from '@/types/routes';
+import type { KeyValueType } from '@instagram/types';
 import type { NativeStackNavigationOptions } from '@react-navigation/native-stack';
 import type { FC } from 'react';
 
@@ -63,19 +58,6 @@ const authRoutes: KeyValueType<
 	},
 };
 
-const homeTabRoutes: KeyValueType<
-	keyof HomeTabStackParamList,
-	{
-		options?: NativeStackNavigationOptions;
-		// biome-ignore lint/suspicious/noExplicitAny: <explanation>
-		component: FC<any>;
-	}
-> = {
-	HomeScreen: {
-		component: HomeScreen,
-	},
-};
-
 const appRoutes: KeyValueType<
 	keyof AppStackParamsList,
 	{
@@ -84,8 +66,8 @@ const appRoutes: KeyValueType<
 		component: FC<any>;
 	}
 > = {
-	SocialTab: {
-		component: SocialTabNavigation,
+	MainTab: {
+		component: MainTabNavigation,
 	},
 };
 
@@ -94,4 +76,4 @@ const routes = {
 	...authRoutes,
 };
 
-export { appRoutes, authRoutes, homeTabRoutes, routes };
+export { appRoutes, authRoutes, routes };

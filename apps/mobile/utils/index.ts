@@ -11,6 +11,4 @@ const trans = (key: string, param?: KeyValueType<string, string>) => {
 	return data;
 };
 
-const beauty = (_data: unknown) => {};
-
-export { trans, beauty };
+export { trans };

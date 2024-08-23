@@ -1,8 +1,9 @@
+import { OpenSheetProps } from '@/stores/bottom-sheet';
+import type { OptionType } from '@instagram/types';
 import type { Asset } from 'expo-media-library';
-import type { OptionType } from './common';
 
 type BottomSheetStackParamsList = {
-	SelectLanguage: BaseBottomSheetProps<Record>;
+	SelectLanguage: BaseBottomSheetProps<Record<string, string>>;
 	MediaPicker: BaseBottomSheetProps<{
 		multiple?: boolean;
 		moreOptions?: OptionType[];

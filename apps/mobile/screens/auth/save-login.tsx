@@ -4,7 +4,7 @@ import { ScreenFooter } from '@/components/layout/screen-footer';
 import { ScreenHeader } from '@/components/layout/screen-header';
 import { i18n } from '@instagram/configs';
 import { register$ } from '@instagram/stores';
-import type { ScreenProps } from '@instagram/types';
+import type { ScreenProps } from '@/types/routes';
 import { ScrollView, Text } from 'dripsy';
 
 const SaveLoginScreen = ({ navigation }: ScreenProps<'SaveLoginScreen'>) => {
@@ -66,6 +66,7 @@ const SaveLoginScreen = ({ navigation }: ScreenProps<'SaveLoginScreen'>) => {
 					size='sm'
 					variant='transparent'
 					content={i18n.t('auth.already_have_account')}
+					fullWidth={true}
 					onPress={() => {
 						navigation.goBack();
 					}}

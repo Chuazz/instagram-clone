@@ -1,5 +1,4 @@
 import { AntDesign } from '@expo/vector-icons';
-import type { image } from '@instagram/configs';
 import { INPUT_HEIGHT } from '@instagram/configs';
 import { Show, observer, useObservable } from '@legendapp/state/react';
 import { Text, TextInput, View, useDripsyTheme } from 'dripsy';
@@ -11,6 +10,7 @@ import type {
 	TextInputFocusEventData,
 } from 'react-native';
 import { Button } from '../form/button';
+import type { image } from '@instagram/assets';
 
 type InputProps = DripsyTextInputProps & {
 	errMessage?: string;

@@ -1,7 +1,6 @@
 import { Button } from '@/components/form/button';
 import { Image } from '@/components/ui/image';
-import { i18n } from '@instagram/configs';
-import { SCREEN_HEIGHT } from '@instagram/configs';
+import { SCREEN_HEIGHT, i18n } from '@instagram/configs';
 import { ScrollView, Text, View } from 'dripsy';
 import type { ReactNode } from 'react';
 

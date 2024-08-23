@@ -6,7 +6,7 @@ import { Image } from '@/components/ui/image';
 import { bottomSheet$ } from '@/stores/bottom-sheet';
 import { i18n } from '@instagram/configs';
 import { register$ } from '@instagram/stores';
-import type { ScreenProps } from '@instagram/types';
+import type { ScreenProps } from '@/types/routes';
 import { Memo, Show, observer } from '@legendapp/state/react';
 import { ScrollView, Text, View, useDripsyTheme, useSx } from 'dripsy';
 import { useMemo } from 'react';

@@ -1,6 +1,6 @@
-import { appRoutes } from '@/configs/routes';
+import { appRoutes } from '@/configs/route';
+import type { RouteStackParamsList } from '@/types/routes';
 import { app$ } from '@instagram/stores';
-import type { RouteStackParamsList } from '@instagram/types';
 import { Show, observer } from '@legendapp/state/react';
 import {
 	NavigationContainer,
@@ -19,12 +19,12 @@ const Navigation = observer(({ children }: { children: ReactNode }) => {
 		<NavigationContainer ref={navigationRef}>
 			{children}
 
-			<Show if={app$.isLogin} else={AuthNavigation}>
+			<Show if={() => app$.isLogin.get()} else={AuthNavigation}>
 				<Stack.Navigator
 					screenOptions={{
 						headerShown: false,
 					}}
-					initialRouteName='SocialTab'
+					initialRouteName='MainTab'
 				>
 					{Object.keys(appRoutes).map((key) => (
 						<Stack.Screen

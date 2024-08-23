@@ -1,14 +1,35 @@
-import { HomeScreen } from '@/screens/home';
 import { SearchScreen } from '@/screens/search';
-import type { image } from '@instagram/configs';
-import type { TabStackParamList } from '@instagram/types';
+import type { HomeTabStackParamsList } from '@/types/routes';
+import type { image } from '@instagram/assets';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useDripsyTheme } from 'dripsy';
 import { Image } from '../ui/image';
+import { homeTabRoutes } from '@/configs/tab';
 
-const Tab = createBottomTabNavigator<TabStackParamList>();
+const Tab = createBottomTabNavigator();
 
-const SocialTabNavigation = () => {
+const HomeStack = createNativeStackNavigator<HomeTabStackParamsList>();
+
+const HomeStackScreen = () => {
+	return (
+		<HomeStack.Navigator
+			screenOptions={{
+				headerShown: false,
+			}}
+		>
+			{Object.keys(homeTabRoutes).map((key) => (
+				<HomeStack.Screen
+					key={key}
+					name={key as keyof typeof homeTabRoutes}
+					component={homeTabRoutes[key as keyof typeof homeTabRoutes].component}
+				/>
+			))}
+		</HomeStack.Navigator>
+	);
+};
+
+const MainTabNavigation = () => {
 	const { theme } = useDripsyTheme();
 
 	return (
@@ -40,11 +61,11 @@ const SocialTabNavigation = () => {
 				},
 			})}
 		>
-			<Tab.Screen name='HomeScreen' component={HomeScreen} />
+			<Tab.Screen name='HomeStack' component={HomeStackScreen} />
 
-			<Tab.Screen name='SearchScreen' component={SearchScreen} />
+			<Tab.Screen name='SearchStack' component={SearchScreen} />
 		</Tab.Navigator>
 	);
 };
 
-export { SocialTabNavigation };
+export { MainTabNavigation };

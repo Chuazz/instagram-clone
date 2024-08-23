@@ -3,7 +3,7 @@ import { Image } from '@/components/ui/image';
 import { i18n } from '@instagram/configs';
 import { SCREEN_WIDTH } from '@instagram/configs';
 import { register$ } from '@instagram/stores';
-import type { ScreenProps } from '@instagram/types';
+import type { ScreenProps } from '@/types/routes';
 import { observer, useEffectOnce } from '@legendapp/state/react';
 import { ScrollView, Text } from 'dripsy';
 

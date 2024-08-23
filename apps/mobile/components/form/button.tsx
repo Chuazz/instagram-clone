@@ -1,4 +1,3 @@
-import type { image } from '@instagram/configs';
 import { Show } from '@legendapp/state/react';
 import { useIsMutating } from '@tanstack/react-query';
 import {
@@ -11,6 +10,7 @@ import {
 } from 'dripsy';
 import { type ReactNode, useMemo } from 'react';
 import { StyleSheet, TouchableOpacity } from 'react-native';
+import type { image } from '@instagram/assets';
 import { Image } from '../ui/image';
 
 type ButtonProps = {

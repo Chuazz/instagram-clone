@@ -6,7 +6,7 @@ import { ScreenHeader } from '@/components/layout/screen-header';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { i18n } from '@instagram/configs';
 import { register$ } from '@instagram/stores';
-import type { ScreenProps } from '@instagram/types';
+import type { ScreenProps } from '@/types/routes';
 import { ScrollView, Text } from 'dripsy';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -91,6 +91,7 @@ const UserNameScreen = ({ navigation }: ScreenProps<'UserNameScreen'>) => {
 					size='sm'
 					variant='transparent'
 					content={i18n.t('auth.already_have_account')}
+					fullWidth={true}
 					onPress={() => {
 						navigation.goBack();
 					}}
