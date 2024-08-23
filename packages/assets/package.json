@@ -15,8 +15,9 @@
 		"cp_fonts": "shx mkdir -p ./dist/fonts && shx cp -R ./src/fonts/. ./dist/fonts",
 		"cp_asset": "yarn cp_icons && yarn cp_images && yarn cp_fonts",
 		"dev": "yarn cp_asset && tsc --watch",
+		"build": "yarn cp_asset && tsc",
 		"dev:mobile": "yarn dev",
-		"build": "yarn cp_asset && tsc"
+		"dev:package": "yarn dev"
 	},
 	"dependencies": {
 		"@instagram/typescript-config": "*"

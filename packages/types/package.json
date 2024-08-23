@@ -10,7 +10,8 @@
 	"scripts": {
 		"build": "tsc",
 		"dev": "tsc --watch",
-		"dev:mobile": "yarn dev"
+		"dev:mobile": "yarn dev",
+		"dev:package": "yarn dev"
 	},
 	"dependencies": {
 		"@instagram/typescript-config": "*"

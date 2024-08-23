@@ -4,6 +4,7 @@
 	"scripts": {
 		"dev:admin": "turbo dev:admin",
 		"dev:mobile": "turbo dev:mobile",
+		"dev:package": "turbo dev:package",
 		"beauty": "npx @biomejs/biome check --write .",
 		"postinstall": "patch-package"
 	},
@@ -16,7 +17,11 @@
 		"node": ">=18"
 	},
 	"packageManager": "yarn@1.22.22",
-	"workspaces": ["apps/**", "packages/*"],
+	"workspaces": [
+		"apps/mobile",
+		"apps/admin/extensions/*",
+		"packages/*"
+	],
 	"dependencies": {
 		"postinstall-postinstall": "^2.1.0"
 	}

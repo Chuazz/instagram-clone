@@ -24,6 +24,11 @@ const queryKey: KeyValueType<
 		list: (filter) => ['list', 'users', filter],
 		detail: (filter) => ['detail', 'user', filter],
 	},
+	role: {
+		lists: () => ['list', 'roles'],
+		list: (filter) => ['list', 'roles', filter],
+		detail: (filter) => ['detail', 'role', filter],
+	},
 };
 
 export { queryKey };

@@ -3,9 +3,15 @@
 	"description": "Please enter a description for your extension",
 	"icon": "extension",
 	"version": "1.0.0",
-	"keywords": ["directus", "directus-extension", "directus-extension-hook"],
+	"keywords": [
+		"directus",
+		"directus-extension",
+		"directus-extension-hook"
+	],
 	"type": "module",
-	"files": ["dist"],
+	"files": [
+		"dist"
+	],
 	"directus:extension": {
 		"type": "hook",
 		"path": "dist/index.js",
@@ -17,12 +23,13 @@
 		"dev:admin": "directus-extension build -w --no-minify",
 		"link": "directus-extension link"
 	},
+	"dependencies": {
+		"@instagram/configs": "*",
+		"@instagram/typescript-config": "*"
+	},
 	"devDependencies": {
 		"@directus/extensions-sdk": "11.0.9",
 		"@types/node": "^20.14.12",
 		"typescript": "^5.5.4"
-	},
-	"dependencies": {
-		"@instagram/typescript-config": "*"
 	}
 }
