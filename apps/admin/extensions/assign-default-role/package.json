@@ -1,5 +1,5 @@
 {
-	"name": "get-user-profile",
+	"name": "assign-default-role",
 	"description": "Please enter a description for your extension",
 	"icon": "extension",
 	"version": "1.0.0",
@@ -18,12 +18,13 @@
 		"link": "directus-extension link"
 	},
 	"dependencies": {
-		"@instagram/typescript-config": "*"
+		"@instagram/types": "*",
+		"@instagram/configs": "*"
 	},
 	"devDependencies": {
-		"@instagram/types": "*",
-		"@directus/extensions-sdk": "11.0.9",
-		"@types/node": "^22.1.0",
-		"typescript": "^5.5.4"
+		"@directus/extensions-sdk": "12.0.1",
+		"@types/node": "^22.5.0",
+		"typescript": "^5.5.4",
+		"@instagram/typescript-config": "*"
 	}
 }
