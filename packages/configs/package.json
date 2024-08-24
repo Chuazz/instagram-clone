@@ -10,12 +10,14 @@
 		}
 	},
 	"scripts": {
-		"build": "tsc",
 		"dev": "tsc --watch",
 		"dev:mobile": "yarn dev",
-		"dev:package": "yarn dev"
+		"dev:package": "yarn dev",
+		"build": "tsc",
+		"build:package": "yarn build"
 	},
 	"dependencies": {
-		"@instagram/typescript-config": "*"
+		"@instagram/typescript-config": "*",
+		"i18n-js": "^4.4.3"
 	}
 }

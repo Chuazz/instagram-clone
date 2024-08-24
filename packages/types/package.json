@@ -8,10 +8,11 @@
 		"./data": "./src/data/index.ts"
 	},
 	"scripts": {
-		"build": "tsc",
 		"dev": "tsc --watch",
 		"dev:mobile": "yarn dev",
-		"dev:package": "yarn dev"
+		"dev:package": "yarn dev",
+		"build": "tsc",
+		"build:package": "yarn build"
 	},
 	"dependencies": {
 		"@instagram/typescript-config": "*"

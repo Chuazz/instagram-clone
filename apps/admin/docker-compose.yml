@@ -1,6 +1,7 @@
 services:
     directus:
         image: directus/directus:10.13.0
+        container_name: instagram-admin
         env_file: '.env.local'
         ports:
             - 8055:8055
