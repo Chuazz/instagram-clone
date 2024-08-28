@@ -1,4 +1,4 @@
-import { getAssetsUrl } from '@/utils/db';
+import { getAssetsUrl } from '@instagram/utils';
 import { Show, observer } from '@legendapp/state/react';
 import { View } from 'dripsy';
 import { Image } from '../image';

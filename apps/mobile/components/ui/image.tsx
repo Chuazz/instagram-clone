@@ -1,10 +1,10 @@
 import { image } from '@instagram/assets';
 import { type SxProp, useSx } from 'dripsy';
+import { useEffect, useState } from 'react';
 import {
 	Image as EPImage,
 	type ImageProps as EPImageProps,
 } from 'react-native';
-import { useEffect, useRef, useState } from 'react';
 
 type ImageProps = Omit<
 	EPImageProps,

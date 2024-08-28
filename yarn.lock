@@ -982,6 +982,11 @@
   dependencies:
     knex "3.1.0"
 
+"@directus/sdk@*":
+  version "17.0.0"
+  resolved "https://registry.yarnpkg.com/@directus/sdk/-/sdk-17.0.0.tgz#1e99f8afab95945d04025a8f374d206b8e0167d7"
+  integrity sha512-ADKoFrLjWPVVsYNK0EffVFstl/ZHVaQbiUp4NCueKfvFaOSLQ16xSVNj5O//rP5+rU8t1HkjwC6JDh02rao7ZQ==
+
 "@directus/sdk@^16.1.1":
   version "16.1.2"
   resolved "https://registry.yarnpkg.com/@directus/sdk/-/sdk-16.1.2.tgz#cd8c45881497a4ae3b6659c6b6bd68dc13e98258"
@@ -4155,7 +4160,7 @@ dotenv-expand@~11.0.6:
   dependencies:
     dotenv "^16.4.4"
 
-dotenv@^16.4.4, dotenv@~16.4.5:
+dotenv@^16.4.4, dotenv@^16.4.5, dotenv@~16.4.5:
   version "16.4.5"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.4.5.tgz#cdd3b3b604cb327e286b4762e13502f717cb099f"
   integrity sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==

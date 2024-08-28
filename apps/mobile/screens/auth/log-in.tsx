@@ -2,7 +2,7 @@ import { Button } from '@/components/form/button';
 import { Input } from '@/components/form/input';
 import { Screen } from '@/components/layout/screen';
 import { Image } from '@/components/ui/image';
-import { useLogin } from '@/hooks/handle-auth';
+import { useLogin } from '@instagram/hooks';
 import { bottomSheet$ } from '@/stores/bottom-sheet';
 import type { ScreenProps } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -44,7 +44,10 @@ const LogInScreen = observer(({ navigation }: ScreenProps<'LogInScreen'>) => {
 	};
 
 	return (
-		<Screen backgroundImage='BackgroundGradientImage' navigation={navigation}>
+		<Screen
+			backgroundImage='BackgroundGradientImage'
+			navigation={navigation}
+		>
 			<ScrollView
 				showsVerticalScrollIndicator={false}
 				contentContainerSx={{
@@ -68,7 +71,7 @@ const LogInScreen = observer(({ navigation }: ScreenProps<'LogInScreen'>) => {
 				/>
 
 				<Image
-					source='AppIcon'
+					source='AppLogoIcon'
 					sx={{
 						width: 60,
 						height: 60,

@@ -12,8 +12,13 @@ import { ScrollView, Text } from 'dripsy';
 
 const BirthDayScreen = observer(
 	({ navigation }: ScreenProps<'BirthDayScreen'>) => {
+		const onSubmit = () => {};
+
 		return (
-			<Screen backgroundImage='BackgroundGradientImage' navigation={navigation}>
+			<Screen
+				backgroundImage='BackgroundGradientImage'
+				navigation={navigation}
+			>
 				<ScreenHeader />
 
 				<ScrollView
@@ -74,7 +79,7 @@ const BirthDayScreen = observer(
 							mt: 'sm',
 						}}
 						fullWidth={true}
-						onPress={() => navigation.navigate('NameScreen')}
+						onPress={onSubmit}
 					/>
 				</ScrollView>
 

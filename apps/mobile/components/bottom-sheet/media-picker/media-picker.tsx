@@ -1,4 +1,4 @@
-import { SCREEN_WIDTH, i18n } from '@instagram/configs';
+import { i18n } from '@instagram/configs';
 import type { OptionType } from '@instagram/types';
 import { Show, observer, useObservable } from '@legendapp/state/react';
 import { ScrollView, Text, View } from 'dripsy';
@@ -14,6 +14,7 @@ import { PagerView, type PagerViewRef } from '@/components/layout/pager-view';
 import { Image } from '@/components/ui/image';
 import { LoadingOverlay } from '@/components/layout/loading-overlay';
 import { Button } from '@/components/form/button';
+import { SCREEN_WIDTH } from '@/configs/theme';
 
 const MediaPicker = observer(
 	({

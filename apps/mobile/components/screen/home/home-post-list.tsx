@@ -3,7 +3,7 @@ import { PostFooter } from '@/components/ui/post/post-footer';
 import { PostHeader } from '@/components/ui/post/post-header';
 import { PostMedia } from '@/components/ui/post/post-media';
 import { PostMediaCount } from '@/components/ui/post/post-media-count';
-import { useGet } from '@/hooks/use-get';
+import { useGet } from '@instagram/hooks';
 import { queryKey } from '@instagram/configs';
 import { queryClient } from '@instagram/providers';
 import type { ReactNode } from 'react';

@@ -1,4 +1,4 @@
-import { useGet } from '@/hooks/use-get';
+import { useGet } from '@instagram/hooks';
 import { GAP_MD } from '@instagram/configs';
 import { FlatList } from 'react-native';
 import { HomeStoryItem } from './home-story-item';

@@ -12,7 +12,16 @@
 		},
 		"dev:mobile": {
 			"cache": false,
-			"persistent": true
+			"persistent": true,
+			"inputs": [
+				".env"
+			],
+			"env": [
+				"API_URL"
+			],
+			"passThroughEnv": [
+				"API_URL"
+			]
 		},
 		"dev:package": {
 			"cache": false,

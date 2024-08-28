@@ -10,8 +10,8 @@ import type { ScreenProps } from '@/types/routes';
 import { ScrollView, Text } from 'dripsy';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { useCreateUser } from '@/hooks/handle-auth';
 import type { DirectusUser } from '@directus/sdk';
+import { useCreateUser } from '@instagram/hooks';
 
 const PasswordScreen = ({ navigation }: ScreenProps<'PasswordScreen'>) => {
 	const createUserMutate = useCreateUser();
@@ -35,7 +35,7 @@ const PasswordScreen = ({ navigation }: ScreenProps<'PasswordScreen'>) => {
 	const onSubmit = (data: { password: string }) => {
 		createUserMutate.mutate(
 			{
-				email: register$.name.get(),
+				email: register$.account.get(),
 				password: data.password,
 			} as DirectusUser,
 			{
@@ -49,7 +49,10 @@ const PasswordScreen = ({ navigation }: ScreenProps<'PasswordScreen'>) => {
 	};
 
 	return (
-		<Screen backgroundImage='BackgroundGradientImage' navigation={navigation}>
+		<Screen
+			backgroundImage='BackgroundGradientImage'
+			navigation={navigation}
+		>
 			<ScreenHeader />
 
 			<ScrollView

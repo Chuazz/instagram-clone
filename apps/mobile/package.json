@@ -4,7 +4,7 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "expo start",
-		"dev:mobile": "expo run:android",
+		"dev:mobile": "expo start --android",
 		"ios": "expo run:ios",
 		"android": "expo run:android"
 	},
@@ -14,6 +14,8 @@
 		"@instagram/configs": "*",
 		"@instagram/providers": "*",
 		"@instagram/assets": "*",
+		"@instagram/hooks": "*",
+		"@instagram/utils": "*",
 		"@directus/sdk": "^16.1.1",
 		"@eslint/js": "^9.9.0",
 		"@hookform/resolvers": "^3.9.0",

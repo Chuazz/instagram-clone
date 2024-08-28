@@ -3,11 +3,10 @@ import { SUPPORT_LANGUAGES, i18n } from '@instagram/configs';
 import { app$ } from '@instagram/stores';
 import { observer } from '@legendapp/state/react';
 import { ScrollView, Text, View } from 'dripsy';
-import { reloadAsync } from 'expo-updates';
 import { StyleSheet } from 'react-native';
-import { Image } from '../ui/image';
 import { Button } from '../form/button';
 import { CheckBox } from '../form/checkbox';
+import { Image } from '../ui/image';
 
 const SelectLanguage = observer(
 	({ closeSheet }: BottomSheetStackParamsList['SelectLanguage']) => {

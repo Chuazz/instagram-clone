@@ -13,9 +13,8 @@ type AppType = {
 	logOut: () => void;
 };
 
-const userLocale = __DEV__
-	? LANGUAGES.en.code
-	: (getLocales()[0]?.languageCode as LanguageType);
+const userLocale =
+	1 === 1 ? LANGUAGES.en.code : (getLocales()[0]?.languageCode as LanguageType);
 
 const app$ = observable<AppType>({
 	locale: userLocale ? userLocale : FALLBACK_LANGUAGE,
