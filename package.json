@@ -11,7 +11,7 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "1.8.3",
-		"turbo": "^2.0.14",
+		"turbo": "^2.1.1-canary.0",
 		"typescript": "^5.4.5"
 	},
 	"engines": {
@@ -24,6 +24,7 @@
 		"packages/*"
 	],
 	"dependencies": {
+		"patch-package": "^8.0.0",
 		"postinstall-postinstall": "^2.1.0"
 	}
 }

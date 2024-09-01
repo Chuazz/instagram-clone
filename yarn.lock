@@ -982,11 +982,6 @@
   dependencies:
     knex "3.1.0"
 
-"@directus/sdk@*":
-  version "17.0.0"
-  resolved "https://registry.yarnpkg.com/@directus/sdk/-/sdk-17.0.0.tgz#1e99f8afab95945d04025a8f374d206b8e0167d7"
-  integrity sha512-ADKoFrLjWPVVsYNK0EffVFstl/ZHVaQbiUp4NCueKfvFaOSLQ16xSVNj5O//rP5+rU8t1HkjwC6JDh02rao7ZQ==
-
 "@directus/sdk@^16.1.1":
   version "16.1.2"
   resolved "https://registry.yarnpkg.com/@directus/sdk/-/sdk-16.1.2.tgz#cd8c45881497a4ae3b6659c6b6bd68dc13e98258"
@@ -1674,6 +1669,11 @@
     chalk "^4.1.0"
     find-up "^5.0.0"
     js-yaml "^4.1.0"
+
+"@faker-js/faker@^8.4.1":
+  version "8.4.1"
+  resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-8.4.1.tgz#5d5e8aee8fce48f5e189bf730ebd1f758f491451"
+  integrity sha512-XQ3cU+Q8Uqmrbf2e0cIC/QN43sTBSC8KF12u29Mb47tWrt2hAgBXSgpZMj4Ao8Uk0iJcU99QsOCaIL8934obCg==
 
 "@graphql-typed-document-node/core@^3.1.0":
   version "3.2.0"
@@ -4160,7 +4160,7 @@ dotenv-expand@~11.0.6:
   dependencies:
     dotenv "^16.4.4"
 
-dotenv@^16.4.4, dotenv@^16.4.5, dotenv@~16.4.5:
+dotenv@^16.4.4, dotenv@~16.4.5:
   version "16.4.5"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.4.5.tgz#cdd3b3b604cb327e286b4762e13502f717cb099f"
   integrity sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==
@@ -9252,47 +9252,47 @@ tslib@^2.0.1, tslib@^2.1.0, tslib@^2.3.1, tslib@^2.4.0:
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-2.6.3.tgz#0438f810ad7a9edcde7a241c3d80db693c8cbfe0"
   integrity sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==
 
-turbo-darwin-64@2.0.14:
-  version "2.0.14"
-  resolved "https://registry.yarnpkg.com/turbo-darwin-64/-/turbo-darwin-64-2.0.14.tgz#f12bce31709f86656c34e037f0bb7d579206b619"
-  integrity sha512-kwfDmjNwlNfvtrvT29+ZBg5n1Wvxl891bFHchMJyzMoR0HOE9N1NSNdSZb9wG3e7sYNIu4uDkNk+VBEqJW0HzQ==
+turbo-darwin-64@2.1.1-canary.0:
+  version "2.1.1-canary.0"
+  resolved "https://registry.yarnpkg.com/turbo-darwin-64/-/turbo-darwin-64-2.1.1-canary.0.tgz#e9f43540d3aceafd957b048f039969f4631184d1"
+  integrity sha512-+XakvnGrOKaQrTryyY2sLfJHi6bc2e+WdkwRf8oyElWEjQ335ugXMe5ZzR62iKZUwEdpW0hEqsp9uJ5DTmt6eQ==
 
-turbo-darwin-arm64@2.0.14:
-  version "2.0.14"
-  resolved "https://registry.yarnpkg.com/turbo-darwin-arm64/-/turbo-darwin-arm64-2.0.14.tgz#001afca42de5b1e78841626241af09dfed004cda"
-  integrity sha512-m3LXYEshCx3wc4ZClM6gb01KYpFmtjQ9IBF3A7ofjb6ahux3xlYZJZ3uFCLAGHuvGLuJ3htfiPbwlDPTdknqqw==
+turbo-darwin-arm64@2.1.1-canary.0:
+  version "2.1.1-canary.0"
+  resolved "https://registry.yarnpkg.com/turbo-darwin-arm64/-/turbo-darwin-arm64-2.1.1-canary.0.tgz#e4d9ec06e71f1c82dfb27dc10a30b3e3b82e9cba"
+  integrity sha512-i7UMWkpN5yJ0DiEs++lYOXd/mBGRLo+JhMqNGYTVY1tHVKOjQBCIX6UQGG8K3E3hx9rmRs3SKJDdwumonGUjKA==
 
-turbo-linux-64@2.0.14:
-  version "2.0.14"
-  resolved "https://registry.yarnpkg.com/turbo-linux-64/-/turbo-linux-64-2.0.14.tgz#fbc5358227d28d8d82994885a48832159fc31920"
-  integrity sha512-7vBzCPdoTtR92SNn2JMgj1FlMmyonGmpMaQdgAB1OVYtuQ6NVGoh7/lODfaILqXjpvmFSVbpBIDrKOT6EvcprQ==
+turbo-linux-64@2.1.1-canary.0:
+  version "2.1.1-canary.0"
+  resolved "https://registry.yarnpkg.com/turbo-linux-64/-/turbo-linux-64-2.1.1-canary.0.tgz#1929938c6ef42b783a6f323dc1bf78bc23272497"
+  integrity sha512-iP9cX42UphOjN1ef4eC4U5XCS/sT31vpoUDuPmwq8SZfXYZ9EePFtr0J9mVkH+4liMPx/RNQaieWK/FqBmr+CA==
 
-turbo-linux-arm64@2.0.14:
-  version "2.0.14"
-  resolved "https://registry.yarnpkg.com/turbo-linux-arm64/-/turbo-linux-arm64-2.0.14.tgz#62299c377b34ae72330b875c87440694c22940f9"
-  integrity sha512-jwH+c0bfjpBf26K/tdEFatmnYyXwGROjbr6bZmNcL8R+IkGAc/cglL+OToqJnQZTgZvH7uDGbeSyUo7IsHyjuA==
+turbo-linux-arm64@2.1.1-canary.0:
+  version "2.1.1-canary.0"
+  resolved "https://registry.yarnpkg.com/turbo-linux-arm64/-/turbo-linux-arm64-2.1.1-canary.0.tgz#27c7d1eddd5dc4599af19574f4b52809771dc88d"
+  integrity sha512-QMcMVKvZNxWc22liD+DE9GClsj9ZtP6qOVwClfve5qhe26Ba5lQ3UO0DwA9heyfo5mk9jil5/zXa4l+HUp9JDg==
 
-turbo-windows-64@2.0.14:
-  version "2.0.14"
-  resolved "https://registry.yarnpkg.com/turbo-windows-64/-/turbo-windows-64-2.0.14.tgz#e0c3a8c6beb213187df4b8cffff284c84e05b2f1"
-  integrity sha512-w9/XwkHSzvLjmioo6cl3S1yRfI6swxsV1j1eJwtl66JM4/pn0H2rBa855R0n7hZnmI6H5ywLt/nLt6Ae8RTDmw==
+turbo-windows-64@2.1.1-canary.0:
+  version "2.1.1-canary.0"
+  resolved "https://registry.yarnpkg.com/turbo-windows-64/-/turbo-windows-64-2.1.1-canary.0.tgz#8bd8f864e0e4fe71b4d58c4bb60bc069b3d5a174"
+  integrity sha512-+5JkJEX4tfUntkSP/aXcKnuX+EfiNn/fu+tQKMtMMvactLBgaDdg/igM05AbzNajsdAUliHgh5y/EvPIiKt7HQ==
 
-turbo-windows-arm64@2.0.14:
-  version "2.0.14"
-  resolved "https://registry.yarnpkg.com/turbo-windows-arm64/-/turbo-windows-arm64-2.0.14.tgz#076ed8c841154e0b82f297ab8c1a01925bcf6cc0"
-  integrity sha512-XaQlyYk+Rf4xS5XWCo8XCMIpssgGGy8blzLfolN6YBp4baElIWMlkLZHDbGyiFmCbNf9I9gJI64XGRG+LVyyjA==
+turbo-windows-arm64@2.1.1-canary.0:
+  version "2.1.1-canary.0"
+  resolved "https://registry.yarnpkg.com/turbo-windows-arm64/-/turbo-windows-arm64-2.1.1-canary.0.tgz#e0dce9902480231c88ffc7176e6a8702efdf3fe3"
+  integrity sha512-OWOz7yKgOvs4yl66ZaLdmcURn3jJPgK8K5dK+TeKMhWxFl6Yr3OAyCRF3WwSiPJH9VpcUlSxunDFBb7C67mFlg==
 
-turbo@^2.0.14:
-  version "2.0.14"
-  resolved "https://registry.yarnpkg.com/turbo/-/turbo-2.0.14.tgz#fb3df4d795998536e38f13f3109b1e02f5e811a4"
-  integrity sha512-00JjdCMD/cpsjP0Izkjcm8Oaor5yUCfDwODtaLb+WyblyadkaDEisGhy3Dbd5az9n+5iLSPiUgf+WjPbns6MRg==
+turbo@^2.1.1-canary.0:
+  version "2.1.1-canary.0"
+  resolved "https://registry.yarnpkg.com/turbo/-/turbo-2.1.1-canary.0.tgz#6bbb1c927954eaff49cd3408f4a84db3b89e1f58"
+  integrity sha512-bG5CC1q4isrcNI9daiOjNa7WZDevw8Me0yXC4I7Hnye/4cQHpGFg3TPThpcffasrpMVjyn6r1vJTcdp8J/ylcw==
   optionalDependencies:
-    turbo-darwin-64 "2.0.14"
-    turbo-darwin-arm64 "2.0.14"
-    turbo-linux-64 "2.0.14"
-    turbo-linux-arm64 "2.0.14"
-    turbo-windows-64 "2.0.14"
-    turbo-windows-arm64 "2.0.14"
+    turbo-darwin-64 "2.1.1-canary.0"
+    turbo-darwin-arm64 "2.1.1-canary.0"
+    turbo-linux-64 "2.1.1-canary.0"
+    turbo-linux-arm64 "2.1.1-canary.0"
+    turbo-windows-64 "2.1.1-canary.0"
+    turbo-windows-arm64 "2.1.1-canary.0"
 
 type-detect@4.0.8:
   version "4.0.8"

@@ -1,6 +1,7 @@
 {
 	"extends": "@instagram/typescript-config/base.json",
 	"compilerOptions": {
+		"strict": true,
 		"paths": {
 			"@/*": ["./*"]
 		}

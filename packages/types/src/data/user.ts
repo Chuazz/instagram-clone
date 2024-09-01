@@ -27,6 +27,7 @@ type User = {
 	gender: 'male' | 'female';
 	user_name: string;
 	checked: boolean;
+	date_of_birth: Date;
 };
 
 export type { User };

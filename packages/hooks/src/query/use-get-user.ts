@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const useGetUser = (query?: Query<DirectusUser<User>, DirectusUser<User>>) => {
 	return useQuery({
-		queryKey: queryKey.user.list({}),
+		queryKey: queryKey.user.list,
 		queryFn: async () => {
 			const request = await client.request<User[]>(readUsers(query));
 

@@ -10,11 +10,12 @@ import type { ScreenProps } from '@/types/routes';
 import { ScrollView, Text } from 'dripsy';
 import { Controller, useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { faker } from '@faker-js/faker';
 
 const AccountScreen = ({ navigation }: ScreenProps<'AccountScreen'>) => {
 	const { control, handleSubmit } = useForm({
 		defaultValues: {
-			account: __DEV__ ? 'sonnv1912@gmail.com' : '',
+			account: __DEV__ ? faker.internet.email() : '',
 		},
 		resolver: zodResolver(
 			z.object({
@@ -33,7 +34,10 @@ const AccountScreen = ({ navigation }: ScreenProps<'AccountScreen'>) => {
 	};
 
 	return (
-		<Screen backgroundImage='BackgroundGradientImage' navigation={navigation}>
+		<Screen
+			backgroundImage='BackgroundGradientImage'
+			navigation={navigation}
+		>
 			<ScreenHeader />
 
 			<ScrollView

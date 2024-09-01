@@ -5,9 +5,8 @@ import type {
 } from '@instagram/types';
 
 type QueryOption = {
-	lists: (_filter?: object) => unknown[];
-	list: (_filter?: object) => unknown[];
-	detail: (_filter?: object) => unknown[];
+	list: unknown[];
+	detail: unknown[];
 };
 
 const queryKey: KeyValueType<
@@ -15,19 +14,16 @@ const queryKey: KeyValueType<
 	QueryOption
 > = {
 	post: {
-		lists: () => ['list', 'posts'],
-		list: (filter) => ['list', 'posts', filter],
-		detail: (filter) => ['detail', 'post', filter],
+		list: ['list', 'posts'],
+		detail: ['detail', 'post'],
 	},
 	user: {
-		lists: () => ['list', 'users'],
-		list: (filter) => ['list', 'users', filter],
-		detail: (filter) => ['detail', 'user', filter],
+		list: ['list', 'users'],
+		detail: ['detail', 'user'],
 	},
 	role: {
-		lists: () => ['list', 'roles'],
-		list: (filter) => ['list', 'roles', filter],
-		detail: (filter) => ['detail', 'role', filter],
+		list: ['list', 'roles'],
+		detail: ['detail', 'role'],
 	},
 };
 

@@ -1,11 +1,11 @@
 import { createDirectus, rest } from '@directus/sdk';
 
-console.log('process.env', process.env);
+const tempAPI = 'http://172.19.33.31:8055';
 
-const client = createDirectus('http://localhost').with(rest());
+const client = createDirectus(tempAPI).with(rest());
 
 const getAssetsUrl = (id?: string) => {
-	return `${process.env.EXPO_PUBLIC_API_URL}/assets/${id}`;
+	return `${tempAPI}/assets/${id}`;
 };
 
 export { client, getAssetsUrl };
