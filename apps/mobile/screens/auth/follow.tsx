@@ -8,7 +8,7 @@ import { UserAvatar } from '@/components/ui/user/user-avatar';
 import { UserName } from '@/components/ui/user/user-name';
 import { UserNickname } from '@/components/ui/user/user-nickname';
 import { UserRadio } from '@/components/ui/user/user-radio';
-import { useGetUser } from '@/hooks/use-get-user';
+import { useGetUser } from '@instagram/hooks';
 import { i18n } from '@instagram/configs';
 import type { ScreenProps } from '@/types/routes';
 import { observer } from '@legendapp/state/react';

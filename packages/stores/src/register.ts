@@ -6,7 +6,7 @@ type RegisterType = {
 	account: string;
 	password: string;
 	saveInfo: boolean;
-	birth: string;
+	birth: Date;
 	name: string;
 	userName: string;
 	avatar: {
@@ -21,7 +21,7 @@ const register$ = observable<RegisterType>({
 	account: '',
 	password: '',
 	saveInfo: false,
-	birth: new Date().toDateString(),
+	birth: new Date(),
 	shareAvatar: false,
 	name: '',
 	userName: '',

@@ -4,7 +4,7 @@
 		"slug": "instagram-clone",
 		"version": "0.0.0",
 		"orientation": "portrait",
-		"icon": "./assets/icons/ic_app.png",
+		"icon": "./assets/icons/ic_app_logo.png",
 		"scheme": "instagram-clone",
 		"assetBundlePatterns": ["**/*"],
 		"userInterfaceStyle": "automatic",
@@ -18,7 +18,7 @@
 		},
 		"android": {
 			"adaptiveIcon": {
-				"foregroundImage": "./assets/icons/ic_app.png",
+				"foregroundImage": "./assets/icons/ic_app_logo.png",
 				"backgroundColor": "#ffffff"
 			},
 			"package": "com.chuazz.instagramClone"

@@ -1,4 +1,4 @@
-import { SCREEN_WIDTH } from '@instagram/configs';
+import { SCREEN_WIDTH } from '@/configs/theme';
 import { toast$ } from '@instagram/stores';
 import { Show, observer, useObserve } from '@legendapp/state/react';
 import { Text, useSx } from 'dripsy';

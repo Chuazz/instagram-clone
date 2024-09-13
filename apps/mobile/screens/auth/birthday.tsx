@@ -9,11 +9,24 @@ import type { ScreenProps } from '@/types/routes';
 import { observer } from '@legendapp/state/react';
 import { differenceInYears } from 'date-fns';
 import { ScrollView, Text } from 'dripsy';
+import { useUpdateUser } from '@instagram/hooks/mutation';
+import type { User } from '@instagram/types/dist/data';
 
 const BirthDayScreen = observer(
 	({ navigation }: ScreenProps<'BirthDayScreen'>) => {
+		// const updateUserMutate = useUpdateUser();
+
+		// const onSubmit = () => {
+		// 	updateUserMutate.mutate({
+		// 		date_of_birth: register$.birth.get(),
+		// 	} as User);
+		// };
+
 		return (
-			<Screen backgroundImage='BackgroundGradientImage' navigation={navigation}>
+			<Screen
+				backgroundImage='BackgroundGradientImage'
+				navigation={navigation}
+			>
 				<ScreenHeader />
 
 				<ScrollView
@@ -52,18 +65,15 @@ const BirthDayScreen = observer(
 					</Text>
 
 					<DatePicker
-						value={new Date(register$.birth.get())}
+						value={register$.birth.get()}
 						show={true}
 						display='spinner'
 						placeholder={`${i18n.t('auth.birthday')} (${i18n.t('auth.age', {
-							age: differenceInYears(
-								new Date(),
-								new Date(register$.birth.get()),
-							),
+							age: differenceInYears(new Date(), register$.birth.get()),
 						})})`}
 						onChange={(_e, date) => {
-							if (date?.toDateString()) {
-								register$.birth.set(date?.toDateString());
+							if (date) {
+								register$.birth.set(date);
 							}
 						}}
 					/>
@@ -74,7 +84,7 @@ const BirthDayScreen = observer(
 							mt: 'sm',
 						}}
 						fullWidth={true}
-						onPress={() => navigation.navigate('NameScreen')}
+						// onPress={onSubmit}
 					/>
 				</ScrollView>
 

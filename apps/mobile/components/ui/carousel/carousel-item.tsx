@@ -1,4 +1,4 @@
-import { getAssetsUrl } from '@/utils/db';
+import { getAssetsUrl } from '@instagram/utils';
 import type { File } from '@instagram/types/data';
 import { Show, observer } from '@legendapp/state/react';
 import { View } from 'dripsy';
@@ -52,15 +52,18 @@ const CarouselItem = observer(
 						else={
 							<Image
 								source={getAssetsUrl(file.id)}
-								contentFit='contain'
 								sx={{
 									width: 'screen-width',
 									height: 'full',
+									objectFit: 'contain',
 								}}
 							/>
 						}
 					>
-						<Video file={file} autoPlay={false} />
+						<Video
+							file={file}
+							autoPlay={false}
+						/>
 					</Show>
 				</View>
 			</GestureDetector>

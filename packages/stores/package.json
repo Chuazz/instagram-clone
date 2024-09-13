@@ -9,6 +9,13 @@
 			"default": "./dist/index.js"
 		}
 	},
+	"typesVersions": {
+		"*": {
+			".": [
+				"./dist/index.js"
+			]
+		}
+	},
 	"scripts": {
 		"dev": "tsc --watch",
 		"dev:mobile": "yarn dev",

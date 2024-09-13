@@ -2,8 +2,8 @@ import BackgroundGradientImage from './images/img_background_gradient.png';
 import ContributorImage from './images/img_contributor.png';
 import TextLogoImage from './images/img_text_logo.png';
 
-import AppIcon from './icons/ic_app.png';
 import ArrowLeftOutlineIcon from './icons/ic_arrow_left_outline.png';
+import AppLogoIcon from './icons/ic_app_logo.png';
 import CheckBoxFillIcon from './icons/ic_checkbox_fill.png';
 import CircleCheckFillIcon from './icons/ic_circle_check_fill.png';
 import CircleOutlineIcon from './icons/ic_circle_outline.png';
@@ -44,8 +44,8 @@ const image = {
 	ContributorImage,
 	StoryBorderIcon,
 
+	AppLogoIcon,
 	PictureIcon,
-	AppIcon,
 	CheckBoxFillIcon,
 	SquareOutlineIcon,
 	CloseOutlineIcon,

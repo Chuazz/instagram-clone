@@ -9,6 +9,13 @@
 			"default": "./dist/index.js"
 		}
 	},
+	"typesVersions": {
+		"*": {
+			".": [
+				"./dist/index.js"
+			]
+		}
+	},
 	"scripts": {
 		"cp_icons": "shx mkdir -p ./dist/icons && shx cp -R ./src/icons/. ./dist/icons",
 		"cp_images": "shx mkdir -p ./dist/images && shx cp -R ./src/images/. ./dist/images",

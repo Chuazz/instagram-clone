@@ -1,5 +1,5 @@
 {
-	"name": "@instagram/configs",
+	"name": "@instagram/utils",
 	"version": "0.0.0",
 	"private": true,
 	"main": "./dist/index.js",
@@ -19,13 +19,16 @@
 	"scripts": {
 		"dev": "tsc --watch",
 		"dev:mobile": "yarn dev",
-		"dev:admin": "yarn dev",
 		"dev:package": "yarn dev",
 		"build": "tsc",
 		"build:package": "yarn build"
 	},
 	"dependencies": {
+		"@directus/sdk": "^16.1.1",
+		"@instagram/configs": "*",
+		"@instagram/stores": "*",
+		"@instagram/types": "*",
 		"@instagram/typescript-config": "*",
-		"i18n-js": "^4.4.3"
+		"@tanstack/react-query": "^5.51.23"
 	}
 }

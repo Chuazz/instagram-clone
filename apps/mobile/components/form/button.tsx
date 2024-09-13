@@ -183,7 +183,6 @@ const Button = ({
 			<>
 				<Show if={leftIcon}>
 					<Image
-						transition={300}
 						source={leftIcon}
 						sx={{
 							width: `icon-${size}`,
@@ -208,7 +207,6 @@ const Button = ({
 
 				<Show if={rightIcon}>
 					<Image
-						transition={300}
 						source={rightIcon}
 						sx={{
 							width: `icon-${size}`,

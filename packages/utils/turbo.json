@@ -1,0 +1,15 @@
+{
+	"extends": [
+		"//"
+	],
+	"globalEnv": [
+		"API_URL"
+	],
+	"tasks": {
+		"dev:mobile": {
+			"env": [
+				"API_URL"
+			]
+		}
+	}
+}

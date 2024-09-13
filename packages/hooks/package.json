@@ -1,0 +1,60 @@
+{
+	"name": "@instagram/hooks",
+	"version": "0.0.0",
+	"private": true,
+	"main": "./dist/index.js",
+	"exports": {
+		"./query": {
+			"default": "./dist/query/index.js",
+			"types": "./dist/query/index.d.ts",
+			"node": "./dist/query",
+			"import": "./dist/query"
+		},
+		"./mutation": {
+			"default": "./dist/mutation/index.js",
+			"types": "./dist/mutation/index.d.ts",
+			"node": "./dist/mutation",
+			"import": "./dist/mutation"
+		}
+	},
+	"publishConfig": {
+		"typesVersions": {
+			"*": {
+				"query": [
+					"./src/query/index.ts"
+				],
+				"mutation": [
+					"./src/mutation/index.ts"
+				]
+			}
+		}
+	},
+	"typesVersions": {
+		"*": {
+			"query": [
+				"./src/query/index.ts"
+			],
+			"mutation": [
+				"./src/mutation/index.ts"
+			]
+		}
+	},
+	"scripts": {
+		"dev": "tsc --watch",
+		"dev:mobile": "yarn dev",
+		"dev:package": "yarn dev",
+		"build": "tsc",
+		"build:package": "yarn build"
+	},
+	"dependencies": {
+		"@directus/sdk": "^16.1.1",
+		"@instagram/configs": "*",
+		"@instagram/stores": "*",
+		"@instagram/typescript-config": "*",
+		"@instagram/utils": "*",
+		"@tanstack/react-query": "^5.51.16"
+	},
+	"devDependencies": {
+		"@instagram/types": "*"
+	}
+}
