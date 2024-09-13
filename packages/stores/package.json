@@ -12,6 +12,7 @@
 	"scripts": {
 		"dev": "tsc --watch",
 		"dev:mobile": "yarn dev",
+		"dev:admin": "yarn dev",
 		"dev:package": "yarn dev",
 		"build": "tsc",
 		"build:package": "yarn build"

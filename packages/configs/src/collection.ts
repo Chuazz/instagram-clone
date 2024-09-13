@@ -5,8 +5,8 @@ import type {
 } from '@instagram/types';
 
 const systemCollection: KeyValueType<keyof SystemCollectionType, string> = {
-	user: 'users',
-	role: 'roles',
+	user: 'directus_users',
+	role: 'directus_roles',
 };
 
 const collection: KeyValueType<
